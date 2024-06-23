@@ -26,7 +26,7 @@ if(isset($_SESSION["user"]))
     include "connection.php";
         if(isset($_POST["submit"]))
         {
-            $query="select email,password from Tbl_user where email=".$_POST["userid"]." and password=".$_POST["Password"]."";
+            $query="select email,password from Tbl_user where email='".$_POST["userid"]."' and password='".$_POST["Password"]."'";
             $result=mysqli_query($conn,$query);
             if($result->num_rows>0)
             {
