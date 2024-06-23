@@ -10,30 +10,36 @@
     <div>
     <h1>Form Submission</h1>
     <form method="post" action="display.php">
-        <label>Username:</label>
+        <label>Fastname:</label>
         <input type="text" name="uname" required><br>
-        <label>Gender:</label>
-        <input type="radio" name="gender" value="male" required> Male
-        <input type="radio" name="gender" value="female" required> Female<br>
-        <label>Address:</label>
-        <input type="text" name="address" required><br>
+        <label>medalname:</label>
+        <input type="text" name="mname" required><br>
+        <label>lastname:</label>
+        <input type="text" name="lname" required><br>
         <label>Email:</label>
         <input type="email" name="email" required><br>
-        <label>Pincode:</label>
-        <input type="number" name="pincode" required><br>
         <label>Password:</label>
         <input type="password" name="pass" required><br>
-        <label>City:</label>
-        <input type="text" name="city" required><br>
-        <label>Remember me:</label>
-        <input type="checkbox" name="remember" value="yes"><br>
-        <label>Skills:</label>
-        <input type="checkbox" name="skills[]" value="HTML"> HTML
-        <input type="checkbox" name="skills[]" value="CSS"> CSS
-        <input type="checkbox" name="skills[]" value="JavaScript"> JavaScript<br>
         <button type="submit">Submit</button>
     </form>
     </div>
-    ?
+    <?php
+    include "connection.php";
+    $uname = $_POST['uname'] ;
+    $mname = $_POST['mname'] ;
+    $lname = $_POST['lname'] ;
+    $email = $_POST['email'] ;
+    $pass = $_POST['pass'] ;
+        if(isset($_POST["submit"]))
+           {
+              echo "success";
+              $query="INSERT INTO Tbl_user(fname,mname,lname,password,Email)VALUES ".$_POST['unme']."," .$_POST['mname'].",".$_POST['lname']."," .$_POST['pass']."," .$_POST['email'].  "";
+              $result=mysqli_query($conn,$query);
+            if(!$result)
+            {
+                echo mysqli_error($conn);
+            }
+           }
+    ?>
 </body>
 </html>
