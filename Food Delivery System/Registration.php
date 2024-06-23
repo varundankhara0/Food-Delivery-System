@@ -25,11 +25,7 @@
     </div>
     <?php
     include "connection.php";
-    $uname = $_POST['uname'] ;
-    $mname = $_POST['mname'] ;
-    $lname = $_POST['lname'] ;
-    $email = $_POST['email'] ;
-    $pass = $_POST['pass'] ;
+    
         if(isset($_POST["submit"]))
            {
               echo "success";
