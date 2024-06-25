@@ -1,0 +1,136 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav .menu {
+    display: flex;
+    align-items: center;
+}
+
+nav .menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+}
+
+nav .login-btn-header {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+    background-color: #f3f3f3;
+}
+
+.login-container {
+    display: flex;
+    background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.login-form label {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.login-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.forgot-password {
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-btn, .signup-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+.login-form img {
+    max-width: 100px;
+    
+}
+
+footer {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-left .social-media {
+    display: flex;
+    margin-top: 10px;
+}
+
+.footer-left .social-media a {
+    margin-right: 10px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-right .topic, .footer-right .page {
+    margin-bottom: 10px;
+}

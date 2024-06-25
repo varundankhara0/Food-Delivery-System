@@ -35,8 +35,10 @@ if(isset($_SESSION["user"]))
         if(isset($_POST["submit"]))
            {
               echo "success";
-              $query="INSERT INTO Tbl_user(fname,mname,lname,password,email) VALUES( '".$_POST['uname']."','" .$_POST['mname']."','".$_POST['lname']."','" .$_POST['pass']."','" .$_POST['email']."')";
+            
+              $query="INSERT INTO Tbl_user(fname,mname,lname,password,email) VALUES( '".$_POST['uname']."','" .$_POST['mname']."','".$_POST['lname']."','" .md5($_POST['pass'])."','" .$_POST['email']."')";
               $result=mysqli_query($conn,$query);
+
             if($result>0)
             {
                 echo mysqli_error($conn);
