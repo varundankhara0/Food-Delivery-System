@@ -38,6 +38,7 @@ nav {
     font-size: 16px;
 }
 
+
 .nav-links li .login-btn {
     background-color: #000000;
     color: #FFFFFF;
@@ -61,7 +62,7 @@ main {
     position: absolute;
     width: 70%;
     display: flex;
-    background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+    background: linear-gradient(180deg, #CC66D5 0%, rgba(136, 164, 26, 0.83) 100%);
     padding: 50px;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
