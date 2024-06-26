@@ -32,7 +32,7 @@
                     else
                     {
                         ?> 
-                        <li><a href="index.php" class="login-btn">Login</a></li>        
+                        <li><a href="login.php" class="login-btn">Login</a></li>        
                         <?php
                     } 
                 ?>
