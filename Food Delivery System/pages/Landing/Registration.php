@@ -16,11 +16,11 @@ if(isset($_SESSION["user"]))
     <div>
     <h1>Form Submission</h1>
     <form method="post" action="#">
-        <label>Fastname:</label>
+        <label>First name:</label>
         <input type="text" name="uname" required><br>
-        <label>medalname:</label>
+        <label>Middle name:</label>
         <input type="text" name="mname" required><br>
-        <label>lastname:</label>
+        <label>Last Name:</label>
         <input type="text" name="lname" required><br>
         <label>Email:</label>
         <input type="email" name="email" required><br>
@@ -30,7 +30,7 @@ if(isset($_SESSION["user"]))
     </form>
     </div>
     <?php
-    include "connection.php";
+    include "../../connection.php";
     
         if(isset($_POST["submit"]))
            {

@@ -12,7 +12,7 @@ if(isset($_SESSION["user"]))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminor Delivery</title>
-    <link rel="stylesheet" href="css/loginstyle.css">
+    <link rel="stylesheet" href="../../css/loginstyle.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@ if(isset($_SESSION["user"]))
                     <?php
                     } else {
                     ?>
-                        <li><a href="index.php" class="login-btn">Login</a></li>
+                        <li><a href="login.php" class="login-btn">Login</a></li>
                     <?php
                     }
                     ?>
@@ -59,7 +59,7 @@ if(isset($_SESSION["user"]))
                     </div>
                 </form>
                 <?php
-    include "connection.php";
+    include "../../connection.php";
         if(isset($_POST["submit"]))
         {
             $tries=0;
@@ -85,7 +85,7 @@ if(isset($_SESSION["user"]))
             }
         }
     ?>
-                <img src="images/taco.gif" alt="Taco Image">
+                <img src="../../images/taco.gif" alt="Taco Image">
                 <!-- <div class="image-container">
                     <img src="images/loginTest.gif" alt="Taco Image">
                 </div> -->
@@ -98,9 +98,9 @@ if(isset($_SESSION["user"]))
                 <div class="footer-left">
                     <h3>Luminor's delivery</h3>
                     <div class="social-icons">
-                        <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
-                        <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
-                        <a href="https://www.instagram.com/vd__2004/"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
                     </div>
                 </div>
                 <div class="footer-right">

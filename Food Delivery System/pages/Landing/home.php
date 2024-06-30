@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminor Delivery</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="scss/_carousel.scss">
-    <link rel="stylesheet" href="scss/main.scss">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../scss/_carousel.scss">
+    <link rel="stylesheet" href="../../scss/main.scss">
     <script src="https://cdn.jsdelivr.net/npm/scroll-carousel@1.2.7/dist/scroll.carousel.min.js"></script>
 </head>
 <body>
@@ -53,7 +53,7 @@
                     }
             ?>
             <div class="my-carousel">
-                <div class="item"><img src="images/image.png" alt="" srcset=""></div>
+                <div class="item"><img src="../../images/image.png" alt="" srcset=""></div>
                 <div class="item"><img src="https://media.istockphoto.com/id/938742222/photo/cheesy-pepperoni-pizza.jpg?s=612x612&w=0&k=20&c=D1z4xPCs-qQIZyUqRcHrnsJSJy_YbUD9udOrXpilNpI=" alt="" srcset=""></div>
                 <div class="item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuCXcdf0VP2QBb1AArtLEKMZOb0cZDWk_cpQ&s" alt="" srcset=""></div>
             </div>
@@ -65,7 +65,7 @@
                 <div class="review-card">
                     <p>"A terrific piece of praise"</p>
                     <div class="reviewer">
-                        <img src="images/reviewer1.jpg" alt="Reviewer 1">
+                        <img src="../../images/reviewer1.jpg" alt="Reviewer 1">
                         <div class="reviewer-info">
                             <p>Elle</p>
                             
@@ -75,7 +75,7 @@
                 <div class="review-card">
                     <p>"A fantastic bit of feedback"</p>
                     <div class="reviewer">
-                        <img src="images/reviewer2.jpg" alt="Reviewer 2">
+                        <img src="../../images/reviewer2.jpg" alt="Reviewer 2">
                         <div class="reviewer-info">
                             <p>Mike</p>
                         </div>
@@ -84,7 +84,7 @@
                 <div class="review-card">
                     <p class="review-title">"A genuinely glowing review"</p>
                     <div class="reviewer">
-                        <img src="images/reviewer3.jpg" alt="Reviewer 3">
+                        <img src="../../images/reviewer3.jpg" alt="Reviewer 3">
                         <div class="reviewer-info">
                             <p>Aliana</p>
                            
@@ -100,9 +100,9 @@
             <div class="footer-left">
                 <h3>Luminor's delivery</h3>
                 <div class="social-icons">
-                    <a href="#"><img src="images/facebook-icon.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter-icon.png" alt="Twitter"></a>
-                    <a href="https://www.instagram.com/vd__2004/"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                    <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
                 </div>
             </div>
             <div class="footer-right">

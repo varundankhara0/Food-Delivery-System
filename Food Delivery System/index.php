@@ -1,4 +1,3 @@
-<?php 
-header("location:home.php");
-
-?>
+<script>
+    window.location='pages/Landing/home.php';
+</script>
