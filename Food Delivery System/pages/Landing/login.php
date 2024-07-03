@@ -55,15 +55,23 @@ if(isset($_SESSION["user"]))
 
                     <div class="buttons">
                         <button type="submit" name="submit" class="login-btn">Login</button>
-                        <button type="button" class="signup-btn">Sign-up</button>
+                        <button type="button" class="signup-btn" onclick="register()">Sign-up</button>
                     </div>
                 </form>
+                <script>
+                    function register()
+                    {
+                        window.location='Registration.php';
+                    }
+                </script>
                 <?php
     include "../../connection.php";
+    
         if(isset($_POST["submit"]))
         {
+
             $tries=0;
-            $query="select email,password from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."'";
+            $query="select email,password from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1";
             $result=mysqli_query($conn,$query);
             if($result->num_rows>0)
             {
