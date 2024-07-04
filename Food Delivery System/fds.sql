@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2024 at 07:31 PM
+-- Generation Time: Jul 04, 2024 at 06:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `fds`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_delivery_man`
+--
+
+CREATE TABLE `tbl_delivery_man` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -71,16 +83,14 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_user`
---
-
-INSERT INTO `tbl_user` (`id`, `fullname`, `Email`, `password`, `PhoneNo`, `status`, `image`) VALUES
-(14, 'Naishal Manish Doshi', 'cjesus69133@gmail.com', '27933b90f4bfda6b9f7f6c8b0c2aa325', '9326163059', 0, 'gg.png'),
-(15, 'Naishal Manish Doshi', 'cjesus69133@gmail.com', '27933b90f4bfda6b9f7f6c8b0c2aa325', '9326163059', 0, 'gg.png');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_delivery_man`
+--
+ALTER TABLE `tbl_delivery_man`
+  ADD KEY `user-delivery` (`userid`);
 
 --
 -- Indexes for table `tbl_fooditem`
@@ -127,6 +137,12 @@ ALTER TABLE `tbl_user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_delivery_man`
+--
+ALTER TABLE `tbl_delivery_man`
+  ADD CONSTRAINT `user-delivery` FOREIGN KEY (`userid`) REFERENCES `tbl_user` (`id`);
 
 --
 -- Constraints for table `tbl_fooditem`
