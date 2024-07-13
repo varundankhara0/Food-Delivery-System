@@ -51,7 +51,7 @@ if(isset($_SESSION["user"]))
                                   // Upload file to server
                   if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath))
                   {
-                    $query="INSERT INTO Tbl_user(fullname,password,email,PhoneNo,status,image) VALUES( '".$_POST['uname']." ".$_POST['mname']." ".$_POST['lname']."','" .md5($_POST['pass'])."','" .$_POST['email']."','" .$_POST['phoneno']."','0','".$fileName."');";
+                    $query="INSERT INTO Tbl_user(fullname,password,email,PhoneNo,status,image) VALUES( '".$_POST['uname']." ".$_POST['mname']." ".$_POST['lname']."','" .md5($_POST['pass'])."','" .$_POST['email']."','" .$_POST['phoneno']."','0','".$targetFilePath."');";
                     $result=mysqli_query($conn,$query);
       
                   if(!$result)
