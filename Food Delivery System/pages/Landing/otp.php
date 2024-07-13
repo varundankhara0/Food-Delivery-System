@@ -1,8 +1,8 @@
 <?php 
 session_start();
-if(!isset($_SESSION['email']))
+if(!isset($_SESSION["email"]))
 {
-    echo "<script>alert('problem')</script>";
+    die("no email was set");
 }
 ?>
 <!DOCTYPE html>
@@ -11,76 +11,48 @@ if(!isset($_SESSION['email']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Document</title>
 </head>
 <body>
-    <form method="post" id='dummyform'>
-        <label>Enter otp:</label>
-        <input type="number" name="otp" id="otp">
-        <input type="number" name="getotp" id="getotp" hidden>
-        <input type="submit" value="Submit" id="submit">
-    </form>
-    
+    <p></p>
     <script>
-        $(document).ready(function(){   
-        let tries = 3;
-
-        $('#dummyform').submit(function(event) 
-        {
-            event.preventDefault(); // Prevent the form from submitting
-            let writtenotp = document.getElementById('otp').value;
-            let receivedotp = document.getElementById('getotp').value;
-            if (writtenotp === receivedotp) {
-                alert('Correct');
-                $.ajax({
-                        type: 'POST',
-                        url: '../ajax_files/verifyuser.php',
-                        data: { 
-                            status:true
-                        },
-                        success: function(response) {
-                            window.location='home.php';
-                        }
-                 });
-            } else {
-                tries--;
-                if (tries === 0) {
-                    alert('Please register again');
-                    $.ajax({
-                        type: 'POST',
-                        url: '../ajax_files/destroy_session.php',
-                        data: { },
-                        success: function(response) {
-                            window.location='home.php';
-                        }
-                 });
-                    
-                }
-                else
-                {
-                    alert('Wrong otp entered please try again');
-                }
-            }
-        });
-
+        $(document).ready(function(){
             $.ajax({
-                type: 'POST',
-                url: '../../Authentication/otp.php',
-                data: { email: `<?php 
+                    type: 'POST',
+                    url: "../Ajax_files/sendveri.php",
+                    data: { email:`<?php 
                     echo $_SESSION["email"];
-                ?>` },
-                success: function(response) {
-                    if(response!='fail')
-                    {
-                        document.getElementById('getotp').value=response;
+                    ?>` },
+                    success: function(response) {
+                        if(response==false)
+                        {
+                            $("p").text("failure occured");
+                            exit();   
+                        }
+                        alert(response);
+                        $.ajax({
+                            type: 'POST',
+                            url: '../../Authentication/sendverificationemail.php',
+                            data: {  },
+                            success: function(response) {
+                                if(response!=false)
+                                {
+                                    alert("Email for verification has been sent");
+                                    window.location="logout.php";
+                                }
+                                else
+                                {
+                                    alert("email verification failed");
+                                }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.log('Error: ' + textStatus + ' - ' + errorThrown);
+                            }
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log('Error: ' + textStatus + ' - ' + errorThrown);
                     }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('Error: ' + textStatus + ' - ' + errorThrown);
-                }
-            });
-      
-            
+                });
         });
     </script>
 </body>

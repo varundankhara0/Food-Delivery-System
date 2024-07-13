@@ -71,15 +71,13 @@ if(isset($_SESSION["user"]))
                       $_SESSION["email"]=$_POST["email"];
                       $_SESSION["user"]=$_POST["uname"];
                       echo "<script>window.location='otp.php';</script>";
-                  }                         
-                                      
-                                      
+                  }                          
                   }
                               
               }
                else
                   {
-                      echo 'Sorry, only JPG, JPEG, PNG, GIF files are allowed to upload.';
+                      echo '<script>alert("Sorry, only JPG, JPEG, PNG, GIF files are allowed to upload.");</script>';
                   }
             
              
