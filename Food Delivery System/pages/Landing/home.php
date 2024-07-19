@@ -1,6 +1,7 @@
 <!-- http://localhost/Food-Delivery-System/Food%20Delivery%20System/Registration.php -->
  <?php 
  session_start();
+ 
  ?>
 <!DOCTYPE html>
 <html lang="en">

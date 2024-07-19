@@ -71,11 +71,15 @@ if(isset($_SESSION["user"]))
         {
 
             $tries=0;
-            $query="select email,password from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1";
+            $query="select email,password,name from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1 limit 1";
             $result=mysqli_query($conn,$query);
             if($result->num_rows>0)
             {
-                $_SESSION["user"]=$_POST["userid"];
+                while($row=$result->fetch_assoc())
+                {
+                    $_SESSION["user"]=$row[0];
+                }
+                
                 echo "<script>
                 alert('Login Successfull');
                 window.location='home.php';</script>";
