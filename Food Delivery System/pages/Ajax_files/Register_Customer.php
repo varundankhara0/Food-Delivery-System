@@ -27,13 +27,15 @@ session_start();
                   else
                   {
                       
-                      $query="select id from tbl_user where email='".$_POST["email"]."'";
+                      $query="select id,email from tbl_user where email='".$_POST["email"]."'";
                       $results=mysqli_query($conn,$query);
                       while($row=mysqli_fetch_row($results))
                       {
                           $_SESSION["userid"]=$row[0];
+                          $_SESSION["email"]=$row[1];
                       }
                       $_SESSION["user"]=$_POST["name"];
+                      
                       echo true;
                   }                          
                   }

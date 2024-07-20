@@ -28,7 +28,7 @@ if(!isset($_SESSION["email"]))
                             $("p").text("failure occured");
                             exit();   
                         }
-                        alert(response);
+                        
                         $.ajax({
                             type: 'POST',
                             url: '../../Authentication/sendverificationemail.php',

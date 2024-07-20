@@ -71,13 +71,14 @@ if(isset($_SESSION["user"]))
         {
 
             $tries=0;
-            $query="select email,password,name from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1 limit 1";
+            $query="select email,password,fullname from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1 limit 1";
             $result=mysqli_query($conn,$query);
             if($result->num_rows>0)
             {
-                while($row=$result->fetch_assoc())
+                while($row=$result->fetch_array())
                 {
-                    $_SESSION["user"]=$row[0];
+                    $_SESSION["user"]=$row[2];
+                     
                 }
                 
                 echo "<script>
