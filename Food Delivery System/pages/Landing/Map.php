@@ -1,105 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Guides</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-<link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
-<style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .autocomplete-suggestions {
+            border: 1px solid #ddd;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .autocomplete-suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestion:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
-<div id="map"></div>
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoibHVtaW5vcmQiLCJhIjoiY2x5cmo4djk5MDM5bzJpcXY1cnlhM2JmdyJ9.802ZAc2Vo2Vx6ESrHGTncw';
-const map = new mapboxgl.Map({
-  container: 'map', // container ID
-  style: 'mapbox://styles/mapbox/streets-v12', // style URL
-  center: [-76.54, 39.18], // starting position [lng, lat]2
-  zoom: 9 // starting zoom
-});
-    // add to map
-
-
-// update coordinates
-// Add to an image source to the map with some initial URL and coordinates
-map.addSource('image_source_id', {
-    type: 'image',
-    url: 'https://www.mapbox.com/images/foo.png',
-    coordinates: [
-        [-76.54, 39.18],
-        [-76.52, 39.18],
-        [-76.52, 39.17],
-        [-76.54, 39.17]
-    ]
-});
-// Then update the image URL and coordinates
-imageSource.updateImage({
-    url: 'https://www.mapbox.com/images/bar.png',
-    coordinates: [
-        [-76.5433, 39.1857],
-        [-76.5280, 39.1838],
-        [-76.5295, 39.1768],
-        [-76.5452, 39.1787]
-    ]
-});
-
-// map.removeSource('some id');  // remove
-    map.addControl(new mapboxgl.NavigationControl());
-    map.scrollZoom.disable();
-    map.clickTolerance=0;
-    map.on('style.load', () => {
-        map.setFog({}); // Set the default atmosphere style
-    });
-
-    // The following values can be changed to control rotation speed:
-
-    // At low zooms, complete a revolution every two minutes.
-    const secondsPerRevolution = 240;
-    // Above zoom level 5, do not rotate.
-    const maxSpinZoom = 5;
-    // Rotate at intermediate speeds between zoom levels 3 and 5.
-    const slowSpinZoom = 3;
-
-    let userInteracting = false;
-    const spinEnabled = true;
-
-    function spinGlobe() {
-        const zoom = map.getZoom();
-        if (spinEnabled && !userInteracting && zoom < maxSpinZoom) {
-            let distancePerSecond = 360 / secondsPerRevolution;
-            if (zoom > slowSpinZoom) {
-                // Slow spinning at higher zooms
-                const zoomDif =
-                    (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
-                distancePerSecond *= zoomDif;
-            }
-            const center = map.getCenter();
-            center.lng -= distancePerSecond;
-            // Smoothly animate the map over one second.
-            // When this animation is complete, it calls a 'moveend' event.
-            map.easeTo({ center, duration: 1000, easing: (n) => n });
+    <h1>Autocomplete Form</h1>
+    <input type="text" id="location-input" placeholder="Enter a location..." />
+    <div id="suggestions" class="autocomplete-suggestions"></div>
+    <script>
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
         }
-    }
 
-    // Pause spinning on interaction
-    map.on('mousedown', () => {
-        userInteracting = true;
-    });
-    map.on('dragstart', () => {
-        userInteracting = true;
-    });
+        const fetchSuggestions = debounce(function(input) {
+            if (input.length < 3) {
+                document.getElementById('suggestions').innerHTML = '';
+                return;
+            }
+            const location = '19.265980587014074,72.96698942923868';
+            const apiKey = 'PEDy9RDQZovqNa0v5z43MovpPUOQNBeXE2RiVdAg';
+            const url = `https://api.olamaps.io/places/v1/autocomplete?location=${location}&input=${input}&api_key=${apiKey}`;
 
-    // When animation is complete, start spinning if there is no ongoing interaction
-    map.on('moveend', () => {
-        spinGlobe();
-    });
+            fetch(url, {
+                headers: {
+                    'X-Request-Id': 'your-request-id'  
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('API Response:', data);
 
-    spinGlobe();
-</script>
+                const suggestionsDiv = document.getElementById('suggestions');
+                suggestionsDiv.innerHTML = '';
 
+                if (data.predictions && data.predictions.length > 0) {
+                    data.predictions.forEach(prediction => {
+                        const suggestionDiv = document.createElement('div');
+                        suggestionDiv.className = 'autocomplete-suggestion';
+                        suggestionDiv.textContent = prediction.description;  // Use 'description' property
+                        suggestionDiv.addEventListener('click', () => {
+                            document.getElementById('location-input').value = prediction.description;  // Use 'description' property
+                            suggestionsDiv.innerHTML = '';
+                        });
+                        suggestionsDiv.appendChild(suggestionDiv);
+                    });
+                } else {
+                    console.error('No predictions found in the response');
+                }
+            })
+            .catch(error => console.error('Error fetching autocomplete suggestions:', error));
+        }, 300);
+
+        document.getElementById('location-input').addEventListener('input', function() {
+            fetchSuggestions(this.value);
+        });
+    </script>
 </body>
 </html>
