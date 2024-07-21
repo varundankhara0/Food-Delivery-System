@@ -11,6 +11,11 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
         <!-- .header-area .main-nav .logo {
             display: flex;
             justify-content:left;
@@ -193,12 +198,12 @@
             border-radius: 25px;
         }
         footer {
-            margin-top: 150px;
+            margin-top: 180px;
             background-color:#a120a1 ;
             background-repeat: no-repeat;
             background-size: cover;
             
-            min-height: 150px;
+            min-height: 200px;
             border-radius: 150px 150px 0px 0px;
           }
         

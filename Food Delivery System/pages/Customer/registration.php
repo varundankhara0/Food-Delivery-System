@@ -17,7 +17,12 @@
     <link rel="stylesheet" href="../../css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <style>
-    
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing:border-box ;
+        }
         .header-area .main-nav .menu-trigger {
             position: absolute;
             right: 20px;
@@ -217,7 +222,7 @@
         </div>
     </footer>
 
-    <script type="text/javascript">//for right click off
+     <script type="text/javascript">//for right click off
       document.addEventListener('contextmenu', (e) => e.preventDefault());
 
 function ctrlShiftKey(e, keyCode) {
@@ -235,7 +240,7 @@ document.onkeydown = (e) => {
   )
     return false;
 };
-    </script>
+    </script> 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
      <script>
@@ -260,7 +265,7 @@ document.onkeydown = (e) => {
         const file = $('#file').val();
         const birthDate = new Date(dob);
                 const today = new Date();
-                const age = today.getFullYear() - birthDate.getFullYear();
+                var age = today.getFullYear() - birthDate.getFullYear();
                 const m = today.getMonth() - birthDate.getMonth();
                 if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
                     age--;

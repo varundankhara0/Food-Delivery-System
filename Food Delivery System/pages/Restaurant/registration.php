@@ -5,12 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Lugx Gaming - Shop Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
         <!-- .header-area .main-nav .logo {
             display: flex;
             justify-content:left;
@@ -210,7 +217,7 @@
    <nav>
     <div><img src="../../images/logo.png"  ></div>
     <div>
-        <ul>
+        <ul>    
             <li><a href="#">Home</a></li>
             <li><a href="#">Our Shop</a></li>
             <li><a href="#">Product Details</a></li>
@@ -222,32 +229,29 @@
 
 
     <div class="form-section">
-        <form method="post" action="#" enctype="multipart/form-data">
+        <form method="post" action="#" enctype="multipart/form-data" id="user-form" novalidate>
            
             <div class="inline-inputs">
                 <div class="form-group">
                     <label for="name">Name:
                     <input type="text" id="name" name="name" required></label>
+                    <div id="name-error" class="error">Invalid name.</div>
                 </div>
             </div>
             <div class="inline-inputs">
                 <div class="form-group">
-                    <label for="city">city:
+                    <label for="city">address:
                     <input type="text" id="address" name="address" required></label>
+                    <div id="address-error" class="error">Invalid name.</div>
                 </div>
             </div>
             <div class="inline-inputs">
                 
             </div>
-            <div class="inline-inputs">
-                <div class="form-group">
-                    <label for="pass">Password:
-                    <input type="password" id="pass" name="pass" required></label>
-                </div>
-            </div>
             <div class="form-group">
                 <label for="phone">Phone:
                 <input type="number" id="phone" name="phoneno" required></label>
+                <div id="phone-error" class="error">Invalid phone number. Please use 10 digits.</div>
             </div>
             <button type="submit" name="submit">Submit</button>
         </form>
@@ -255,11 +259,103 @@
     <footer class="filter">
         <div >
             <div >
-                <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
             </div>
         </div>
     </footer>
+    <!-- <script type="text/javascript">//for right click off
+    
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
 
+function ctrlShiftKey(e, keyCode) {
+  return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+}
+
+document.onkeydown = (e) => {
+ 
+  if (
+    event.keyCode === 123 ||
+    ctrlShiftKey(e, 'I') ||
+    ctrlShiftKey(e, 'J') ||
+    ctrlShiftKey(e, 'C') ||
+    (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+  )
+    return false;
+};
+</script> -->
+<script>
+    $(document).ready(function(){
+       
+    
+    $('#user-form').on('submit', function(e){
+        e.preventDefault();
+        let valid = true;
+
+        const nameRegex = /^[a-zA-Z]}$/;
+        const phoneRegex = /^\d{10}$/;
+        const addressRegex =/^\[a-zA-Z]{3}$/;
+        
+        
+        
+        const name = $('#name').val();
+        const phone = $('#phone').val();
+        const address =$('#address').val();
+       
+ 
+     
+        if (!nameRegex.test(name)) {
+            $('#name-error').show();
+            valid = false;
+        } else {
+            $('#name-error').hide();
+        }
+        if (!phoneRegex.test(phone)) {
+            $('#phone-error').show();
+            valid = false;
+        } else {
+            $('#phone-error').hide();
+        }
+        if(!addressRegex.test(address)){
+        $('#address-error').show();
+            valid = false;
+        } else {
+            $('#address-error').hide();
+        }
+       const formData = new FormData(this);
+        if (valid) {
+            alert("valid");
+        }
+        else
+        {
+            alert("invalid");
+        }
+        //     $.ajax({
+        //         url: '../Ajax_files/Register_r.php',
+        //         method: 'POST',
+        //         data: formData,
+        //         contentType: false, 
+        //         processData: false,
+        //         success: function(response) {
+        //             if(response==true)
+        //             {
+        //                 alert("User Registeration successfull");
+        //                 window.location='../Landing/otp.php';
+        //             }
+        //             else
+        //             {
+        //                 if(response=="user exists")
+        //                 {
+        //                     alert("User already exists");
+        //                 }
+        //             }
+        //         },
+        //         error: function(error) {
+        //             alert('There was an error submitting the form.');
+        //         }
+        //     });
+        // }
+    });
+});
+</script>
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

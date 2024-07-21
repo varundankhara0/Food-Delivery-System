@@ -71,16 +71,17 @@ if(isset($_SESSION["user"]))
         {
 
             $tries=0;
-            $query="select email,password,fullname from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1 limit 1";
+            $query="select id,email,password,fullname from Tbl_user where email='".$_POST["userid"]."' and password='".md5($_POST["Password"])."' and status=1 limit 1";
             $result=mysqli_query($conn,$query);
             if($result->num_rows>0)
             {
                 while($row=$result->fetch_array())
                 {
-                    $_SESSION["user"]=$row[2];
-                     
+                    $_SESSION["userid"]=$row[0];
+                    $_SESSION["user"]=$row[3];
+                    
                 }
-                
+                $_SESSION["role"]="c";
                 echo "<script>
                 alert('Login Successfull');
                 window.location='home.php';</script>";
@@ -89,6 +90,7 @@ if(isset($_SESSION["user"]))
             {
                 $tries=$tries+1;
                 echo "<script>
+                
                 alert('Wrong crendentials entered')</script>";
             }
             if($tries==3){
