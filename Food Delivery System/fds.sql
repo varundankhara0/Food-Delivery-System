@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2024 at 04:19 PM
+-- Generation Time: Jul 21, 2024 at 08:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -95,7 +95,7 @@ CREATE TABLE `tbl_delivery` (
 
 CREATE TABLE `tbl_delivery_man` (
   `id` int(11) NOT NULL,
-  `onlinestatus` tinyint(1) NOT NULL,
+  `onlinestatus` tinyint(1) DEFAULT NULL,
   `Licenseno` varchar(15) NOT NULL,
   `Licenseimage` varchar(255) NOT NULL,
   `adharcardno` varchar(15) NOT NULL,
@@ -173,7 +173,6 @@ CREATE TABLE `tbl_payment` (
 CREATE TABLE `tbl_restaurant` (
   `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `cityid` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `address` varchar(255) NOT NULL,
   `Contact` varchar(10) NOT NULL,
@@ -195,18 +194,11 @@ CREATE TABLE `tbl_user` (
   `PhoneNo` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `dob` date DEFAULT NULL,
   `accounthash` varchar(64) DEFAULT NULL,
-  `hash_token_expires_at` datetime DEFAULT NULL,
   `reset_token` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_user`
---
-
-INSERT INTO `tbl_user` (`id`, `fullname`, `Email`, `password`, `PhoneNo`, `status`, `image`, `accounthash`, `hash_token_expires_at`, `reset_token`, `reset_token_expires_at`) VALUES
-(1, 'Naishal Manish Doshi', 'naishal036@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', '9326163059', 1, 'Screenshot 2024-06-24 143047.png', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -373,7 +365,7 @@ ALTER TABLE `tbl_restaurant`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
