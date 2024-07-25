@@ -186,10 +186,10 @@ include "../../chcekcustomer.php";
     </nav>
 
     <div class="form-section">
-        <h1>Customer Registration</h1>
+        <h1>Customer's Address Registration</h1>
         <form method="post" action="#" enctype="multipart/form-data" id="user-form" novalidate>
             <div class="form-group">
-                <label for="flatno">Flat No.:</label>
+                <label for="flatno">Door/Flat No.:</label>
                 <input type="text" name="flatno" id="flatno" placeholder="Enter Your Flat No" required>
                 <div id="flatno-error" class="error">Please enter your flat number.</div>
             </div>
@@ -201,7 +201,7 @@ include "../../chcekcustomer.php";
             <div id="suggestions" class="autocomplete-suggestions"></div>
             <div class="form-group">
                 <label for="landmark">Landmark:</label>
-                <textarea name="landmark" id="landmark" placeholder="Enter Nearby Landmark" required></textarea>
+                <textarea name="landmark" id="landmark" placeholder="Enter Nearby Landmark [optional]" ></textarea>
                 <div id="landmark-error" class="error">Please enter a landmark.</div>
             </div>
 
@@ -215,21 +215,20 @@ include "../../chcekcustomer.php";
             </div>
             <div class="form-group">
                 <label for="type">area:</label>
-                <select name="area" id="area" required>
+                <select name="areaid" id="area" required>
                     <option>choose locality</option>
-                    <?php 
-                    include "../../connection.php";
-                    $query="select * from tbl_area";
-                    $result=mysqli_query($conn,$query);
-                    while($row=$result->fetch_array())
-                    {
-
-                    
-                    ?>
-                        <option value="<?php echo $row["id"] ?>"><?php echo $row["name"] ?></option>    
-                    
                     <?php
-                } ?>
+                    include "../../connection.php";
+                    $query = "select * from tbl_area";
+                    $result = mysqli_query($conn, $query);
+                    while ($row = $result->fetch_array()) {
+
+
+                    ?>
+                        <option value="<?php echo $row["id"] ?>"><?php echo $row["name"] ?></option>
+
+                    <?php
+                    } ?>
                 </select>
                 <div id="area-error" class="error">Please select area.</div>
             </div>
@@ -245,7 +244,7 @@ include "../../chcekcustomer.php";
         </div>
     </footer>
 
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         // Disable right-click
         document.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -262,7 +261,7 @@ include "../../chcekcustomer.php";
                 (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
             )
                 return false;
-        }; -->
+        };
     </script>
 
 
@@ -292,12 +291,7 @@ include "../../chcekcustomer.php";
                     $('#address-error').hide();
                 }
 
-                if (!landmark) {
-                    $('#landmark-error').show();
-                    valid = false;
-                } else {
-                    $('#landmark-error').hide();
-                }
+              
 
                 if (!type) {
                     $('#type-error').show();
@@ -353,7 +347,7 @@ include "../../chcekcustomer.php";
                 document.getElementById('suggestions').innerHTML = '';
                 return;
             }
-            const location = '19.265980587014074,72.96698942923868';
+            const location = '21.174567814302158,72.83139430283721';
             const apiKey = 'PEDy9RDQZovqNa0v5z43MovpPUOQNBeXE2RiVdAg';
             const url = `https://api.olamaps.io/places/v1/autocomplete?location=${location}&input=${input}&api_key=${apiKey}`;
 
@@ -365,7 +359,7 @@ include "../../chcekcustomer.php";
                 .then(response => response.json())
                 .then(data => {
                     console.log('API Response:', data);
-                    
+
                     const suggestionsDiv = document.getElementById('suggestions');
                     suggestionsDiv.innerHTML = '';
 
@@ -375,8 +369,11 @@ include "../../chcekcustomer.php";
                             suggestionDiv.className = 'autocomplete-suggestion';
                             suggestionDiv.textContent = prediction.description; // Use 'description' property
                             suggestionDiv.addEventListener('click', () => {
-                                const { lat, lng } = prediction.geometry.location;
-                                callsublocality(lat,lng);
+                                const {
+                                    lat,
+                                    lng
+                                } = prediction.geometry.location;
+                                callsublocality(lat, lng);
                                 document.getElementById('address').value = prediction.description; // Use 'description' property
                                 suggestionsDiv.innerHTML = '';
                             });
@@ -392,9 +389,9 @@ include "../../chcekcustomer.php";
         document.getElementById('address').addEventListener('input', function() {
             fetchSuggestions(this.value);
         });
-        function callsublocality(lat,log)
-        {
-            var count=0;
+
+        function callsublocality(lat, log) {
+            var count = 0;
             const location = '19.265980587014074,72.96698942923868';
             const apiKey = 'PEDy9RDQZovqNa0v5z43MovpPUOQNBeXE2RiVdAg';
             const url = `https://api.olamaps.io/places/v1/reverse-geocode?latlng=${lat}%2C${log}&api_key=${apiKey}`;
@@ -406,23 +403,80 @@ include "../../chcekcustomer.php";
                 })
                 .then(response => response.json())
                 .then(data => {
+                    if(getlocality(data)==false)
+                    {
+                        alert("The address should belong to Surat only");
+                        return;
+                    }
                     getSublocality(data);
                     console.log(count++);
                 });
         }
+
         function getSublocality(apiResponse) {
-            var count=0;
+            var count = 0;
             var results = apiResponse.results;
+            var sublocalities = new Set(); // Use a set to track unique sublocalities
+
             for (let i = 0; i < results.length; i++) {
                 const addressComponents = results[i].address_components;
                 for (let j = 0; j < addressComponents.length; j++) {
                     if (addressComponents[j].types.includes("sublocality")) {
-                        console.log(addressComponents[j].long_name);
-                        console.log(count++);
+                        const sublocality = addressComponents[j].long_name;
+                        if (!sublocalities.has(sublocality)) {
+                            sublocalities.add(sublocality);
+                            console.log(sublocality);
+                            if (matchAreaWithSublocality(sublocality)==="ok") {
+                                console.log("done");
+                                return;
+                            } else {
+                                
+                            }
+                        }
                     }
                 }
             }
-            return null; // Return null if no sublocality is found
+            alert(`No match found for sub-locality please choose manually`);
+            return null; 
+        }
+        function getlocality(apiResponse) {
+            var count = 0;
+            var results = apiResponse.results;
+            var sublocalities = new Set(); // Use a set to track unique sublocalities
+
+            for (let i = 0; i < results.length; i++) {
+                const addressComponents = results[i].address_components;
+                for (let j = 0; j < addressComponents.length; j++) {
+                    if (addressComponents[j].types.includes("locality")) {
+                        const locality = addressComponents[j].long_name;
+                        if (locality==="Surat") {
+                              
+                            return true;
+                        }
+                        else{
+                            document.getElementById('address').value = '';
+                            return false;
+                        }
+                    }
+                }
+            }
+            alert(`No match found for sub-locality please choose manually`);
+            return null; 
+        }
+        function matchAreaWithSublocality(sublocalityName) {
+            const areaSelect = document.getElementById('area');
+            const options = areaSelect.options;
+
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].text.toLowerCase() === sublocalityName.toLowerCase()) {
+                    areaSelect.value = options[i].value;
+                    console.log(`Matched area: ${options[i].text} with sub-locality: ${sublocalityName}`);
+
+                    return "ok";
+                }
+            }
+            
+            return null;
         }
     </script>
     <script src="../../js/jquery/jquery.min.js"></script>

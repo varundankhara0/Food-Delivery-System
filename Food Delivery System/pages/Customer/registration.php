@@ -140,16 +140,7 @@
             background-color: rgb(7, 27, 21);
             border-radius: 25px;
         }
-        footer {
-            margin-top: 150px;
-            background-color:#d30d0d ;
-            background-repeat: no-repeat;
-            background-size: cover;
-            
-            min-height: 150px;
-            border-radius: 150px 150px 0px 0px;
-          }
-        
+        /* ------------- */
           
     </style>
 </head>
@@ -211,16 +202,27 @@
             <div class="form-group">
             <label for="file" >File upload:</label>
             <input type="file" name="file" id="file" required><br></div>
+            <div class="form-group"><label class="labels">Gender</label><select name="Gender" class="form-control" id="gender">
+            <option value=0>Male</option>
+            <option value=1>Female</option></select>
+            </div>
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>
-    <footer class="filter">
-        <div >
-            <div >
-                <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
+    <footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </footer>
+        </footer>
 
      <script type="text/javascript">//for right click off
       document.addEventListener('contextmenu', (e) => e.preventDefault());

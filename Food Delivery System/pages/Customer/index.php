@@ -1,3 +1,8 @@
+<?php 
+
+include "../../chcekcustomer.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +31,77 @@ TemplateMo 589 lugx gaming
 https://templatemo.com/tm-589-lugx-gaming
 
 -->
+<style>
+  
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+footer {
+    max-height: 30%;
+    
+    background-color: #d30d0d;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+    
+
+</style>
   </head>
 
 <body>
@@ -56,11 +132,25 @@ https://templatemo.com/tm-589-lugx-gaming
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="index.html" class="active">Home</a></li>
-                      <li><a href="shop.html">View Food</a></li>
-                      <li><a href="product-details.html">View Cart</a></li>
-                      <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="#">Sign In</a></li>
+                      <li><a href="index.php" class="active">Home</a></li>
+                      <li><a href="#">View Food</a></li>
+                      <li><a href="product-details.php">View Cart</a></li>
+                      <li><a href="contact.php">Contact Us</a></li>
+                      <?php
+                    if(isset($_SESSION["user"]))
+                    {
+                        ?>
+                            <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                ?>
                   </ul>   
                     
                 </nav>
@@ -351,12 +441,19 @@ https://templatemo.com/tm-589-lugx-gaming
   </div>
   
   <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2048 LUMINOR DELIVERY. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design:</a></p>
-      </div>
-    </div>
-  </footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

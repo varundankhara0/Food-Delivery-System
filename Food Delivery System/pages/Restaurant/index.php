@@ -1,3 +1,6 @@
+<?php 
+include "checkowner.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +18,7 @@
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../../css/fontawesome.css">
-    <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
+    <link rel="stylesheet" href="../../css/rd_index.css">
     <link rel="stylesheet" href="../../css/owl.css">
     <link rel="stylesheet" href="../../css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -60,7 +63,21 @@ https://templatemo.com/tm-589-lugx-gaming
                       <li><a href="shop.html">Add Product</a></li>
                       <li><a href="product-details.html">Order History</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="#">Sign In</a></li>
+                      <?php 
+                      if(isset($_SESSION["restaurantid"]))
+                    {
+                        ?>
+                            <li><a href="../Landing/logout.php" class="login-btn"><?php echo $_SESSION["restaurantname"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                    ?>
                   </ul>   
                     
                 </nav>
@@ -352,7 +369,7 @@ https://templatemo.com/tm-589-lugx-gaming
   <footer>
     <div class="container">
       <div class="col-lg-12">
-        <p>Copyright © 2048 LUMINOR DELIVERY. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design:</a></p>
+        <p>Copyright © 2048 LUMINOR DELIVERY. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="#" target="_blank">Design:</a></p>
       </div>
     </div>
   </footer>

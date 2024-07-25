@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (isset($_SESSION["role"])) {
+    if ($_SESSION["role"] != "entity") {
+        echo "<script>alert('Unauthorized access:You don\'t have permission to visit the page')</script>";
+        header("location:logout.php");
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,43 +16,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Lugx Gaming - Shop Page</title>
-
+    <!-- <title>Lugx Gaming - Shop Page</title> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Luminar Food</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
-        <!-- .header-area .main-nav .logo {
+
+        /* <!-- .header-area .main-nav .logo {
             display: flex;
             justify-content:left;
         
-        } -->
+        } --> */
 
-        <!-- .header-area .main-nav {
+        /* <!-- .header-area .main-nav {
             display: flex;
             justify-content: center;
             align-items: center;
-        } -->
+        } --> */
+        /* Popup container */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
 
         .header-area .main-nav .menu-trigger {
             position: absolute;
             right: 20px;
         }
+
         .col-lg-12 {
             flex: 0 0 auto;
             width: 7%;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
         }
 
         .header-area {
-            background-color:#f900ff;
+            background-color: #f900ff;
             position: relative;
         }
 
@@ -85,9 +151,8 @@
             margin: 10px 0 5px;
         }
 
-       
-        .form-section input[type="email"]
-         {
+
+        .form-section input[type="email"] {
             width: 221%;
             padding: 10px;
             margin-bottom: 10px;
@@ -95,40 +160,40 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        .form-section input[type="file"]
-        {
+
+        .form-section input[type="file"] {
             width: 101%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-        
+
         }
-        .form-section input[type="password"]
-        {
+
+        .form-section input[type="password"] {
             width: 197%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-        
+
         }
+
         .form-section input[type="text"],
-        .form-section input[type="number"]
-        {
+        .form-section input[type="number"] {
             width: 217%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
-        
+
         }
-      
+
         .form-section button[type="submit"] {
-            background-color:#a120a1;
+            background-color: #a120a1;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -167,95 +232,187 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        
-        nav{
-            background-color:#a120a1;
+
+        nav {
+            background-color: #a120a1;
             display: flex;
             justify-content: space-around;
             border-radius: 0px 0px 50px 50px;
             align-items: center;
-            
+
         }
-        ul{
+
+        ul {
             list-style: none;
             text-decoration: none;
             display: flex;
         }
-     img {
+
+        img {
             width: 80px;
         }
-        li{
+
+        li {
             padding-left: 30px;
             padding-right: 30px;
             align-items: center;
         }
-        a{
+
+        a {
             text-decoration: none;
             color: #f8f9fa;
         }
-        li:hover{
+
+        li:hover {
             background-color: rgb(7, 27, 21);
             border-radius: 25px;
         }
+
         footer {
             margin-top: 180px;
-            background-color:#a120a1 ;
+            background-color: #a120a1;
             background-repeat: no-repeat;
             background-size: cover;
-            
+
             min-height: 200px;
             border-radius: 150px 150px 0px 0px;
-          }
-        
-        
+        }
     </style>
 </head>
 
 <body>
-   <nav>
-    <div><img src="../../images/logo.png"  ></div>
-    <div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Our Shop</a></li>
-            <li><a href="#">Product Details</a></li>
-            <li><a href="#">Contact US</a></li>
-            <li><a href="#">SIGN IN</a></li>
-        </ul>
+    <nav>
+        <div><img src="../../images/logo.png"></div>
+        <div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Our Shop</a></li>
+                <li><a href="#">Product Details</a></li>
+                <li><a href="#">Contact US</a></li>
+                <li><a href="#">SIGN IN</a></li>
+            </ul>
+        </div>
+    </nav>
+        <!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Do you want to register as Restaurant Owner or as Delivery Man?</h2>
+        <button class="modal-button" onclick="registerAsOwner()">Restaurant Owner</button>
+        <button class="modal-button" onclick="registerAsDeliveryMan()">Delivery Man</button>
     </div>
-   </nav>
-
+</div>
 
     <div class="form-section">
-        <form method="post" action="#" enctype="multipart/form-data">
-           
+        <h1>Enter You're User Registered Details</h1>
+        <br>
+        <form method="post" action="#" enctype="multipart/form-data" id="user-form">
+
             <div class="inline-inputs">
                 <div class="form-group">
-                    <label for="email">email:
-                    <input type="text" id="email" name="email" required></label>
+                    <label for="email">Email:
+                        <input type="text" id="email" name="email" required></label>
                 </div>
             </div>
-           
-            <div class="inline-inputs">   
+
+            <div class="inline-inputs">
             </div>
             <div class="inline-inputs">
                 <div class="form-group">
                     <label for="pass">Password:
-                    <input type="password" id="pass" name="pass" required></label>
+                        <input type="password" id="pass" name="password" required></label>
                 </div>
             </div>
-           
+
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>
     <footer class="filter">
-        <div >
-            <div >
+        <div>
+            <div>
                 <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
             </div>
         </div>
     </footer>
+    <script>
+        $(document).ready(function() {
+            $('#user-form').on('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                $.ajax({
+                    url: '../Ajax_files/checkrd.php',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response == "invalid user") {
+                            alert("please register as an customer and logout before entering this page");
 
+                        }
+                         else if (response == "Restaurant Owner") {
+                            
+                            window.location = '../Restaurant/index.php';
+                        }
+                        else if (response == "Delivery Man") 
+                        {
+
+                            window.location = '../Delivery/index.php';
+                        } 
+                        else if (response == "entity") {
+                            // alert("do want to register as Restaurant Owner or as Delivery Man");
+                            
+                            showPopup();
+                        } 
+                        else {
+                            alert(response);
+                        }
+                    },
+                    error: function(error) {
+                        alert('There was an error submitting the form.');
+
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function showPopup() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    // Close the modal when the user clicks on <span> (x)
+    document.querySelector('.close').onclick = function() {
+        closeModal();
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        var modal = document.getElementById("myModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    function registerAsOwner() {
+        window.location='../Restaurant/registration.php';
+        closeModal();
+        // Add your registration logic here
+    }
+
+    function registerAsDeliveryMan() {
+        window.location='../Delivery/registration.php';
+        closeModal();
+        // Add your registration logic here
+    }
+    </script>
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="../../js/jquery/jquery.min.js"></script>
@@ -267,4 +424,4 @@
 
 </body>
 
-</html> 
+</html>

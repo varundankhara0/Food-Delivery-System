@@ -16,7 +16,7 @@ session_start();
                                   // Upload file to server
                   if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath))
                   {
-                    $query="INSERT INTO Tbl_user(fullname,password,email,PhoneNo,status,image,dob) VALUES( '".$_POST['name']."','" .md5($_POST['password'])."','" .$_POST['email']."','" .$_POST['phone']."','0','".$targetFilePath."','".$_POST["dob"]."');";
+                    $query="INSERT INTO Tbl_user(fullname,password,email,PhoneNo,status,image,dob,Gender) VALUES( '".$_POST['name']."','" .md5($_POST['password'])."','" .$_POST['email']."','" .$_POST['phone']."','0','".$targetFilePath."','".$_POST["dob"]."',".$_POST["Gender"].");";
                     $result=mysqli_query($conn,$query);
       
                   if(!$result)
