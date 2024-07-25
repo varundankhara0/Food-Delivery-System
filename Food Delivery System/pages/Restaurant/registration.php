@@ -210,7 +210,7 @@ include "checkRegistered.php";
             border-radius: 25px;
         }
 
-        footer {
+        /* footer {
             margin-top: 150px;
             background-color: #a120a1;
             background-repeat: no-repeat;
@@ -218,7 +218,72 @@ include "checkRegistered.php";
 
             min-height: 150px;
             border-radius: 150px 150px 0px 0px;
-        }
+        } */
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+footer {
+    max-height: 30%;
+    border-radius: 110px 110px 0px 0px;
+    background-color: #a120a1 ;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
     </style>
 </head>
 
@@ -302,12 +367,20 @@ include "checkRegistered.php";
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>
-    <footer class="filter">
-        <div>
-            <div>
+    <footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3 style="color: white;">Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </footer>
+        </footer>
     <!-- <script type="text/javascript">//for right click off
     
     document.addEventListener('contextmenu', (e) => e.preventDefault());

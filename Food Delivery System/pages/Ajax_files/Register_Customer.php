@@ -9,11 +9,19 @@ session_start();
               $fileName = basename($_FILES["file"]["name"]);
               $targetFilePath = $targetDir . $fileName;
               $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-  
+              
+             //-------------------------------------------------- 
+              
+              $query = "select * from  tbl_user where Email ='" .$_POST['email']."' limit 1";
+              $result2 = mysqli_query($conn, $query);
+              if ($result2->num_rows > 0) 
+               {   
+                echo "user exists";
+                exit();
+               } 
               if(in_array($fileType, $allowTypes))
                    {
-                                                            
-                                  // Upload file to server
+
                   if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath))
                   {
                     $query="INSERT INTO Tbl_user(fullname,password,email,PhoneNo,status,image,dob,Gender) VALUES( '".$_POST['name']."','" .md5($_POST['password'])."','" .$_POST['email']."','" .$_POST['phone']."','0','".$targetFilePath."','".$_POST["dob"]."',".$_POST["Gender"].");";
@@ -35,7 +43,7 @@ session_start();
                           $_SESSION["email"]=$row[1];
                       }
                       $_SESSION["user"]=$_POST["name"];
-                      
+                      $_SESSION["name"]=$_POST["name"];
                       echo true;
                   }                          
                   }

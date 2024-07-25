@@ -136,10 +136,6 @@ CREATE TABLE `tbl_customer_address` (
 -- Dumping data for table `tbl_customer_address`
 --
 
-INSERT INTO `tbl_customer_address` (`id`, `userid`, `doorno`, `address`, `areaid`, `type`, `status`) VALUES
-(1, 2, 'B2/701', 'Pratistha Apartments, Pragati Nagar, Piplod Jakatnaka, Pratistha Apartments, Piplod Main Road, Maheshwari Society, Krishnadham Society, Piplod, Surat, Gujarat, 395007, India    ', 14, 'h', 1),
-(2, 3, '4', 'Laxmi Wadi, 4, Pramukh Darshan Society, Dabholi, Surat, Gujarat 395004 Pramukh Darshan Society', 21, 'h', 1),
-(3, 2, 'B2/701', 'Malvia Hospital, Aditya Complex, Anand Mahal Rd, Near Nihar Hospital, Shantinagar Society, Narotam Nagar, Surat, Gujarat, 395009, India ', 1, 'h', 1);
 
 -- --------------------------------------------------------
 
@@ -175,8 +171,6 @@ CREATE TABLE `tbl_delivery_man` (
 -- Dumping data for table `tbl_delivery_man`
 --
 
-INSERT INTO `tbl_delivery_man` (`id`, `onlinestatus`, `Licenseno`, `Licenseimage`, `adharcardno`, `addharcardimage`, `status`, `userid`) VALUES
-(5, 0, '12saedsf3245353', 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/0cz7yV.jpg', '134567890423', 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/th.jpg', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -265,8 +259,6 @@ CREATE TABLE `tbl_restaurant` (
 -- Dumping data for table `tbl_restaurant`
 --
 
-INSERT INTO `tbl_restaurant` (`id`, `Name`, `status`, `address`, `Contact`, `gstno`, `Licesnseno`, `OpeningTime`, `ClosingTime`, `areaid`, `Licesnseimage`, `userid`) VALUES
-(5, 'Naishal Ka dhaba', 1, 'Pratistha Apartments, Pragati Nagar, Piplod Jakatnaka, Pratistha Apartments, Piplod Main Road, Maheshwari Society, Krishnadham Society, Piplod, Surat, Gujarat, 395007, India', '9326163059', '21', '121', '20:18:00', '22:19:00', 14, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/Pizza.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -293,9 +285,6 @@ CREATE TABLE `tbl_user` (
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id`, `fullname`, `Email`, `password`, `Gender`, `PhoneNo`, `status`, `image`, `dob`, `accounthash`, `reset_token`, `reset_token_expires_at`) VALUES
-(1, 'Naishal Manish Doshi', 'naishal036@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', 0, '9326163059', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/reviewer2.jpg', '2003-06-13', NULL, NULL, NULL),
-(2, 'varun dankhara', '22bmiit031@gmail.com', 'e528309e71b2b9a37e0b0db538137abf', 1, '9773472368', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/th.jpg', '2004-08-09', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -440,7 +429,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT for table `tbl_customer_address`
 --
 ALTER TABLE `tbl_customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery`
@@ -452,7 +441,7 @@ ALTER TABLE `tbl_delivery`
 -- AUTO_INCREMENT for table `tbl_delivery_man`
 --
 ALTER TABLE `tbl_delivery_man`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_fooditem`
@@ -482,13 +471,13 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT for table `tbl_restaurant`
 --
 ALTER TABLE `tbl_restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

@@ -11,7 +11,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>Home</title>
-
+    <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -128,7 +128,7 @@ footer hr {
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="index.html" class="active">Home</a></li>
+                      <li><a href="../Customer/index.php" class="active">Home</a></li>
                       <li><a href="shop.html">Our Shop</a></li>
                       <li><a href="product-details.html">Product Details</a></li>
                       <li><a href="contact.html">Contact Us</a></li>

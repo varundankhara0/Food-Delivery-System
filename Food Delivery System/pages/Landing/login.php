@@ -1,8 +1,11 @@
 <?php
-session_start();
-if (isset($_SESSION["role"])) {
 
-    echo "<script>window.location='./index.php'</script>";
+session_start();
+if(isset($_SESSION["role"]))
+{
+    ?>
+   <script> window.location='home.php'</script>;
+    <?php
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +14,7 @@ if (isset($_SESSION["role"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="../../js/disable.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -202,10 +205,10 @@ if (isset($_SESSION["role"])) {
     text-decoration: none;
     color: #f8f9fa;
     }
-    li:hover{
+    /* li:hover{
     background-color: rgb(7, 27, 21);
     border-radius: 25px;
-    }
+    } */
     footer {
     margin-top: 150px;
     background-color:#d30d0d ;
@@ -233,34 +236,34 @@ if (isset($_SESSION["role"])) {
 
 <body>
     <div class="main">
-        <nav>
-            <div><img src="../../images/logo.png"></div>
-            <div>
-                <ul>
-                    <ul class="nav-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Our Shop</a></li>
-                        <li><a href="#" class="active">Product Details</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <?php
-                        if (isset($_SESSION["user"])) {
-                        ?>
-                            <li><a href="logout.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+        <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+                <img src="../../images/logo.png" alt="" style="width: 100px;">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+                <li><a href="../Customer/index.php" class="active">Home</a></li>
+                <li><a href="shop.html">Our Shop</a></li>
+                <li><a href="product-details.html">Product Details</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <?php
+                if (isset($_SESSION["user"])) {
+                ?>
+                    <li><a href="logout.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
 
-                        <?php
-                        } else {
-                        ?>
-                            <li><a href="login.php" class="login-btn">Login</a></li>
-                        <?php
-                        }
-                        ?>
-
-                    </ul>
-                </ul>
-            </div>
+                <?php
+                } else {
+                ?>
+                    <li><a href="login.php" class="login-btn">Sign In</a></li>
+                <?php
+                }
+                ?>
+            </ul>
+           
+            <!-- ***** Menu End ***** -->
         </nav>
-
-
         <main>
             <div class="login-container">
                 <form class="login-form" method="post" action="#">
@@ -273,8 +276,8 @@ if (isset($_SESSION["role"])) {
                         <input type="password" id="password" name="Password" placeholder="Placeholder">
                         <div id="password-error" class="error">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
                     </div>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-
+                    <a href="./forgot-password.php" class="forgot-password">Forgot Password?</a>
+                    <a href="./login_rd.php" class="forgot-password">Login as Restaurant or Delivery-Man?</a>
                     <div class="buttons">
                         <button type="submit" name="submit" class="login-btn">Login</button>
                         <button type="button" class="signup-btn" onclick="register()">Sign-up</button>
@@ -282,12 +285,11 @@ if (isset($_SESSION["role"])) {
                 </form>
                 <script>
                     function register() {
-                        window.location = 'Registration.php';
+                        window.location = '../Customer/registration.php';
                     }
                 </script>
                 <?php
                 include "../../connection.php";
-
                 if (isset($_POST["submit"])) {
                     if ($_POST["userid"] == "admin") {
                         if ($_POST["Password"] == "adminGG@123") {
@@ -299,8 +301,7 @@ if (isset($_SESSION["role"])) {
                     $query = "select id,email,password,fullname from Tbl_user where email='" . $_POST["userid"] . "' and password='" . md5($_POST["Password"]) . "' and status=1 limit 1";
                     $result = mysqli_query($conn, $query);
                     if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_array()) 
-                        {
+                        while ($row = $result->fetch_array()) {
                             $_SESSION["userid"] = $row[0];
                             $_SESSION["user"] = $row[3];
                         }
@@ -329,7 +330,7 @@ if (isset($_SESSION["role"])) {
         </main>
 
         <footer>
-            
+
             <div class="footer-content">
                 <div class="footer-left">
                     <h3>Luminor's delivery</h3>

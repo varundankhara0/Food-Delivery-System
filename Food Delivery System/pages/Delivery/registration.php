@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Luminar Food</title>
+    <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/fontawesome.css">
@@ -151,15 +152,73 @@
             background-color: rgb(7, 27, 21);
             border-radius: 25px;
         }
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+footer {
+    max-height: 30%;
+    
+    background-color: #d30d0d;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-        footer {
-            margin-top: 150px;
-            background-color: #d30d0d;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 150px;
-            border-radius: 150px 150px 0px 0px;
-        }
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+      
     </style>
 </head>
 
@@ -208,13 +267,20 @@
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>
-    <footer class="filter">
-        <div>
-            <div>
-                <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
+    <footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </footer>
+        </footer>
 <!-- 
      <script type="text/javascript">//for right click off
       document.addEventListener('contextmenu', (e) => e.preventDefault());

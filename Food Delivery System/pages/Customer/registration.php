@@ -1,7 +1,17 @@
+<?php
+session_start();
+if (isset($_SESSION["u"])) {
+
+
+    echo "<script>window.location='index.php'</script>";
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <script src="../../js/disable.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -9,6 +19,7 @@
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Luminar Food</title>
+    <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/fontawesome.css">
@@ -141,7 +152,71 @@
             border-radius: 25px;
         }
         /* ------------- */
-          
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+footer {
+    max-height: 30%;
+    
+    background-color: #d30d0d;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
     </style>
 </head>
 
@@ -154,7 +229,21 @@
             <li><a href="#">Our Shop</a></li>
             <li><a href="#">Product Details</a></li>
             <li><a href="#">Contact US</a></li>
-            <li><a href="#">SIGN IN</a></li>
+            <?php
+                    if(isset($_SESSION["user"]))
+                    {
+                        ?>
+                            <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                ?>
         </ul>
     </div>
    </nav>
@@ -220,7 +309,6 @@
                         <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
                     </div>
                 </div>
-
             </div>
         </footer>
 

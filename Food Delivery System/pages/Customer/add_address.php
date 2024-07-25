@@ -5,12 +5,14 @@ include "../../chcekcustomer.php";
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Luminar Food</title>
+    <script src="../../js/disable.js"></script>
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/fontawesome.css">
     <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
@@ -160,13 +162,73 @@ include "../../chcekcustomer.php";
             border-radius: 25px;
         }
 
+        /* ------------------------ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         footer {
-            margin-top: 150px;
+            max-height: 30%;
+
             background-color: #d30d0d;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 150px;
-            border-radius: 150px 150px 0px 0px;
+            padding: 50px 20px;
+            text-align: center;
+            /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+        }
+
+        footer hr {
+            border: none;
+            border-top: 1px solid #DDD;
+            margin: 20px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-left h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+        }
+
+        .footer-right {
+            flex: 2;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            color: #DDD;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -176,7 +238,7 @@ include "../../chcekcustomer.php";
         <div><img src="../../images/logo.png"></div>
         <div>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="../Landing/index.php">Home</a></li>
                 <li><a href="#">Our Shop</a></li>
                 <li><a href="#">Product Details</a></li>
                 <li><a href="#">Contact US</a></li>
@@ -201,7 +263,7 @@ include "../../chcekcustomer.php";
             <div id="suggestions" class="autocomplete-suggestions"></div>
             <div class="form-group">
                 <label for="landmark">Landmark:</label>
-                <textarea name="landmark" id="landmark" placeholder="Enter Nearby Landmark [optional]" ></textarea>
+                <textarea name="landmark" id="landmark" placeholder="Enter Nearby Landmark [optional]"></textarea>
                 <div id="landmark-error" class="error">Please enter a landmark.</div>
             </div>
 
@@ -236,13 +298,21 @@ include "../../chcekcustomer.php";
         </form>
     </div>
 
-    <footer class="filter">
-        <div>
-            <div>
-                <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
+    <footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </footer>
+        </footer>
+
 
     <script type="text/javascript">
         // Disable right-click
@@ -291,7 +361,7 @@ include "../../chcekcustomer.php";
                     $('#address-error').hide();
                 }
 
-              
+
 
                 if (!type) {
                     $('#type-error').show();
@@ -359,10 +429,8 @@ include "../../chcekcustomer.php";
                 .then(response => response.json())
                 .then(data => {
                     console.log('API Response:', data);
-
                     const suggestionsDiv = document.getElementById('suggestions');
                     suggestionsDiv.innerHTML = '';
-
                     if (data.predictions && data.predictions.length > 0) {
                         data.predictions.forEach(prediction => {
                             const suggestionDiv = document.createElement('div');
@@ -392,7 +460,7 @@ include "../../chcekcustomer.php";
 
         function callsublocality(lat, log) {
             var count = 0;
-            const location = '19.265980587014074,72.96698942923868';
+            // const location = '19.265980587014074,72.96698942923868';
             const apiKey = 'PEDy9RDQZovqNa0v5z43MovpPUOQNBeXE2RiVdAg';
             const url = `https://api.olamaps.io/places/v1/reverse-geocode?latlng=${lat}%2C${log}&api_key=${apiKey}`;
 
@@ -403,8 +471,7 @@ include "../../chcekcustomer.php";
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if(getlocality(data)==false)
-                    {
+                    if (getlocality(data) == false) {
                         alert("The address should belong to Surat only");
                         return;
                     }
@@ -426,34 +493,34 @@ include "../../chcekcustomer.php";
                         if (!sublocalities.has(sublocality)) {
                             sublocalities.add(sublocality);
                             console.log(sublocality);
-                            if (matchAreaWithSublocality(sublocality)==="ok") {
+                            if (matchAreaWithSublocality(sublocality) === "ok") {
                                 console.log("done");
                                 return;
                             } else {
-                                
+
                             }
                         }
                     }
                 }
             }
             alert(`No match found for sub-locality please choose manually`);
-            return null; 
+            return null;
         }
+
         function getlocality(apiResponse) {
             var count = 0;
             var results = apiResponse.results;
-            var sublocalities = new Set(); // Use a set to track unique sublocalities
+            var sublocalities = new Set(); 
 
             for (let i = 0; i < results.length; i++) {
                 const addressComponents = results[i].address_components;
                 for (let j = 0; j < addressComponents.length; j++) {
                     if (addressComponents[j].types.includes("locality")) {
                         const locality = addressComponents[j].long_name;
-                        if (locality==="Surat") {
-                              
+                        if (locality === "Surat") {
+
                             return true;
-                        }
-                        else{
+                        } else {
                             document.getElementById('address').value = '';
                             return false;
                         }
@@ -461,8 +528,9 @@ include "../../chcekcustomer.php";
                 }
             }
             alert(`No match found for sub-locality please choose manually`);
-            return null; 
+            return null;
         }
+
         function matchAreaWithSublocality(sublocalityName) {
             const areaSelect = document.getElementById('area');
             const options = areaSelect.options;
@@ -475,7 +543,7 @@ include "../../chcekcustomer.php";
                     return "ok";
                 }
             }
-            
+
             return null;
         }
     </script>

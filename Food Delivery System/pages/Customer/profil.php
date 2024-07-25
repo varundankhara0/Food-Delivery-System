@@ -12,6 +12,7 @@ include "../../chcekcustomer.php";
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Luminor Delivery</title>
+  <script src="../../js/disable.js"></script>
   <!-- Bootstrap core CSS -->
   <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -107,8 +108,10 @@ include "../../chcekcustomer.php";
         <div class="col-md-3 border-right">
 
           <div class="d-flex flex-column align-items-center text-center p-3 py-5"> <img class="profile-pic rounded-circle mt-5" src="<?php echo convertToWebPath($row['image']); ?>"><br><button class="btn btn-primary profile-button" type="button" id="editpic">Edit Picture</button></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><button class="btn btn-primary profile-button" type="button" id="logout">Logout</button></div>
         </div>
         <div class="col-md-5 border-right">
+        
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="text-right">Profile Settings</h4>
@@ -119,9 +122,9 @@ include "../../chcekcustomer.php";
             </div>
             <div class="row mt-3">
               <div class="col-md-12"><input type="file" class="form-control" id="pic" hidden></div>
-              <input type="text" name="beforeemail" value="<?php echo $email ?>" hidden>
+              <input type="email" name="beforeemail" value="<?php echo $row["Email"]; ?>" hidden>
               <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" name="phoneno" class="form-control" placeholder="enter phone number" value="<?php echo $row["PhoneNo"] ?>" readonly></div>
-              <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" placeholder="enter email id" value="<?php echo $row["Email"];StoreEmail($row["Email"]); ?>" readonly></div>
+              <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" placeholder="enter email id" value="<?php echo $row["Email"]; ?>" readonly></div>
               <div class="col-md-12"><label class="labels">BirthDate</label><input type="date" class="form-control" name="dob" placeholder="enter birthdate" value="<?php echo $row["dob"] ?>" readonly></div>
               <div class="col-md-12"><label class="labels">Gender</label><select name="gender" class="form-control" id="gender" disabled>
                 <?php 
@@ -144,7 +147,6 @@ include "../../chcekcustomer.php";
               <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" id="editProfileButton">Edit Profile</button><button class="btn btn-primary profile-button" type="submit" id="saveProfileButton">Save Profile</button></div>
             <div class="mt-5 text-center"></div>
             </form>
-
            <?php
           }
           $query = "select address,id from tbl_customer_address where userid=" . $_SESSION["userid"] . " and status=1 limit 2";
@@ -183,6 +185,9 @@ include "../../chcekcustomer.php";
         window.location='update_address.php?id='+id;
       }
       $(document).ready(function() {
+        $("#logout").click(function(){
+          window.location='../Landing/logout.php';
+        })
         $("#addaddress").click(function(){
           window.location="add_address.php";
         })
@@ -191,7 +196,11 @@ include "../../chcekcustomer.php";
         $("#editpic").click(function() {
           imagepro = true;
           $("#pic").removeAttr("hidden");
+          $("#gender").removeAttr("disabled");
           $(this).hide();
+          $("#saveProfileButton").css("display", "inline-block");
+          $("#editProfileButton").css("display", "none");
+
           inputFields.forEach(function(input) {
             input.removeAttribute('readonly');
             
@@ -202,7 +211,7 @@ include "../../chcekcustomer.php";
           const formData = new FormData(this);
           if (imagepro == true) 
           {
-          
+            
             const fileInput = document.getElementById('pic');
             if (fileInput.files.length > 0) {
               formData.append('image', fileInput.files[0]);
@@ -223,6 +232,11 @@ include "../../chcekcustomer.php";
               {
                 alert("Email Change detected please verify you're new Email till then you're login is disabled");
                 window.location="../Landing/otp.php";
+              } 
+              else if(response=="image error")
+              {
+                alert("Sorry, only JPG, JPEG, PNG, GIF files are allowed to upload.");
+                // window.location="../Landing/otp.php";
               } 
               else 
               {

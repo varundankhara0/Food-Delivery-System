@@ -37,7 +37,7 @@ if (isset($_FILES["image"]["name"])) {
 } else {
 
     $newemail = false;
-    if ($_POST["beforeemail"] == $_POST["email"]) {
+    if ($_POST["beforeemail"] === $_POST["email"]) {
         $query = "update Tbl_user set fullname='" . $_POST["name"] . "',email='" . $_POST["email"] . "',PhoneNo='" . $_POST["phoneno"] . "',dob='" . $_POST["dob"] . "',Gender='" . $_POST["gender"] . "' where id=" . $_SESSION["userid"];
     } else {
         $newemail =true;

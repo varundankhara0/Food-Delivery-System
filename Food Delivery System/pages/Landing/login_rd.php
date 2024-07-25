@@ -21,6 +21,7 @@ if (isset($_SESSION["role"])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Luminar Food</title>
+    <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -268,7 +269,7 @@ if (isset($_SESSION["role"])) {
             border-radius: 25px;
         }
 
-        footer {
+        /* footer {
             margin-top: 180px;
             background-color: #a120a1;
             background-repeat: no-repeat;
@@ -276,7 +277,76 @@ if (isset($_SESSION["role"])) {
 
             min-height: 200px;
             border-radius: 150px 150px 0px 0px;
-        }
+        } */
+        /* footer {
+    margin-top: 150px;
+    background-color:#d30d0d ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    min-height: 150px;
+    border-radius: 150px 150px 0px 0px;
+    } */
+    footer {
+    max-height: 30%;
+    border-radius: 110px 110px 0px 0px;
+    margin-top: 65px;
+    background-color: #a120a1;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
     </style>
 </head>
 
@@ -293,15 +363,15 @@ if (isset($_SESSION["role"])) {
             </ul>
         </div>
     </nav>
-        <!-- The Modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Do you want to register as Restaurant Owner or as Delivery Man?</h2>
-        <button class="modal-button" onclick="registerAsOwner()">Restaurant Owner</button>
-        <button class="modal-button" onclick="registerAsDeliveryMan()">Delivery Man</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Do you want to register as Restaurant Owner or as Delivery Man?</h2>
+            <button class="modal-button" onclick="registerAsOwner()">Restaurant Owner</button>
+            <button class="modal-button" onclick="registerAsDeliveryMan()">Delivery Man</button>
+        </div>
     </div>
-</div>
 
     <div class="form-section">
         <h1>Enter You're User Registered Details</h1>
@@ -327,11 +397,18 @@ if (isset($_SESSION["role"])) {
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>
-    <footer class="filter">
-        <div>
-            <div>
-                <p><a rel="nofollow" href="https://templatemo.com" target="_blank"></a></p>
+    <footer>
+
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3 style="color: white;">Luminor's delivery</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                    <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                    <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                </div>
             </div>
+
         </div>
     </footer>
     <script>
@@ -349,22 +426,17 @@ if (isset($_SESSION["role"])) {
                         if (response == "invalid user") {
                             alert("please register as an customer and logout before entering this page");
 
-                        }
-                         else if (response == "Restaurant Owner") {
-                            
+                        } else if (response == "Restaurant Owner") {
+
                             window.location = '../Restaurant/index.php';
-                        }
-                        else if (response == "Delivery Man") 
-                        {
+                        } else if (response == "Delivery Man") {
 
                             window.location = '../Delivery/index.php';
-                        } 
-                        else if (response == "entity") {
+                        } else if (response == "entity") {
                             // alert("do want to register as Restaurant Owner or as Delivery Man");
-                            
+
                             showPopup();
-                        } 
-                        else {
+                        } else {
                             alert(response);
                         }
                     },
@@ -379,39 +451,39 @@ if (isset($_SESSION["role"])) {
 
     <script>
         function showPopup() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "block";
-    }
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        }
 
-    function closeModal() {
-        var modal = document.getElementById("myModal");
-        modal.style.display = "none";
-    }
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
 
-    // Close the modal when the user clicks on <span> (x)
-    document.querySelector('.close').onclick = function() {
-        closeModal();
-    }
-
-    // Close the modal when the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
-        var modal = document.getElementById("myModal");
-        if (event.target == modal) {
+        // Close the modal when the user clicks on <span> (x)
+        document.querySelector('.close').onclick = function() {
             closeModal();
         }
-    }
 
-    function registerAsOwner() {
-        window.location='../Restaurant/registration.php';
-        closeModal();
-        // Add your registration logic here
-    }
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
 
-    function registerAsDeliveryMan() {
-        window.location='../Delivery/registration.php';
-        closeModal();
-        // Add your registration logic here
-    }
+        function registerAsOwner() {
+            window.location = '../Restaurant/registration.php';
+            closeModal();
+            // Add your registration logic here
+        }
+
+        function registerAsDeliveryMan() {
+            window.location = '../Delivery/registration.php';
+            closeModal();
+            // Add your registration logic here
+        }
     </script>
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

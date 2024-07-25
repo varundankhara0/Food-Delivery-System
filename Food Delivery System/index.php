@@ -1,4 +1,4 @@
-<script>window.location='pages/Landing/home.php';</script>
+<script>window.location='pages/Landing/index.php';</script>
 <!-- <ul>
     <li>hello</li>
     <ul>
