@@ -10,7 +10,7 @@ $mail->SMTPDebug  = 0;                     // enables SMTP debug information (fo
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
 $mail->Port       = 587;                    // set the SMTP port for the GMAIL server
 $mail->Username   = "luminordelivery11@gmail.com";            // SMTP account username example
-$mail->Password   = "rbtacmcysncmbkfv";            // SMTP account password example
+$mail->Password   = "nrkcvbkinarbdmrp";            // SMTP account password example
 
 // Content
 $mail->setFrom('luminordelivery@gmail.com');   

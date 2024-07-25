@@ -161,8 +161,8 @@ include "../../chcekcustomer.php";
                <div class="col-md-12">
                 <label class="labels">Address Line: <?php echo $count;
                                                                         $count = $count + 1 ?></label>
-                <input type="text" class="form-control" placeholder="enter address line 1" value="<?php echo $row["address"] ?>" readonly>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" onclick="redirect(<?php echo $row['id'] ?>)" id="editAddress">Edit This Address</button></div>
+                <input type="text" class="form-control" placeholder="enter address line 1" value="<?php echo $row["address"] ?>" readonly><button class="btn btn-primary profile-button" type="button" onclick="redirect(<?php echo $row['id'] ?>)" id="editAddress">Edit This Address</button>
+                <!-- <div class="mt-5 text-center"></div> -->
               </div> 
            
 </div>
@@ -172,8 +172,7 @@ include "../../chcekcustomer.php";
             
           </div>
         </div>
-        <div class="col-md-4">
-                  </div>
+        <br>
       </div>
     </div>
     </div>
