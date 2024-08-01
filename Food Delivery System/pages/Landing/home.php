@@ -1,6 +1,8 @@
 <!-- http://localhost/Food-Delivery-System/Food%20Delivery%20System/Registration.php -->
- <?php 
- session_start();
+<script>window.location='../Customer/index.php'</script>
+<?php 
+
+ 
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminor Delivery</title>
+    <script src="../../js/disable.js"></script>
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../scss/_carousel.scss">
     <link rel="stylesheet" href="../../scss/main.scss">

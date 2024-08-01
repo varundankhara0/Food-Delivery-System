@@ -88,7 +88,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #1e1e1e;
+  color: ;
   margin-top: 0px;
   margin-bottom: 0px;
   font-weight: 700;
@@ -285,7 +285,7 @@ Header Style
 */
 
 .background-header {
-  background-color: #f80000 !important;
+  background-color: #d30d0d !important ;
   border-radius: 0px 0px 25px 25px;
   height: 80px!important;
   position: fixed!important;
@@ -305,7 +305,7 @@ Header Style
 
 .header-area {
   position: absolute;
-  background-color: transparent;
+  background-color:d30d0d;
   top: 40px;
   left: 0;
   right: 0;
@@ -651,7 +651,8 @@ Banner Style
 */
 
 .main-banner {
-  background-image: url(../images/banner-bg.jpg);
+ /* background-image: url(../images/banner-bg.jpg); */
+ background-color: #d30d0d !important ;
   border-radius: 0px 0px 150px 150px;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -1099,7 +1100,7 @@ CTA Style
   top: 0;
   transition: all .3s;
 }
-
+  
 .cta .subscribe form button:hover {
   background-color: #0071f8;
 }
@@ -1110,35 +1111,15 @@ CTA Style
 Footer Style
 --------------------------------------------- 
 */
-
 footer {
   margin-top: 150px;
-  background-color: #0071f8;
+  background-color:#d30d0d ;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/footer-bg.jpg);
+  color: white;
   min-height: 150px;
   border-radius: 150px 150px 0px 0px;
-}
-
-footer p {
-  text-align: center;
-  line-height: 90px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-footer p a {
-  color: #fff;
-  transition: all .3s;
-  position: relative;
-  z-index: 3;
-}
-
-footer p a:hover {
-  opacity: 0.75;
-}
+  }
 
 
 /* 

@@ -1,14 +1,18 @@
+<?php 
+
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
-
+  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Lugx Gaming Shop HTML5 Template</title>
-
+    <title>Luminor Delivery</title>
+    <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,6 +30,77 @@ TemplateMo 589 lugx gaming
 https://templatemo.com/tm-589-lugx-gaming
 
 -->
+<style>
+  
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+footer {
+    max-height: 30%;
+    
+    background-color: #d30d0d;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+    
+
+</style>
   </head>
 
 <body>
@@ -56,16 +131,27 @@ https://templatemo.com/tm-589-lugx-gaming
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="index.html" class="active">Home</a></li>
-                      <li><a href="shop.html">Our Shop</a></li>
-                      <li><a href="product-details.html">Product Details</a></li>
-                      <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="#">Sign In</a></li>
+                      <li><a href="../Landing/index.php" class="active">Home</a></li>
+                      <li><a href="#">View Food</a></li>
+                      <li><a href="product-details.php">View Cart</a></li>
+                      <li><a href="contact.php">Contact Us</a></li>
+                      <?php
+                    if(isset($_SESSION["user"]))
+                    {
+                        ?>
+                            <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="../Landing/login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                ?>
                   </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
+                    
                 </nav>
             </div>
         </div>
@@ -80,19 +166,13 @@ https://templatemo.com/tm-589-lugx-gaming
           <div class="caption header-text">
             <h6>Welcome to luminar food</h6>
             <h2>BEST food delivery SITE EVER!</h2>
-            <p>LUGX Gaming is free Bootstrap 5 HTML CSS website template for your gaming websites. You can download and use this layout for commercial purposes. Please tell your friends about TemplateMo.</p>
-            <div class="search-input">
-              <form id="search" action="#">
-                <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                <button role="button">Search Now</button>
-              </form>
-            </div>
+            <p>Order food online,check reviews and avail great offers on delivery!</p>
           </div>
         </div>
         <div class="col-lg-4 offset-lg-2">
           <div class="right-image">
             <img src="../../images/banner-image.jpg" alt="">
-            <span class="price">$22</span>
+            <span class="price">₹200</span>
             <span class="offer">-40%</span>
           </div>
         </div>
@@ -152,8 +232,8 @@ https://templatemo.com/tm-589-lugx-gaming
       <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
-            <h6>Trending</h6>
-            <h2>Trending Games</h2>
+            <h6>Popular</h6>
+            <h2>Trending Food</h2>
           </div>
         </div>
         <div class="col-lg-6">
@@ -164,12 +244,12 @@ https://templatemo.com/tm-589-lugx-gaming
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/trending-01.jpg" alt=""></a>
-              <span class="price"><em>$28</em>$20</span>
+              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
+              <span class="price"><em>₹280</em>₹200</span>
             </div>
             <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
+              <span class="category">Order</span>
+              <h4>South Indian</h4>
               <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
@@ -177,12 +257,12 @@ https://templatemo.com/tm-589-lugx-gaming
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/trending-02.jpg" alt=""></a>
-              <span class="price">$44</span>
+              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
+              <span class="price">₹440</span>
             </div>
             <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
+              <span class="category">Order</span>
+              <h4>Punjabi</h4>
               <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
@@ -190,12 +270,12 @@ https://templatemo.com/tm-589-lugx-gaming
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/trending-03.jpg" alt=""></a>
-              <span class="price"><em>$64</em>$44</span>
+              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
+              <span class="price"><em>₹240</em>₹200</span>
             </div>
             <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
+              <span class="category">Order</span>
+              <h4>Mughlai</h4>
               <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
@@ -203,12 +283,12 @@ https://templatemo.com/tm-589-lugx-gaming
         <div class="col-lg-3 col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/trending-04.jpg" alt=""></a>
-              <span class="price">$32</span>
+              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
+              <span class="price">₹320</span>
             </div>
             <div class="down-content">
-              <span class="category">Action</span>
-              <h4>Assasin Creed</h4>
+              <span class="category">Order</span>
+              <h4>Chinese</h4>
               <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
@@ -222,8 +302,8 @@ https://templatemo.com/tm-589-lugx-gaming
       <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
-            <h6>TOP GAMES</h6>
-            <h2>Most Played</h2>
+            <h6>TOP Food</h6>
+            <h2>Most Ordered Food</h2>
           </div>
         </div>
         <div class="col-lg-6">
@@ -234,72 +314,72 @@ https://templatemo.com/tm-589-lugx-gaming
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-01.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>Italian</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-02.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>Mexicon</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-03.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>South Indian</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-04.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>Punjabi</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-05.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>Chinese</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/top-game-06.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/download (1).jpeg" alt=""></a>
             </div>
             <div class="down-content">
-                <span class="category">Adventure</span>
-                <h4>Assasin Creed</h4>
-                <a href="product-details.html">Explore</a>
+                <span class="category">Order</span>
+                <h4>Thai</h4>
+                <a href="product-details.html">ADD</a>
             </div>
           </div>
         </div>
@@ -312,47 +392,46 @@ https://templatemo.com/tm-589-lugx-gaming
       <div class="row">
         <div class="col-lg-12 text-center">
           <div class="section-heading">
-            <h6>Categories</h6>
-            <h2>Top Categories</h2>
+            <h2>Favourites</h2>
           </div>
         </div>
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>Pizza</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/categories-01.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>Burger</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/categories-05.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>Biryani</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/categories-03.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>Noodels</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/categories-04.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>
         <div class="col-lg col-sm-6 col-xs-12">
           <div class="item">
-            <h4>Action</h4>
+            <h4>Vada Pav</h4>
             <div class="thumb">
-              <a href="product-details.html"><img src="../../images/categories-05.jpg" alt=""></a>
+              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>
@@ -360,54 +439,20 @@ https://templatemo.com/tm-589-lugx-gaming
     </div>
   </div>
   
-  <div class="section cta">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="shop">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="section-heading">
-                  <h6>Our Shop</h6>
-                  <h2>Go Pre-Order Buy & Get Best <em>Prices</em> For You!</h2>
-                </div>
-                <p>Lorem ipsum dolor consectetur adipiscing, sed do eiusmod tempor incididunt.</p>
-                <div class="main-button">
-                  <a href="shop.html">Shop Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 offset-lg-2 align-self-end">
-          <div class="subscribe">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="section-heading">
-                  <h6>NEWSLETTER</h6>
-                  <h2>Get Up To $100 Off Just Buy <em>Subscribe</em> Newsletter!</h2>
-                </div>
-                <div class="search-input">
-                  <form id="subscribe" action="#">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email...">
-                    <button type="submit">Subscribe Now</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a></p>
-      </div>
-    </div>
-  </footer>
+            
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3>Luminor's delivery</h3>
+                    <div class="social-icons">
+                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

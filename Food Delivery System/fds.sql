@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2024 at 04:19 PM
+-- Generation Time: Jul 25, 2024 at 09:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,35 @@ CREATE TABLE `tbl_area` (
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_area`
+--
+
+INSERT INTO `tbl_area` (`id`, `name`) VALUES
+(1, 'Adajan'),
+(2, 'Adajan Road'),
+(3, 'Athwa Gate'),
+(4, 'Athwalines'),
+(5, 'Bhatar Road'),
+(6, 'Chowk Bazaar'),
+(7, 'City Light Road'),
+(8, 'Delhi Gate'),
+(9, 'Ghod Dod Road'),
+(10, 'Katargam'),
+(11, 'Majura Gate'),
+(12, 'Pandesara'),
+(13, 'Parle Point'),
+(14, 'Piplod'),
+(15, 'Rander'),
+(16, 'Rander Road'),
+(17, 'Sagrampura'),
+(18, 'Station Road'),
+(19, 'Udhna Zone'),
+(20, 'Varachha Road'),
+(21, 'Ved Road'),
+(22, 'Mota Varachha'),
+(23, 'Nana Varachha');
+
 -- --------------------------------------------------------
 
 --
@@ -41,6 +70,18 @@ CREATE TABLE `tbl_area` (
 CREATE TABLE `tbl_cart` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_category`
+--
+
+CREATE TABLE `tbl_category` (
+  `id` int(11) NOT NULL,
+  `CategoryName` varchar(20) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -62,17 +103,39 @@ CREATE TABLE `tbl_complaint` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_coupon`
+--
+
+CREATE TABLE `tbl_coupon` (
+  `id` int(11) NOT NULL,
+  `restaurantid` int(11) DEFAULT NULL,
+  `categoryid` int(11) DEFAULT NULL,
+  `couponcode` varchar(12) NOT NULL,
+  `discount` tinyint(2) NOT NULL,
+  `maxuses` smallint(6) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_customer_address`
 --
 
 CREATE TABLE `tbl_customer_address` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
+  `doorno` varchar(7) NOT NULL,
   `address` varchar(255) NOT NULL,
   `areaid` int(11) NOT NULL,
   `type` char(1) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_customer_address`
+--
+
 
 -- --------------------------------------------------------
 
@@ -95,7 +158,7 @@ CREATE TABLE `tbl_delivery` (
 
 CREATE TABLE `tbl_delivery_man` (
   `id` int(11) NOT NULL,
-  `onlinestatus` tinyint(1) NOT NULL,
+  `onlinestatus` tinyint(1) DEFAULT NULL,
   `Licenseno` varchar(15) NOT NULL,
   `Licenseimage` varchar(255) NOT NULL,
   `adharcardno` varchar(15) NOT NULL,
@@ -103,6 +166,11 @@ CREATE TABLE `tbl_delivery_man` (
   `status` tinyint(1) NOT NULL,
   `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_delivery_man`
+--
+
 
 -- --------------------------------------------------------
 
@@ -116,6 +184,8 @@ CREATE TABLE `tbl_fooditem` (
   `Description` varchar(255) NOT NULL,
   `price` decimal(7,2) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `categoryid` int(11) NOT NULL,
   `restaurantID` int(11) NOT NULL,
   `rating` tinyint(4) NOT NULL,
   `totalratingdone` int(11) NOT NULL,
@@ -173,13 +243,22 @@ CREATE TABLE `tbl_payment` (
 CREATE TABLE `tbl_restaurant` (
   `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `cityid` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `address` varchar(255) NOT NULL,
   `Contact` varchar(10) NOT NULL,
+  `gstno` varchar(15) NOT NULL,
+  `Licesnseno` varchar(14) NOT NULL,
+  `OpeningTime` time NOT NULL,
+  `ClosingTime` time NOT NULL,
   `areaid` int(11) NOT NULL,
+  `Licesnseimage` varchar(255) NOT NULL,
   `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_restaurant`
+--
+
 
 -- --------------------------------------------------------
 
@@ -192,11 +271,12 @@ CREATE TABLE `tbl_user` (
   `fullname` varchar(50) NOT NULL,
   `Email` varchar(256) NOT NULL,
   `password` varchar(38) NOT NULL,
+  `Gender` tinyint(1) NOT NULL,
   `PhoneNo` varchar(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `dob` date DEFAULT NULL,
   `accounthash` varchar(64) DEFAULT NULL,
-  `hash_token_expires_at` datetime DEFAULT NULL,
   `reset_token` varchar(64) DEFAULT NULL,
   `reset_token_expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -205,8 +285,6 @@ CREATE TABLE `tbl_user` (
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`id`, `fullname`, `Email`, `password`, `PhoneNo`, `status`, `image`, `accounthash`, `hash_token_expires_at`, `reset_token`, `reset_token_expires_at`) VALUES
-(1, 'Naishal Manish Doshi', 'naishal036@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', '9326163059', 1, 'Screenshot 2024-06-24 143047.png', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -226,12 +304,24 @@ ALTER TABLE `tbl_cart`
   ADD KEY `user` (`userid`);
 
 --
+-- Indexes for table `tbl_category`
+--
+ALTER TABLE `tbl_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_complaint`
 --
 ALTER TABLE `tbl_complaint`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`userid`),
   ADD KEY `order_id` (`orderid`);
+
+--
+-- Indexes for table `tbl_coupon`
+--
+ALTER TABLE `tbl_coupon`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_customer_address`
@@ -261,13 +351,15 @@ ALTER TABLE `tbl_delivery_man`
 --
 ALTER TABLE `tbl_fooditem`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `restaurant-food` (`restaurantID`);
+  ADD KEY `restaurant-food` (`restaurantID`),
+  ADD KEY `categoryid` (`categoryid`);
 
 --
 -- Indexes for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cartid` (`cartid`);
 
 --
 -- Indexes for table `tbl_order_cart`
@@ -307,12 +399,18 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_area`
 --
 ALTER TABLE `tbl_area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_category`
+--
+ALTER TABLE `tbl_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -322,10 +420,16 @@ ALTER TABLE `tbl_complaint`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_coupon`
+--
+ALTER TABLE `tbl_coupon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_customer_address`
 --
 ALTER TABLE `tbl_customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery`
@@ -337,7 +441,7 @@ ALTER TABLE `tbl_delivery`
 -- AUTO_INCREMENT for table `tbl_delivery_man`
 --
 ALTER TABLE `tbl_delivery_man`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_fooditem`
@@ -367,13 +471,13 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT for table `tbl_restaurant`
 --
 ALTER TABLE `tbl_restaurant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables
@@ -416,7 +520,14 @@ ALTER TABLE `tbl_delivery_man`
 -- Constraints for table `tbl_fooditem`
 --
 ALTER TABLE `tbl_fooditem`
+  ADD CONSTRAINT `categoryid` FOREIGN KEY (`categoryid`) REFERENCES `tbl_category` (`id`),
   ADD CONSTRAINT `restaurant-food` FOREIGN KEY (`restaurantID`) REFERENCES `tbl_restaurant` (`id`);
+
+--
+-- Constraints for table `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD CONSTRAINT `cartid` FOREIGN KEY (`cartid`) REFERENCES `tbl_cart` (`id`);
 
 --
 -- Constraints for table `tbl_order_cart`
