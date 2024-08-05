@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luminar Food</title>
-    <script src="../../js/disable.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
@@ -86,6 +84,11 @@
             transition: background-color 0.3s ease;
         }
         
+        .error {
+            color: red;
+            display: none;
+        }
+
         button:hover {
             background-color: #0056b3;
         }
@@ -95,25 +98,80 @@
     <div class="complaint-form-container">
         <h1>Food Complaint Form</h1>
         
-      
-        <div class="form-section">
-            <label for="order-id">Order ID:</label>
-            <input type="text" id="order-id" name="order-id" placeholder="Your order ID" required>
-        </div>
-        
-        <div class="form-section">
-            <label for="complaint">Complaint:</label>
-            <textarea id="complaint" name="complaint" placeholder="Describe your complaint" required></textarea>
-        </div>
+        <form id="complaint-form">
+            <div class="form-section">
+                <label for="order-id">Order ID:</label>
+                <input type="number" id="order-id" name="order-id" placeholder="Your order ID" required>
+                <div id="order-error" class="error">Invalid order ID.</div>
+            </div>
+            
+            <div class="form-section">
+                <label for="complaint">Complaint:</label>
+                <input type="text" id="complaint" name="complaint" placeholder="Describe your complaint" required>
+                <div id="complaint-error" class="error">Invalid complaint.</div>
+            </div>
 
-        <div class="form-section">
-            <label for="file-upload">Upload Image:</label>
-            <input type="file" id="file-upload" name="file-upload" accept="image/*">
-        </div>
-        
-        <div class="form-section">
-            <button type="submit">Submit Complaint</button>
-        </div>
+            <div class="form-section">
+                <label for="file-upload">Upload Image:</label>
+                <input type="file" id="file" name="file" required>
+            </div>
+            
+            <div class="form-section">
+                <button type="submit" name="submit">Submit</button>
+            </div>
+        </form>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#complaint-form').on('submit', function(e){
+                e.preventDefault();
+                let valid = true;
+
+                const complaintRegex = /^[a-zA-Z\s]{5,}$/;
+                const orderidRegex = /^[0-9]+$/;
+
+                const complaint = $('#complaint').val();
+                const orderid = $('#order-id').val();
+
+                if (!orderidRegex.test(orderid)) {
+                    $('#order-error').show();
+                    valid = false;
+                } else {
+                    $('#order-error').hide();
+                }
+                
+                if (!complaintRegex.test(complaint)) {
+                    $('#complaint-error').show();
+                    valid = false;
+                } else {
+                    $('#complaint-error').hide();
+                }
+
+                if (valid) {
+                    const formData = new FormData(this);
+                    $.ajax({
+                        url: '../Ajax_files/complaint_Customer.php',
+                        method: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            if(response === true) {
+                                alert("Complaint submitted successfully");
+                            } else {
+                                alert("Submission failed: " + response);
+                            }
+                        },
+                        error: function(error) {
+                            alert('There was an error submitting the form.');
+                        }
+                    });
+                  
+                }
+            });
+        });
+    </script>
 </body>
 </html>

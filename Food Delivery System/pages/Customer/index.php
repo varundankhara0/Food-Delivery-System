@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+include "CheckRole.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -120,14 +120,14 @@ footer hr {
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="index.php" class="logo">
                         <img src="../../images/logo.png" alt="" style="width: 100px;">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="index.html" class="active">Home</a></li>
-                      <li><a href="shop.html">Add Product</a></li>
+                      <li><a href="index.php" class="active">Home</a></li>
+                      <li><a href="addFoodItem.php">Add Product</a></li>
                       <li><a href="product-details.html">Order History</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
                       <?php 
