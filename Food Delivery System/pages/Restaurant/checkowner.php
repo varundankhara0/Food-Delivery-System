@@ -6,7 +6,7 @@ if(isset($_SESSION["role"]))
     {
         ?>
         <script>alert('Unauthorized access:You don\'t have permission to visit the page')</script>
-        <script>window.location='../Landing/login.php'</script>
+        <script>window.location="../Landing/logout.php"</script>
         
         <?php
     }

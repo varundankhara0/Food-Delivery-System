@@ -3,9 +3,13 @@
 session_start();
 if(isset($_SESSION["role"]))
 {
+    if($_SESSION["role"]=="")
+    {
     ?>
-   <script> window.location='home.php'</script>;
+   <script> window.location='logout.php'</script>;
     <?php
+    }
+    
 }
 ?>
 <!DOCTYPE html>

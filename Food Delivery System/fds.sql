@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2024 at 09:24 AM
+-- Generation Time: Aug 07, 2024 at 02:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,6 +85,33 @@ CREATE TABLE `tbl_category` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_category`
+--
+
+INSERT INTO `tbl_category` (`id`, `CategoryName`, `status`) VALUES
+(1, 'Snacks', 1),
+(2, 'Beverages', 1),
+(3, 'Desserts', 1),
+(4, 'Breakfast', 1),
+(5, 'Lunch', 1),
+(6, 'Dinner', 1),
+(7, 'Biryani', 1),
+(8, 'South Indian', 1),
+(9, 'North Indian', 1),
+(10, 'Chinese', 1),
+(11, 'Italian', 1),
+(12, 'Mexican', 1),
+(13, 'Fast Food', 1),
+(14, 'Seafood', 1),
+(15, 'Salads', 1),
+(16, 'Soups', 1),
+(17, 'Grilled', 1),
+(18, 'Tandoor', 1),
+(19, 'BBQ', 1),
+(20, 'Continental', 1),
+(21, 'Mediterranean', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -132,11 +159,6 @@ CREATE TABLE `tbl_customer_address` (
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tbl_customer_address`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -166,11 +188,6 @@ CREATE TABLE `tbl_delivery_man` (
   `status` tinyint(1) NOT NULL,
   `userid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_delivery_man`
---
-
 
 -- --------------------------------------------------------
 
@@ -284,6 +301,7 @@ CREATE TABLE `tbl_user` (
 --
 -- Dumping data for table `tbl_user`
 --
+
 
 
 --
@@ -411,7 +429,7 @@ ALTER TABLE `tbl_cart`
 -- AUTO_INCREMENT for table `tbl_category`
 --
 ALTER TABLE `tbl_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint`
@@ -429,7 +447,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT for table `tbl_customer_address`
 --
 ALTER TABLE `tbl_customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery`
@@ -441,7 +459,7 @@ ALTER TABLE `tbl_delivery`
 -- AUTO_INCREMENT for table `tbl_delivery_man`
 --
 ALTER TABLE `tbl_delivery_man`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_fooditem`

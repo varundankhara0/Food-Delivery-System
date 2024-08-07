@@ -160,9 +160,8 @@ footer hr {
         <div class="col-lg-6 align-self-center">
           <div class="caption header-text">
             <h6>Welcome to luminar food</h6>
-            <h2>Food that makes you happy</h2>
-            <p>While eating at a restaurant is an enjoyable and convenient occasional 
-                treat,most individual and families prepare their meals at home.</p>
+            <h2>Food that makes you're Customer happy</h2>
+            <p>While Cooking is you're favorite job,Delivery is Our</p>
           </div>
         </div>
         <div class="col-lg-4 offset-lg-2">
