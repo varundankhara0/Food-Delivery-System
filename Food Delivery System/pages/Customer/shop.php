@@ -20,7 +20,8 @@ function convertToWebPath($filesystemPath)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Luminor Delivery</title>
   <!-- <script src="../../js/disable.js"></script> -->
   <!-- Bootstrap core CSS -->
@@ -236,7 +237,7 @@ https://templatemo.com/tm-589-lugx-gaming
                 <div class="down-content">
                   <span class="category"><?php echo $row["CategoryName"]; ?></span>
                   <h4><?php echo $row["name"]; ?></h4>
-                  <a id="add" name="<?php echo $row["id"]; ?>"><img src="../../images/add-to-basket.png" class="addtocart"></a>
+                  <a id="add" onclick='addtocart(<?php echo $row["id"]; ?>)'s><img src="../../images/add-to-basket.png" class="addtocart"></a>
                 </div>
               </div>
             </div>
@@ -285,19 +286,18 @@ https://templatemo.com/tm-589-lugx-gaming
   </footer>
   <script>
     function addtocart(id) {
+      
       $.ajax({
         url: '../Ajax_files/addtocart.php',
         method: 'POST',
         data: {
-          itemid: id
+          'fooditemid': id
         },
-        contentType: false,
-        processData: false,
         success: function(response) {
           if (response == true) {
             alert("Food Item added to cart");
           } else {
-
+            alert(response);
           }
         }
       });
