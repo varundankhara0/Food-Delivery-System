@@ -1,6 +1,7 @@
 <?php 
 session_start();
 ?>
+<script>window.location='../Customer/index.php'</script>
 <!DOCTYPE html>
 <html lang="en">
 

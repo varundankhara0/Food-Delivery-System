@@ -31,8 +31,14 @@ if (in_array($fileType, $allowTypes)) {
 $stmt->execute();
 if($conn->affected_rows>0)
     {
-        $_SESSION["restaurantName"]=$name;
+      $_SESSION["restaurantname"]=$name;
         $_SESSION["role"]="r";
+        $query="select * from tbl_restaurant where userid=".$userid;
+        $result1=mysqli_query($conn,$query);
+        while($row=$result1->fetch_assoc())
+        {
+          $_SESSION["restaurantid"]=$row["id"];
+        }
         echo true;
     }
     else

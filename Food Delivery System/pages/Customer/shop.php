@@ -152,7 +152,7 @@ https://templatemo.com/tm-589-lugx-gaming
             <ul class="nav">
               <li><a href="../Landing/index.php" class="active">Home</a></li>
               <li><a href="#">View Food</a></li>
-              <li><a href="product-details.php">View Cart</a></li>
+              <li><a href="#">View Cart</a></li>
               <li><a href="contact.php">Contact Us</a></li>
               <?php
               if (isset($_SESSION["user"])) {
@@ -228,7 +228,7 @@ https://templatemo.com/tm-589-lugx-gaming
             <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 <?php echo $row["categoryid"] ?>">
               <div class="item">
                 <div class="thumb">
-                  <a href=""><img class="productphoto" src="<?php echo convertToWebPath($row["image"]); ?>" alt=""></a>
+                  <a href="product-details.php?id=<?php echo $row["id"];?>"><img class="productphoto" src="<?php echo convertToWebPath($row["image"]); ?>" alt=""></a>
                   <span class="price">
                     <!-- <em>$36</em>$24 -->
                     ₹<?php echo $row["price"]; ?>
