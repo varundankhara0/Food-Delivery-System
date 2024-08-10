@@ -35,6 +35,8 @@ function convertToWebPath($filesystemPath)
     }
 
     footer {
+
+      
       max-height: 30%;
       background-color: #d30d0d;
       padding: 50px 20px;
@@ -98,6 +100,22 @@ function convertToWebPath($filesystemPath)
       display: block;
       margin-bottom: 5px;
     }
+    /* -------------- */
+    .trending ul.pagination li a {
+  
+  margin-top: 1000px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #eee;
+  color: #1e1e1e;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 50%;
+  transition: all .3s;
+}
   </style>
   <script>
     $(document).ready(function() {
@@ -243,8 +261,8 @@ function convertToWebPath($filesystemPath)
         <div class="col-lg-12">
           <select id="filter-type" class="filter">
             <option value="">All Types</option>
-            <option value="veg">Veg</option>
-            <option value="non-veg">Non-Veg</option>
+            <option>Veg</option>
+            <option value=1>Non-Veg</option>
           </select>
         </div>
         <div class="col-lg-12">

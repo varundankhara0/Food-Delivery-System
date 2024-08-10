@@ -1,6 +1,7 @@
 <?php
 include "../../chcekcustomer.php";
 include "../../connection.php";
+
 function convertToWebPath($filesystemPath)
 {
   // Replace backslashes with forward slashes
@@ -11,13 +12,15 @@ function convertToWebPath($filesystemPath)
 
   return $webPath;
 }
+
 $query = "SELECT 
             fi.Name, 
             fi.Image, 
             fi.CategoryID, 
             fi.Price, 
             c.CategoryName, 
-            oc.quantity
+            oc.quantity,
+            oc.id
           FROM 
             Tbl_fooditem fi
           JOIN 
@@ -27,7 +30,7 @@ $query = "SELECT
           JOIN 
             Tbl_cart cart ON cart.ID=oc.cartid 
           WHERE 
-            cart.UserID =".$_SESSION["userid"]."  AND cart.status = 1";
+            cart.UserID =".$_SESSION['userid']."  AND cart.status = 1";
 
 $result = mysqli_query($conn, $query);
 ?>
@@ -52,8 +55,6 @@ $result = mysqli_query($conn, $query);
   <link rel="stylesheet" href="../../css/owl.css">
   <link rel="stylesheet" href="../../css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
- 
 </head>
 
 <body>
@@ -65,28 +66,33 @@ $result = mysqli_query($conn, $query);
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>#</th>
               <th>Name</th>
               <th>Image</th>
               <th>Category</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <?php 
             if ($result->num_rows > 0) {
+                $index = 1;
                 while($row = $result->fetch_assoc()) { ?>
                     <tr>
+                      <td><?php echo $index++; ?></td>
                       <td><?php echo $row['Name']; ?></td>
-                      <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="204px" height="214px"></td>
+                      <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="100px" height="100px"></td>
                       <td><?php echo $row['CategoryName']; ?></td>
                       <td><?php echo $row['Price']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
+                      <td> <a id="add"  onclick="deletefromcart(<?php echo $row['id']; ?>)">Delete</a></td>
                     </tr>
                 <?php } 
             } else { ?>
                 <tr>
-                  <td colspan="5" class="text-center">No items found in your cart.</td>
+                  <td colspan="7" class="text-center">No items found in your cart.</td>
                 </tr>
             <?php } ?>
           </tbody>
@@ -94,7 +100,25 @@ $result = mysqli_query($conn, $query);
       </div>
     </div>
   </div>
-
-
+  <script>
+    function deletefromcart(id) {
+      
+      $.ajax({
+        url: '../Ajax_files/deletefoodfromcart.php',
+        method: 'POST',
+        data: {
+          'id': id
+        },
+        success: function(response) {
+          if (response == true) {
+            alert("Item Removed from the cart");
+          window.location='cart.php';
+          } else {
+            alert(response);
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>

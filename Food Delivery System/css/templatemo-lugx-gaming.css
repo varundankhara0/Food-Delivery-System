@@ -1290,6 +1290,8 @@ Shop Page Style
 }
 
 .trending ul.pagination li a {
+  
+  margin-top: 1000px;
   display: inline-block;
   width: 40px;
   height: 40px;
