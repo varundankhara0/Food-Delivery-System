@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2024 at 04:39 PM
+-- Generation Time: Aug 10, 2024 at 09:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -225,7 +225,7 @@ CREATE TABLE `tbl_fooditem` (
 
 INSERT INTO `tbl_fooditem` (`id`, `name`, `Description`, `price`, `image`, `type`, `categoryid`, `restaurantID`, `rating`, `totalratingdone`, `status`, `dateadded`) VALUES
 (1, 'Veg Masla Dosa', 'Indulge in the classic South Indian delight with our Veg Masala Dosa. This crispy, golden-brown crepe is made from fermented rice and lentil batter, offering a perfect blend of crunch and softness. Inside, discover a flavorful potato filling, spiced with ', 130.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/banner-image.jpg', 0, 8, 1, 0, 0, 1, '2024-08-07 20:55:22'),
-(2, 'Chicken Briyani', 'Savor the rich and aromatic flavors of our Chicken Biryani, a classic dish made with tender, juicy chicken pieces marinated in a blend of exotic spices and slow-cooked with fragrant basmati rice. Each bite is infused with the warmth of spices like saffron', 200.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/ChickenBriyani.jpg', 1, 18, 1, 0, 0, 1, '2024-08-08 22:15:49'),
+(2, 'Chicken Briyani', 'Savor the rich and aromatic flavors of our Chicken Biryani, a classic dish made with tender, juicy chicken pieces marinated in a blend of exotic spices and slow-cooked with fragrant basmati rice. Each bite is infused with the warmth of spices like saffron', 200.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/ChickenBriyani.jpg', 1, 18, 2, 0, 0, 1, '2024-08-08 22:15:49'),
 (3, 'Roasted Chicken', '\r\nRoasted chicken is a classic dish known for its golden-brown, crispy skin and tender, juicy meat. The chicken is typically seasoned with a blend of herbs and spices like rosemary, thyme, garlic, and paprika, which infuse the meat with a savory aroma and', 662.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/roasted chicken.jpg', 1, 18, 1, 0, 0, 1, '2024-08-10 19:09:43'),
 (4, 'Stuffed Potato', 'Stuffed potatoes are a delicious and versatile dish where baked or boiled potatoes are hollowed out and filled with a variety of savory ingredients. The potato flesh is often mixed with ingredients like cheese, bacon, sour cream, chives, and herbs, then s', 421.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/stuffed potato.jpg', 0, 20, 1, 0, 0, 1, '2024-08-10 19:18:54'),
 (5, 'Pasta', 'Pasta is a staple of Italian cuisine made from wheat flour and water, sometimes with eggs, and comes in many shapes and sizes, from spaghetti and penne to fusilli and ravioli. The versatility of pasta makes it suitable for a wide range of dishes.\r\n\r\nCooke', 700.00, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/pasta.jpg', 0, 11, 1, 0, 0, 1, '2024-08-10 19:20:40'),
@@ -271,9 +271,13 @@ CREATE TABLE `tbl_order_cart` (
 --
 
 INSERT INTO `tbl_order_cart` (`id`, `fooditemid`, `cartid`, `quantity`) VALUES
-(1, 1, 1, 5),
-(3, 2, 1, 1),
-(6, 2, 3, 1);
+(6, 2, 3, 15),
+(7, 6, 3, 1),
+(8, 4, 3, 15),
+(9, 1, 1, 1),
+(10, 2, 1, 1),
+(11, 3, 1, 1),
+(12, 13, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -520,7 +524,7 @@ ALTER TABLE `tbl_order`
 -- AUTO_INCREMENT for table `tbl_order_cart`
 --
 ALTER TABLE `tbl_order_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment`

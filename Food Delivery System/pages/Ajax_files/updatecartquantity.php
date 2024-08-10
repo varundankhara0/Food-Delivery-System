@@ -13,7 +13,7 @@ if (isset($_POST['id']) && isset($_POST['action'])) {
     if ($row) {
         $new_quantity = $row['quantity'];
 
-        // Increment or decrement the quantity
+  
         if ($action == 'increment' && $new_quantity < 15) {
             $new_quantity++;
         } elseif ($action == 'decrement' && $new_quantity > 1 ) {
