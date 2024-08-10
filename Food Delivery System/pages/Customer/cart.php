@@ -4,12 +4,8 @@ include "../../connection.php";
 
 function convertToWebPath($filesystemPath)
 {
-  // Replace backslashes with forward slashes
   $webPath = str_replace('\\', '/', $filesystemPath);
-
-  // Remove the document root part of the path
   $webPath = str_replace('C:/xampp/htdocs/', '/', $webPath);
-
   return $webPath;
 }
 
@@ -29,8 +25,10 @@ $query = "SELECT
             Tbl_order_cart oc ON oc.fooditemid=fi.ID
           JOIN 
             Tbl_cart cart ON cart.ID=oc.cartid 
+          JOIN
+            tbl_restaurant as rs on rs.id=fi.restaurantID 
           WHERE 
-            cart.UserID =".$_SESSION['userid']."  AND cart.status = 1";
+            cart.UserID =".$_SESSION['userid']."  AND cart.status = 1 and rs.status=1";
 
 $result = mysqli_query($conn, $query);
 ?>
@@ -46,10 +44,7 @@ $result = mysqli_query($conn, $query);
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <title>Luminor Delivery</title>
   <script src="../../js/disable.js"></script>
-  <!-- Bootstrap core CSS -->
   <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Additional CSS Files -->
   <link rel="stylesheet" href="../../css/fontawesome.css">
   <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
   <link rel="stylesheet" href="../../css/owl.css">
@@ -86,8 +81,12 @@ $result = mysqli_query($conn, $query);
                       <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="100px" height="100px"></td>
                       <td><?php echo $row['CategoryName']; ?></td>
                       <td><?php echo $row['Price']; ?></td>
-                      <td><?php echo $row['quantity']; ?></td>
-                      <td> <a id="add"  onclick="deletefromcart(<?php echo $row['id']; ?>)">Delete</a></td>
+                      <td>
+                        <button onclick="updateQuantity(<?php echo $row['id']; ?>, 'decrement')">-</button>
+                        <span id="quantity-<?php echo $row['id']; ?>"><?php echo $row['quantity']; ?></span>
+                        <button onclick="updateQuantity(<?php echo $row['id']; ?>, 'increment')">+</button>
+                      </td>
+                      <td><a id="add" onclick="deletefromcart(<?php echo $row['id']; ?>)">Delete</a></td>
                     </tr>
                 <?php } 
             } else { ?>
@@ -101,8 +100,62 @@ $result = mysqli_query($conn, $query);
     </div>
   </div>
   <script>
+    function updateQuantity(id, action) {
+      $.ajax({
+        url: '../Ajax_files/updatecartquantity.php',
+        method: 'POST',
+        data: {
+          'id': id,
+          'action': action
+        },
+        success: function(response) {
+          if (response.success) {
+            $('#quantity-' + id).text(response.new_quantity);
+          } else {
+            alert(response.message);
+          }
+        }
+      });
+    }
+    <?php
+include "../../connection.php";
+
+if (isset($_POST['id']) && isset($_POST['action'])) {
+    $id = $_POST['id'];
+    $action = $_POST['action'];
+
+    // Fetch current quantity
+    $query = "SELECT quantity FROM Tbl_order_cart WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $new_quantity = $row['quantity'];
+
+        // Increment or decrement the quantity
+        if ($action == 'increment') {
+            $new_quantity++;
+        } elseif ($action == 'decrement' && $new_quantity > 1) {
+            $new_quantity--;
+        }
+
+        // Update the quantity in the database
+        $updateQuery = "UPDATE Tbl_order_cart SET quantity = $new_quantity WHERE id = $id";
+        if (mysqli_query($conn, $updateQuery)) {
+            // Send the new quantity back as a response
+            echo json_encode(['success' => true, 'new_quantity' => $new_quantity]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Failed to update quantity']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Item not found']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid request']);
+}
+?>
+
     function deletefromcart(id) {
-      
       $.ajax({
         url: '../Ajax_files/deletefoodfromcart.php',
         method: 'POST',
@@ -112,7 +165,7 @@ $result = mysqli_query($conn, $query);
         success: function(response) {
           if (response == true) {
             alert("Item Removed from the cart");
-          window.location='cart.php';
+            window.location = 'cart.php';
           } else {
             alert(response);
           }

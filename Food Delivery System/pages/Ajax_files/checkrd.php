@@ -28,6 +28,12 @@ if ($result->num_rows > 0) {
         $result1 = mysqli_query($conn, $query);
         if ($result1->num_rows > 0) {
             echo "Delivery Man";
+            $query = "select id from tbl_delivery_man where userid=" . $id . " AND status=0 limit 1";
+            $result0=mysqli_query($conn,$query);
+            if($result0->num_rows>0)
+            {
+                echo "You re role has been revoked please contact admin if possible";
+            }
             $_SESSION["role"] = "d";
             while ($row = $result1->fetch_array()) {
                 $_SESSION["userid"] = $id;

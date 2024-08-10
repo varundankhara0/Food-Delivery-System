@@ -220,7 +220,7 @@ https://templatemo.com/tm-589-lugx-gaming
       </ul>
       <div class="row trending-box">
         <?php
-        $query = "select fd.id,fd.name,fd.image,fd.price,fd.description,fd.categoryid,ca.CategoryName from tbl_fooditem as fd join tbl_category as ca on ca.id=fd.categoryid where fd.status=1 and ca.status=1";
+        $query = "select fd.id,fd.name,fd.image,fd.price,fd.description,fd.categoryid,ca.CategoryName from tbl_fooditem as fd join tbl_category as ca on ca.id=fd.categoryid join tbl_restaurant as rs on rs.id=fd.restaurantID where fd.status=1 and ca.status=1 and rs.status=1";
         $result = mysqli_query($conn, $query);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {

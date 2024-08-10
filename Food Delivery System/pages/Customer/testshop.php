@@ -100,6 +100,10 @@ function convertToWebPath($filesystemPath)
       display: block;
       margin-bottom: 5px;
     }
+    .addtocart {
+      height: 16px;
+      width: 20px;
+    }
     /* -------------- */
     .trending ul.pagination li a {
   
@@ -161,7 +165,7 @@ function convertToWebPath($filesystemPath)
                 <div class="down-content">
                   <span class="category">${item.CategoryName}</span>
                   <h4>${item.name}</h4>
-                  <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+                  <a id="add" onclick='addtocart(${item.id})'><img src="../../images/add-to-basket.png" class="addtocart"></a>
                 </div>
               </div>
             </div>`;
@@ -253,7 +257,25 @@ function convertToWebPath($filesystemPath)
       </div>
     </div>
   </div>
-
+  <script>
+    function addtocart(id) {
+      
+      $.ajax({
+        url: '../Ajax_files/addtocart.php',
+        method: 'POST',
+        data: {
+          'fooditemid': id
+        },
+        success: function(response) {
+          if (response == true) {
+            alert("Food Item added to cart");
+          } else {
+            alert(response);
+          }
+        }
+      });
+    }
+  </script>
   <div class="section trending">
     <div class="container">
       <ul class="trending-filter">
