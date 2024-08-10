@@ -117,44 +117,28 @@ $result = mysqli_query($conn, $query);
         }
       });
     }
-    <?php
-include "../../connection.php";
 
-if (isset($_POST['id']) && isset($_POST['action'])) {
-    $id = $_POST['id'];
-    $action = $_POST['action'];
-
-    // Fetch current quantity
-    $query = "SELECT quantity FROM Tbl_order_cart WHERE id = $id";
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
-
-    if ($row) {
-        $new_quantity = $row['quantity'];
-
-        // Increment or decrement the quantity
-        if ($action == 'increment') {
-            $new_quantity++;
-        } elseif ($action == 'decrement' && $new_quantity > 1) {
-            $new_quantity--;
-        }
-
-        // Update the quantity in the database
-        $updateQuery = "UPDATE Tbl_order_cart SET quantity = $new_quantity WHERE id = $id";
-        if (mysqli_query($conn, $updateQuery)) {
-            // Send the new quantity back as a response
-            echo json_encode(['success' => true, 'new_quantity' => $new_quantity]);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to update quantity']);
-        }
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Item not found']);
+function updateQuantity(id, action) {
+  $.ajax({
+    url: '../Ajax_files/updatecartquantity.php',
+    method: 'POST',
+    data: {
+      'id': id,
+      'action': action
+    },
+    success: function(response) {
+      // alert(response);
+      response = JSON.parse(response);
+      if (response.success) {
+        // Update the quantity displayed on the page
+        $('#quantity-' + id).text(response.new_quantity);
+      } else {
+        alert(response.message);
+      
+      }
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid request']);
+  });
 }
-?>
-
     function deletefromcart(id) {
       $.ajax({
         url: '../Ajax_files/deletefoodfromcart.php',
