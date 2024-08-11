@@ -9,6 +9,10 @@ if(isset($_SESSION["role"]))
     {
         echo "<script>window.location='../Restaurant/index.php'</script>";
     }
+    else if($_SESSION["role"]=="admin")
+    {
+        echo "<script>window.location='../../Admin/'</script>";
+    }
 }
 
 ?>

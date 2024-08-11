@@ -129,15 +129,15 @@ footer hr {
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="../Customer/index.php" class="active">Home</a></li>
-                      <li><a href="shop.html">Our Shop</a></li>
-                      <li><a href="product-details.html">Product Details</a></li>
-                      <li><a href="contact.html">Contact Us</a></li>
+                      <li><a href="index.php" class="active">Home</a></li>
+                      <li><a href="../Customer/shop.php">View Food</a></li>
+                      <li><a href="../Customer/cart.php">View Cart</a></li>
+                      <li><a href="../Customer/contact.php">Contact Us</a></li>
                       <?php
                     if(isset($_SESSION["user"]))
                     {
                         ?>
-                            <li><a href="logout.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+                            <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
                         
                         <?php
                     }
@@ -148,7 +148,7 @@ footer hr {
                         <?php
                     } 
                 ?>
-                  </ul>   
+                  </ul>      
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

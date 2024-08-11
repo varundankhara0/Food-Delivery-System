@@ -150,23 +150,26 @@ https://templatemo.com/tm-589-lugx-gaming
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="../Landing/index.php" class="active">Home</a></li>
-              <li><a href="#">View Food</a></li>
-              <li><a href="#">View Cart</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
-              <?php
-              if (isset($_SESSION["user"])) {
-              ?>
-                <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
-
-              <?php
-              } else {
-              ?>
-                <li><a href="../Landing/login.php" class="login-btn">Sign In</a></li>
-              <?php
-              }
-              ?>
-            </ul>
+                      <li><a href="index.php" class="active">Home</a></li>
+                      <li><a href="shop.php">View Food</a></li>
+                      <li><a href="cart.php">View Cart</a></li>
+                      <li><a href="contact.php">Contact Us</a></li>
+                      <?php
+                    if(isset($_SESSION["user"]))
+                    {
+                        ?>
+                            <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="../Landing/login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                ?>
+                  </ul>   
             <!-- <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -220,7 +223,7 @@ https://templatemo.com/tm-589-lugx-gaming
       </ul>
       <div class="row trending-box">
         <?php
-        $query = "select fd.id,fd.name,fd.image,fd.price,fd.description,fd.categoryid,ca.CategoryName from tbl_fooditem as fd join tbl_category as ca on ca.id=fd.categoryid join tbl_restaurant as rs on rs.id=fd.restaurantID where fd.status=1 and ca.status=1 and rs.status=1";
+        $query = "select fd.id,fd.name,fd.image,fd.price,fd.description,fd.categoryid,ca.CategoryName,rs.id as restaurantid from tbl_fooditem as fd join tbl_category as ca on ca.id=fd.categoryid join tbl_restaurant as rs on rs.id=fd.restaurantID where fd.status=1 and ca.status=1 and rs.status=1";
         $result = mysqli_query($conn, $query);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
@@ -228,7 +231,7 @@ https://templatemo.com/tm-589-lugx-gaming
             <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 <?php echo $row["categoryid"] ?>">
               <div class="item">
                 <div class="thumb">
-                  <a href="product-details.php?id=<?php echo $row["id"];?>"><img class="productphoto" src="<?php echo convertToWebPath($row["image"]); ?>" alt=""></a>
+                  <a href="product-details.php?id=<?php echo $row["id"]; ?>"><img class="productphoto" src="<?php echo convertToWebPath($row["image"]); ?>" alt=""></a>
                   <span class="price">
                     <!-- <em>$36</em>$24 -->
                     ₹<?php echo $row["price"]; ?>
@@ -237,7 +240,7 @@ https://templatemo.com/tm-589-lugx-gaming
                 <div class="down-content">
                   <span class="category"><?php echo $row["CategoryName"]; ?></span>
                   <h4><?php echo $row["name"]; ?></h4>
-                  <a id="add" onclick='addtocart(<?php echo $row["id"]; ?>)'s><img src="../../images/add-to-basket.png" class="addtocart"></a>
+                  <a id="add" onclick='addtocart(<?php echo $row["id"]; ?>,<?php echo $row["restaurantid"]; ?>)'><img src="../../images/add-to-basket.png" class="addtocart"></a>
                 </div>
               </div>
             </div>
@@ -285,8 +288,8 @@ https://templatemo.com/tm-589-lugx-gaming
     </div>
   </footer>
   <script>
-    function addtocart(id) {
-      
+    function addtocart(id,rsid) {
+
       $.ajax({
         url: '../Ajax_files/addtocart.php',
         method: 'POST',
@@ -294,9 +297,16 @@ https://templatemo.com/tm-589-lugx-gaming
           'fooditemid': id
         },
         success: function(response) {
-          if (response == true) {
+          if (response == true) 
+          {
             alert("Food Item added to cart");
-          } else {
+          }
+          else if(response == "replace") 
+          {
+            alert("GG");
+          }
+          else 
+          {
             alert(response);
           }
         }
