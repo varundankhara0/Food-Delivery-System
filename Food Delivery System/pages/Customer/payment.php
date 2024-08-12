@@ -1,4 +1,5 @@
-<?php require('../../razorpay-php-2.9.0/Razorpay.php');
+<?php 
+require('../../razorpay-php-2.9.0/Razorpay.php');
 use Razorpay\Api\Api;
 
 $api = new Api('rzp_test_qxeuAYL6jOqDSW', 'IxoRKz8mHWNvDpWmN5n74wpI');
