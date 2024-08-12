@@ -9,10 +9,11 @@ $itemsPerPage = 12; // Number of items per page
 
 $offset = ($page - 1) * $itemsPerPage;
 
-$query = "SELECT fd.id, fd.name, fd.image, fd.price, fd.description, fd.categoryid, ca.CategoryName 
+$query = "SELECT fd.id, fd.name, fd.image, fd.price, fd.description, fd.categoryid, ca.CategoryName, rs.Name as RestaurantName,rs.id as RestaurantID
           FROM tbl_fooditem AS fd 
           JOIN tbl_category AS ca ON ca.id=fd.categoryid 
-          WHERE fd.status=1 AND ca.status=1";
+          JOIN tbl_restaurant as rs on rs.id=fd.restaurantID
+          WHERE fd.status=1 AND ca.status=1 AND rs.status=1 ";
 
 if ($type) {
     $query .= " AND fd.type='$type'";
@@ -26,7 +27,8 @@ if ($priceRange) {
     list($minPrice, $maxPrice) = explode('-', $priceRange);
     $query .= " AND fd.price BETWEEN $minPrice AND $maxPrice";
 }
-
+$query.=' ORDER BY 
+    RAND() ';
 $query .= " LIMIT $offset, $itemsPerPage";
 $result = mysqli_query($conn, $query);
 
@@ -41,16 +43,16 @@ $totalItemsQuery = "SELECT COUNT(*) as count
                     WHERE fd.status=1 AND ca.status=1";
 
 if ($type) {
-    $totalItemsQuery .= " AND fd.type='$type'";
+    $totalItemsQuery .= " AND fd.type='$type' ";
 }
 
 if ($category) {
-    $totalItemsQuery .= " AND fd.categoryid='$category'";
+    $totalItemsQuery .= " AND fd.categoryid='$category' ";
 }
 
 if ($priceRange) {
     list($minPrice, $maxPrice) = explode('-', $priceRange);
-    $totalItemsQuery .= " AND fd.price BETWEEN $minPrice AND $maxPrice";
+    $totalItemsQuery .= " AND fd.price BETWEEN $minPrice AND $maxPrice ";
 }
 
 $totalItemsResult = mysqli_query($conn, $totalItemsQuery);
