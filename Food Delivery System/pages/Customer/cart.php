@@ -276,7 +276,7 @@ $result = mysqli_query($conn, $query);
   <script>
     $(document).ready(function(){
       $("#placeorder").click(function(){
-        window.location='placeorder.';
+        window.location='placeorder.php';
       })
     })
     function updateQuantity(id, action) {

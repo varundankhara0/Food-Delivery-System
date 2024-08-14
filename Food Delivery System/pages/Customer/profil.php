@@ -107,14 +107,18 @@ include "../../chcekcustomer.php";
 
         <div class="col-md-3 border-right">
 
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"> <img class="profile-pic rounded-circle mt-5" src="<?php echo convertToWebPath($row['image']); ?>"><br><button class="btn btn-primary profile-button" type="button" id="editpic">Edit Picture</button></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"> <img class="profile-pic rounded-circle mt-5" src="<?php echo convertToWebPath($row['image']); ?>"><br><button class="btn btn-primary profile-button" type="button" id="editpic">Edit Picture</button><br><button id="home" class="btn btn-primary profile-button">Home</button></div>
+          
           <div class="d-flex flex-column align-items-center text-center p-3 py-5"><button class="btn btn-primary profile-button" type="button" id="logout">Logout</button></div>
+          
         </div>
-        <div class="col-md-5 border-right">
         
+        <div class="col-md-5 border-right">
+
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4 class="text-right">Profile Settings</h4>
+              
               <form id="user-form">
             </div>
             <div class="row mt-2">
@@ -170,6 +174,7 @@ include "../../chcekcustomer.php";
 </div>
 
             <?php } ?>
+              
             </div>
             
           </div>
@@ -185,6 +190,7 @@ include "../../chcekcustomer.php";
         window.location='update_address.php?id='+id;
       }
       $(document).ready(function() {
+        $("#home").click(function(){window.location='index.php'})
         $("#logout").click(function(){
           window.location='../Landing/logout.php';
         })
@@ -258,6 +264,7 @@ include "../../chcekcustomer.php";
       });
     </script>
     <script>
+
       document.addEventListener('DOMContentLoaded', function() {
         const editButton = document.getElementById('editProfileButton');
         const saveButton = document.getElementById('saveProfileButton');

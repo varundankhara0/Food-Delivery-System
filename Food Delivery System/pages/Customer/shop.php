@@ -135,6 +135,7 @@ function convertToWebPath($filesystemPath)
         var priceRange = $('#filter-price-range').val();
 
         $.ajax({
+          async:true,
           url: '../Ajax_files/fetch_food_items.php',
           type: 'POST',
           data: {
@@ -181,7 +182,7 @@ function convertToWebPath($filesystemPath)
         pagination.empty();
         var totalPages = Math.ceil(totalItems / itemsPerPage);
         for (var i = 1; i <= totalPages; i++) {
-          var pageItem = `<li><a href="#" class="page-link ${i === currentPage ? 'is_active' : ''}" data-page="${i}">${i}</a></li>`;
+          var pageItem = `<li><a href="#" class="page-link ${i == currentPage ? 'is_active' : ''}" data-page="${i}">${i}</a></li>`;
           pagination.append(pageItem);
         }
         $('.page-link').on('click', function(e) {
@@ -263,6 +264,7 @@ function convertToWebPath($filesystemPath)
   <script>
  function addtocart(id) {
   $.ajax({
+  
     url: '../Ajax_files/addtocart.php',
     method: 'POST',
     data: { 'fooditemid': id },

@@ -4,10 +4,12 @@
 
 	// Page loading animation
 	$(window).on('load', function() {
-
-        $('#js-preloader').addClass('loaded');
-
-    });
+		// Ensure that the whole page (including images and iframes) is fully loaded
+		$(document).ready(function() {
+			$('#js-preloader').addClass('loaded');
+		});
+	});
+	
 
 
 	$(window).scroll(function() {
