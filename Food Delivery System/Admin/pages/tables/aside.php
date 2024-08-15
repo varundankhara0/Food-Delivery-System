@@ -1,3 +1,5 @@
+
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="../../index3.html" class="brand-link">
@@ -15,6 +17,7 @@
           <div class="info">
             <a href="#" class="d-block">Luminor Delivery</a>
           </div>
+
         </div>
 
         <!-- SidebarSearch Form -->
@@ -270,6 +273,61 @@
                     <p>User</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="../tables/tbl_payment.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Payment</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="../tables/tbl_fooditem.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Food Item</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Delivery Man</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Delivery</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Customer Address</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Coupon</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="tbl_restaurant.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Complaint</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Category</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="tbl_area.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Area</p>
+                  </a>
+                </li>
               </ul>
           </ul>
         </nav>
@@ -277,3 +335,10 @@
       </div>
       <!-- /.sidebar -->
     </aside>
+
+
+
+
+
+</body>
+</html>

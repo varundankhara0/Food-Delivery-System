@@ -173,7 +173,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include "aside.php";?>
+  <?php include "../Admin/aside.php";?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

@@ -213,39 +213,20 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Gender</th>
-                                                    <th>PhoneNo</th>
-
-                                                    <th>image</th>
-                                                    <th>date of birth</th>
-
-                                                    <!-- <th>Action</th> -->
 
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php include "../../../connection.php";
-                                                $query = "select id,fullname,PhoneNo,Email,Gender,status,image,dob from tbl_user";
+                                                $query = "select * from tbl_area";
                                                 $result = mysqli_query($conn, $query);
                                                 if ($result->num_rows > 0) {
                                                     while ($row = $result->fetch_assoc()) {
                                                 ?>
                                                         <tr>
                                                             <td><?php echo $row["id"]; ?></td>
-                                                            <td><?php echo $row["fullname"]; ?></td>
-                                                            <td><?php echo $row["Email"]; ?></td>
-
-                                                            <td><?php if ($row["Gender"] == 0) {
-                                                                    echo "Male";
-                                                                } else {
-                                                                    echo "Female";
-                                                                } ?></td>
-                                                            <td><?php echo $row["PhoneNo"]; ?></td>
-                                                            <td><a target="blank" href="<?php echo convertToWebPath($row["image"]); ?>">Click here</a></td>
-                                                            <td><?php echo $row["dob"]; ?></td>
-
+                                                            <td><?php echo $row["name"]; ?></td>
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button" class="btn btn-warning">Action</button>
@@ -271,12 +252,7 @@
                                                 <tr>
                                                     <th>Id</th>
                                                     <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Gender</th>
-                                                    <th>PhoneNo</th>
 
-                                                    <th>image</th>
-                                                    <th>date of birth</th>
 
                                                     <th>Action</th>
                                                 </tr>
