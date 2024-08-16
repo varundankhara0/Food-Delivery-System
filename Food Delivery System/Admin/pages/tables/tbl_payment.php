@@ -254,26 +254,21 @@ function convertToWebPath($filesystemPath)
                         }
                       }
             ?>
-            <!-- </tbody>
+            </tbody>
             <tfoot>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Gst-No</th>
-                <th>LicenseNO</th>
-                <th>Opening Time</th>
-                <th>Closing Time</th>
-                <th>Area</th>
-                <th>License Image</th>
-                <th>
-                  Owner Name
-                </th>
-                <th>Action</th>
-              </tr>
+            <tr>
+                        <th>Id</th>
+                        <th>Order ID</th>
+                        <th>Address</th>
+                        <th>Transcationid</th>
+                        <th>payment_mode</th>
+
+                        <!-- <th>Action</th> -->
+
+                        <th>Action</th>
+                      </tr>
             </tfoot>
-            </table> -->
+                    </table>
               </div>
               <!-- /.card-body -->
             </div>

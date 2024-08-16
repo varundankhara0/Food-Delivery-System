@@ -210,69 +210,51 @@ function convertToWebPath($filesystemPath)
                 <div class="card-body">
                   <table id="example1" class="table table-bordered table-hover">
                     <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>name</th>
-                        <th>Description</th>
-                        <th>price</th>
-                        <th>image</th>
-                        <th>type</th>
-                        <th>category</th>
-                        <th>restaurant</th>
-                        <th>rating</th>
-                        <th>totalratingdone </th>
-                        <th>status</th>
-                        <th>dateadded</th>
-                        <!-- <th>Action</th> -->
-
-                        <th>Action</th>
-                      </tr>
+                    <tr>
+    <th>Id</th>
+    <th>Full Name</th>
+    <th>Online Status</th>
+    <th>License No.</th>
+    <th>License Image</th>
+    <th>Adhar Card No.</th>
+    <th>Adhar Card Image</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
                     </thead>
                     <tbody>
                       <?php include "../../../connection.php";
                       $query = "SELECT
-                                 i.id,
-                                 i.name ,
-                                  i.Description,
-                                  i.price,
-                                  i.image,
-                                  i.type,
-                                  c.CategoryName,
-                                  r.name as restaurant,
-                                  i.rating,
-                                  i.totalratingdone,
-                                  i.status,
-                                  i.dateadded
-                               FROM
-                                   tbl_fooditem i
-                               JOIN
-                                   tbl_category c
-                                   ON i.categoryid = c.id
-                               JOIN
-                                   tbl_restaurant r
-                                   ON i.restaurantID = r.ID";
+    tbl_delivery_man.id,
+    tbl_delivery_man.onlinestatus,
+    tbl_delivery_man.Licenseno,
+    tbl_delivery_man.Licenseimage,
+    tbl_delivery_man.adharcardno,
+    tbl_delivery_man.addharcardimage,
+    tbl_delivery_man.status,
+    tbl_user.fullname
+FROM
+    tbl_delivery_man
+JOIN
+    tbl_user
+ON
+    tbl_delivery_man.userid = tbl_user.id;
+";
                       $result = mysqli_query($conn, $query);
                       if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                       ?>
                           <tr>
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["name"]; ?></td>
-                            <td><?php echo $row["Description"]; ?></td>
-                            <td><?php echo $row["price"]; ?></td>
-                            <td><a target="blank" href="<?php echo convertToWebPath($row["image"]); ?>">Click here</a></td>
-                            <td><?php if ($row["type"] == 0) {
-                                  echo "VEG";
-                                } else {
-                                  echo "NONVEG";
-                                } ?></td>
-                            <td><?php echo $row["CategoryName"]; ?></td>
-                            <td><?php echo $row["restaurant"]; ?></td>
-                            <td><?php echo $row["rating"]; ?></td>
-                            <td><?php echo $row["totalratingdone"]; ?></td>
-                            <td><?php echo $row["status"]; ?></td>
-                            <td><?php echo $row["dateadded"]; ?></td>
-
+                          <tr>
+                          <td><?php echo $row["id"]; ?></td>
+    <td><?php echo $row["fullname"]; ?></td>
+    <td><?php echo $row["onlinestatus"]; ?></td>
+    <td><?php echo $row["Licenseno"]; ?></td>
+    <td><a target="_blank" href="<?php echo convertToWebPath($row["Licenseimage"]); ?>">Click here</a></td>
+    <td><?php echo $row["adharcardno"]; ?></td>
+    <td><a target="_blank" href="<?php echo convertToWebPath($row["addharcardimage"]); ?>">Click here</a></td>
+    <td><?php echo $row["status"]; ?></td>
+        </tr>
                             <td>
                               <div class="btn-group">
                                 <button type="button" class="btn btn-warning">Action</button>
@@ -295,22 +277,16 @@ function convertToWebPath($filesystemPath)
                       </tbody>
             <tfoot>
             <tr>
-                        <th>Id</th>
-                        <th>name</th>
-                        <th>Description</th>
-                        <th>price</th>
-                        <th>image</th>
-                        <th>type</th>
-                        <th>category</th>
-                        <th>restaurant</th>
-                        <th>rating</th>
-                        <th>totalratingdone </th>
-                        <th>status</th>
-                        <th>dateadded</th>
-                        <!-- <th>Action</th> -->
-
-                        <th>Action</th>
-                      </tr>
+    <th>Id</th>
+    <th>Full Name</th>
+    <th>Online Status</th>
+    <th>License No.</th>
+    <th>License Image</th>
+    <th>Adhar Card No.</th>
+    <th>Adhar Card Image</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
             </tfoot>
             </table>
                 </div>

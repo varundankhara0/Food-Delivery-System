@@ -217,9 +217,9 @@ function convertToWebPath($filesystemPath)
                         <th>couponid</th>
                         <th>status</th>
                         <th>date</th>
-                       
+
                         <!-- <th>Action</th> -->
-                        
+
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -237,7 +237,7 @@ function convertToWebPath($filesystemPath)
                             <td><?php echo $row["couponid"]; ?></td>
                             <td><?php echo $row["status"]; ?></td>
                             <td><?php echo $row["date"]; ?></td>
-                            
+
                             <td>
                               <div class="btn-group">
                                 <button type="button" class="btn btn-warning">Action</button>
@@ -257,26 +257,22 @@ function convertToWebPath($filesystemPath)
                         }
                       }
             ?>
-            <!-- </tbody>
+            </tbody>
             <tfoot>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Gst-No</th>
-                <th>LicenseNO</th>
-                <th>Opening Time</th>
-                <th>Closing Time</th>
-                <th>Area</th>
-                <th>License Image</th>
-                <th>
-                  Owner Name
-                </th>
-                <th>Action</th>
-              </tr>
+               <tr>
+                        <th>Id</th>
+                        <th>cartid</th>
+                        <th>amount</th>
+                        <th>couponid</th>
+                        <th>status</th>
+                        <th>date</th>
+
+                        <!-- <th>Action</th> -->
+
+                        <th>Action</th>
+                      </tr>
             </tfoot>
-            </table> -->
+            </table>
               </div>
               <!-- /.card-body -->
             </div>

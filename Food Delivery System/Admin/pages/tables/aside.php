@@ -286,7 +286,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_.php" class="nav-link">
+                  <a href="tbl_delivery_man.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Delivery Man</p>
                   </a>
@@ -317,7 +317,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_.php" class="nav-link">
+                  <a href="tbl_category.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Category</p>
                   </a>
