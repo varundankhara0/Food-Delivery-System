@@ -331,26 +331,26 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_.php" class="nav-link">
+                  <a href="pages/tables/tbl_deliver.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Delivery</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_.php" class="nav-link">
+                  <a href="pages/tables/tbl_users_add.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Customer Address</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_.php" class="nav-link">
+                  <a href="pages/tables/tbl_coupon.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Coupon</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="tbl_restaurant.php" class="nav-link">
+                  <a href="tbl_.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Complaint</p>
                   </a>
@@ -362,7 +362,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="tbl_area.php" class="nav-link">
+                  <a href="pages/tables/tbl_area.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Area</p>
                   </a>
