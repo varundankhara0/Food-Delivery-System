@@ -9,7 +9,12 @@ if(isset($_SESSION["role"]))
    <script> window.location='logout.php'</script>;
     <?php
     }
-    
+    else
+    {
+        ?>
+   <script> window.location='index.php'</script>;
+    <?php
+    }
 }
 ?>
 <!DOCTYPE html>

@@ -122,7 +122,10 @@ function convertToWebPath($filesystemPath)
 }
   </style>
   <script>
+
     $(document).ready(function() {
+     
+
       loadFoodItems();
 
       $('.filter').on('change', function() {
@@ -182,7 +185,15 @@ function convertToWebPath($filesystemPath)
         pagination.empty();
         var totalPages = Math.ceil(totalItems / itemsPerPage);
         for (var i = 1; i <= totalPages; i++) {
-          var pageItem = `<li><a href="#" class="page-link ${i == currentPage ? 'is_active' : ''}" data-page="${i}">${i}</a></li>`;
+          var pageItem = `<li>
+    <a href="javascript:void(0);" 
+       class="page-link ${i == currentPage ? 'is_active' : ''}" 
+       data-page="${i}" 
+       onclick="scrollToDiv('targetDiv')">
+       ${i}
+    </a>
+</li>
+`;
           pagination.append(pageItem);
         }
         $('.page-link').on('click', function(e) {
@@ -334,7 +345,7 @@ $(document).ready(function() {
             ?>
           </select>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="targetDiv">
           <select id="filter-price-range" class="filter">
             <option value="">All Prices</option>
             <option value="0-100">₹0 - ₹100</option>
@@ -344,7 +355,7 @@ $(document).ready(function() {
         </div>
         </ul>
       <!-- </div> -->
-      <div class="row trending-box">
+      <div class="row trending-box" >
         <!-- Food items will be dynamically loaded here -->
       </div>
       <div class="row">
@@ -398,7 +409,12 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
-
+<script> function scrollToDiv(divId) {
+    const target = document.getElementById(divId);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
+}</script>
 </body>
 
 </html>
