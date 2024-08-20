@@ -347,7 +347,7 @@ $(document).ready(function() {
         </div>
         <div class="col-lg-12" id="targetDiv">
           <select id="filter-price-range" class="filter">
-            <option value="">All Prices</option>
+            <option value="">All Prices</opti on>
             <option value="0-100">₹0 - ₹100</option>
             <option value="101-500">₹101 - ₹500</option>
             <option value="501-1000">₹501 - ₹1000</option>
