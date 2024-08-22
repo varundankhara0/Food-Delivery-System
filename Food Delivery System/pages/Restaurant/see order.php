@@ -5,7 +5,7 @@ function encrypt($plaintext, $key, $iv) {
 }
 $key = 'mysecretkey12345';
 $iv = '1234567890123456';
-$query="SELECT od.id AS orderid, area.name AS address, SUM(oc.quantity) AS total_quantity FROM tbl_order AS od JOIN tbl_cart AS cart ON cart.id = od.cartid JOIN tbl_order_cart AS oc ON oc.cartid = od.cartid JOIN tbl_fooditem AS fd ON fd.id = oc.fooditemid JOIN tbl_restaurant AS rt ON rt.id = fd.restaurantID JOIN tbl_user AS user ON user.id = cart.userid JOIN tbl_customer_address AS ca ON ca.id = od.addressid JOIN tbl_area as area on area.id=ca.areaid WHERE od.status = 'o' AND rt.id = 1 AND rt.status = 1 GROUP BY od.id, ca.address;";
+$query="SELECT od.id AS orderid, area.name AS address, SUM(oc.quantity) AS total_quantity FROM tbl_order AS od JOIN tbl_cart AS cart ON cart.id = od.cartid JOIN tbl_order_cart AS oc ON oc.cartid = od.cartid JOIN tbl_fooditem AS fd ON fd.id = oc.fooditemid JOIN tbl_restaurant AS rt ON rt.id = fd.restaurantID JOIN tbl_user AS user ON user.id = cart.userid JOIN tbl_customer_address AS ca ON ca.id = od.addressid JOIN tbl_area as area on area.id=ca.areaid WHERE od.status = 'o' AND rt.id = ".$_SESSION["restaurantid"]." AND rt.status = 1 GROUP BY od.id, ca.address;";
 
 ?>
 <!DOCTYPE html>

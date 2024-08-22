@@ -19,8 +19,7 @@ else
 }
 if($_POST["mode"]=="cash")
 {
-
-    $query="insert into tbl_order(cartid,amount,couponid,status) values(".$cartid.",'".$amount."',NULL,'o');";
+    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o',1);";
     $result1=mysqli_query($conn,$query);
     $orderid=mysqli_insert_id($conn);
     $query="update tbl_cart set status=0 where id=".$cartid;
@@ -30,7 +29,7 @@ if($_POST["mode"]=="cash")
 }
 else
 {
-    $query="insert into tbl_order(cartid,amount,couponid,status) values(".$cartid.",'".$amount."',NULL,'o');";
+    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o',1);";
     $result1=mysqli_query($conn,$query);
     $orderid=mysqli_insert_id($conn);
     $query="update tbl_cart set status=0 where id=".$cartid;

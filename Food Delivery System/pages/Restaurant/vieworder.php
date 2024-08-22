@@ -148,7 +148,7 @@ $result = mysqli_query($conn, $query);
 
 
     <!-- ***** Preloader Start ***** -->
-    <div id="js-preloader" class="js-preloader">
+    <!-- <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
@@ -157,7 +157,7 @@ $result = mysqli_query($conn, $query);
                 <span></span>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- ***** Preloader End ***** -->
 
     <!-- ***** Header Area Start ***** -->
@@ -246,7 +246,7 @@ $result = mysqli_query($conn, $query);
                             <?php }
                         } else { ?>
                             <tr>
-                                <td colspan="7" class="text-center">No items found in your cart.</td>
+                                <td colspan="7" class="text-center">No items found in your order.</td>
                             </tr>
 
 
@@ -288,23 +288,41 @@ $result = mysqli_query($conn, $query);
             $("#acceptorder").click(function() {
                 $.ajax({
 
-                    url: '../Ajax_files/placeorder.php',
+                    url: '../Ajax_files/updateorderstatus.php',
                     method: 'POST',
                     data: {
-                        'mode': 'cash',
-                        'amount': <?php echo $totalPrice; ?>
+                        'status': 'a',
+                        'orderid': <?php echo $orderid; ?>
                     },
                     success: function(response) {
                         if (response == true) {
-                            alert("order has been placed successfully");
+                            alert("order status has been changed successfully");
                             window.location = 'index.php';
                         } else {
-                            if (response == "nocart") {
-                                alert("there was an error while retriving you\'re cart details")
-                                window.location = "index.php";
-                            } else {
+                             
                                 alert(response);
-                            }
+                            
+                        }
+                    }
+                });
+            });
+            $("#cancelorder").click(function() {
+                $.ajax({
+
+                    url: '../Ajax_files/updateorderstatus.php',
+                    method: 'POST',
+                    data: {
+                        'status': 'rc',
+                        'orderid': <?php echo $orderid; ?>
+                    },
+                    success: function(response) {
+                        if (response == true) {
+                            alert("order status has been changed successfully");
+                            window.location = 'index.php';
+                        } else {
+                             
+                                alert(response);
+                            
                         }
                     }
                 });
