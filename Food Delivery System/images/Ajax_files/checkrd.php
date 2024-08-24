@@ -24,22 +24,21 @@ if ($result->num_rows > 0) {
         echo "Restaurant Owner";
         $_SESSION["role"] = "r";
     } else {
-        $query = "select dm.id,user.fullname as name from tbl_delivery_man as dm Join tbl_user as user on user.id=dm.userid where dm.userid=" . $id . " and user.status=1 limit 1";
+        $query = "select id from tbl_delivery_man where userid=" . $id . " limit 1";
         $result1 = mysqli_query($conn, $query);
         if ($result1->num_rows > 0) {
-            
-            $query = "select dm.id,user.fullname as name from tbl_delivery_man as dm Join tbl_user as user on user.id=dm.userid where dm.userid=" . $id . " AND dm.status=0  limit 1";
+            echo "Delivery Man";
+            $query = "select dm.id,user.fullname as name from tbl_delivery_man as dm Join tbl_user as user on user.id=dm.userid where dm.userid=" . $id . " AND status=0 limit 1";
             $result0=mysqli_query($conn,$query);
             if($result0->num_rows>0)
             {
                 echo "You re role has been revoked please contact admin if possible";
             }
             $_SESSION["role"] = "d";
-            while ($row = $result1->fetch_assoc()) {
+            while ($row = $result1->fetch_array()) {
                 $_SESSION["userid"] = $id;
-                $_SESSION["deliverymanid"] = $row["id"];
-                $_SESSION["deliverymanname"]=$row["name"];
-                echo "Delivery Man";
+                $_SESSION["deliverymanid"] = $row[0];
+                $_SESSION["deliverymanname"]=$row[1];
             }
         } else {
             $_SESSION["userid"] = $id;

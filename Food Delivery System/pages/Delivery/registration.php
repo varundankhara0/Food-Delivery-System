@@ -243,7 +243,7 @@ footer hr {
             <div class="inline-inputs">
                 <div class="form-group">
                     <label for="license">License Number:
-                        <input type="text" id="license" name="license" required>
+                        <input type="text" id="license" name="license" placeholder="example:DL-XXXXX100XXXXX" required>
                     </label>
                     <div id="license-error" class="error">Invalid license number. Please enter a valid license number.</div>
                 </div>
@@ -255,7 +255,7 @@ footer hr {
             </div>
             <div class="form-group">
                 <label for="aadhar">Aadhar Card Number:
-                    <input type="number" id="aadhar" name="aadhar" required>
+                    <input type="number" id="aadhar" name="aadhar" placeholder="example:XXXX XXXX XXXX" required>
                 </label>
                 <div id="aadhar-error" class="error">Invalid Aadhar number. Please enter a 12-digit Aadhar number.</div>
             </div>

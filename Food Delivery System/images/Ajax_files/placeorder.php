@@ -19,7 +19,7 @@ else
 }
 if($_POST["mode"]=="cash")
 {
-    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o',".$_SESSION["address"].");";
+    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o',".$_POST["address"].");";
     $result1=mysqli_query($conn,$query);
     $orderid=mysqli_insert_id($conn);
     $query="update tbl_cart set status=0 where id=".$cartid;

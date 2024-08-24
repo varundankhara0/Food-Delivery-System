@@ -99,6 +99,7 @@
         <h1>Food Complaint Form</h1>
         
         <form id="complaint-form">
+
             <div class="form-section">
                 <label for="order-id">Order ID:</label>
                 <input type="number" id="order-id" name="order-id" placeholder="Your order ID" required>
@@ -115,7 +116,7 @@
                 <label for="file-upload">Upload Image:</label>
                 <input type="file" id="file" name="file" required>
             </div>
-            
+
             <div class="form-section">
                 <button type="submit" name="submit">Submit</button>
             </div>

@@ -138,7 +138,21 @@ footer hr {
                       <li><a href="shop.html">Check Delivery</a></li>
                       <li><a href="product-details.html">View Past Delivery</a></li>
                       <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="#">Sign In</a></li>
+                      <?php 
+                      if(isset($_SESSION["deliverymanid"]))
+                    {
+                        ?>
+                            <li><a href="../Landing/logout.php" class="login-btn"><?php echo $_SESSION["deliverymanname"]; ?></a></li>
+                        
+                        <?php
+                    }
+                    else
+                    {
+                        ?> 
+                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
+                        <?php
+                    } 
+                    ?>
                   </ul>   
                     
                 </nav>

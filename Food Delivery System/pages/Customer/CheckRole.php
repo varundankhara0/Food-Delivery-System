@@ -13,6 +13,7 @@ if(isset($_SESSION["role"]))
     {
         echo "<script>window.location='../../Admin/'</script>";
     }
+    
 }
 
 ?>
