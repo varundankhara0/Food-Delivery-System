@@ -4,111 +4,151 @@ if(isset($_SESSION["role"]))
 {
   if($_SESSION["role"]=="d")
   {
-    
+    // Role-specific actions can be added here
   }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Luminor Delivery</title>
+  <script src="../../js/disable.js"></script>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Luminor Delivery</title>
-    <script src="../../js/disable.js"></script>
-    <!-- Bootstrap core CSS -->
-    <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="../../css/fontawesome.css">
+  <link rel="stylesheet" href="../../css/rd_index.css">
+  <link rel="stylesheet" href="../../css/owl.css">
+  <link rel="stylesheet" href="../../css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../css/fontawesome.css">
-    <link rel="stylesheet" href="../../css/rd_index.css">
-    <link rel="stylesheet" href="../../css/owl.css">
-    <link rel="stylesheet" href="../../css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
 
-TemplateMo 589 lugx gaming
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-https://templatemo.com/tm-589-lugx-gaming
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
--->
-<style>
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-    
-footer {
-    max-height: 30%;
-    
-    background-color: #a120a1 ;
-    padding: 50px 20px;
-    text-align: center;
-    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
-}
-footer hr {
-    border: none;
-    border-top: 1px solid #DDD;
-    margin: 20px 0;
-}
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
 
-.footer-left {
-    flex: 1;
-}
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
 
-.footer-left h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
 
-.social-icons a img {
-    width: 30px;
-    height: 30px;
-    margin: 0 10px;
-}
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
 
-.footer-right {
-    flex: 2;
-    display: flex;
-    justify-content: space-around;
-}
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
 
-.footer-links {
-    list-style: none;
-    padding: 0;
-}
+    .slider.round:before {
+      border-radius: 50%;
+    }
 
-.footer-links h4 {
-    font-size: 18px;
-    color: #DDD;
-    margin-bottom: 10px;
-}
+    footer {
+      max-height: 30%;
+      background-color: #a120a1;
+      padding: 50px 20px;
+      text-align: center;
+    }
 
-.footer-links a {
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
-    display: block;
-    margin-bottom: 5px;
-}
+    footer hr {
+      border: none;
+      border-top: 1px solid #DDD;
+      margin: 20px 0;
+    }
 
-</style>
-  </head>
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .footer-left {
+      flex: 1;
+    }
+
+    .footer-left h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .social-icons a img {
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #000;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
+  <!-- Preloader Start -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
@@ -119,89 +159,82 @@ footer hr {
       </div>
     </div>
   </div>
-  <!-- ***** Preloader End ***** -->
+  <!-- Preloader End -->
 
-  <!-- ***** Header Area Start ***** -->
+  <!-- Header Start -->
   <header class="header-area header-sticky">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="../../images/logo.png" alt="" style="width: 100px;">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="index.html" class="active">Home</a></li>
-                      <li><a href="shop.html">Check Delivery</a></li>
-                      <li><a href="product-details.html">View Past Delivery</a></li>
-                      <li><a href="contact.html">Contact Us</a></li>
-                      <?php 
-                      if(isset($_SESSION["deliverymanid"]))
-                    {
-                        ?>
-                            <li><a href="../Landing/logout.php" class="login-btn"><?php echo $_SESSION["deliverymanname"]; ?></a></li>
-                        
-                        <?php
-                    }
-                    else
-                    {
-                        ?> 
-                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
-                        <?php
-                    } 
-                    ?>
-                  </ul>   
-                    
-                </nav>
-            </div>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">
+              <img src="../../images/logo.png" alt="Logo" style="width: 100px;">
+            </a>
+            <ul class="nav">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="shop.html">Check Delivery</a></li>
+              <li><a href="product-details.html">View Past Delivery</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+              <li style="color: #fff;">online status
+    <label class="switch">
+      <input type="checkbox" checked>
+      <span class="slider round"></span>
+    </label>
+  </li>
+              <?php 
+              if(isset($_SESSION["deliverymanid"])) {
+                echo '<li><a href="../Landing/logout.php" class="login-btn">' . $_SESSION["deliverymanname"] . '</a></li>';
+              } else {
+                echo '<li><a href="login.php" class="login-btn">Sign In</a></li>';
+              }
+              ?>
+            </ul>
+          </nav>
         </div>
+      </div>
     </div>
   </header>
-  <!-- ***** Header Area End ***** -->
+  <!-- Header End -->
 
+  <!-- Main Banner Start -->
   <div class="main-banner">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center">
           <div class="caption header-text">
-            <h6>Welcome to luminar food</h6>
+            <h6>Welcome to Luminar Food</h6>
             <h2>Our Fast Delivery For You</h2>
-            <p>While eating at a restaurant is an enjoyable and convenient occasional 
-                treat,most individual and families prepare their meals at home.</p>
+            <p>While eating at a restaurant is an enjoyable and convenient occasional treat, most individuals and families prepare their meals at home.</p>
           </div>
         </div>
         <div class="col-lg-4 offset-lg-2">
           <div class="right-image">
-            <img src="../../images/delivery-person-going-to-deliver-parcel-5335274-4460346.png" alt="" style="width: 700px;">
+            <img src="../../images/delivery-person-going-to-deliver-parcel-5335274-4460346.png" alt="Delivery Person" style="width: 700px;">
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Main Banner End -->
 
-  
-  
+ 
+
+  <!-- Footer Start -->
   <footer>
-            
-            <div class="footer-content">
-                <div class="footer-left">
-                    <h3 style="color: white;">Luminor's delivery</h3>
-                    <div class="social-icons">
-                        <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
-                        <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
-                        <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
-                    </div>
-                </div>
-
-            </div>
-        </footer>
-
+    <div class="footer-content">
+      <div class="footer-left">
+        <h3>Luminor's Delivery</h3>
+        <div class="social-icons">
+          <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
+          <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
+          <a href="https://www.instagram.com/vd__2004/"><img src="../../images/instagram-icon.png" alt="Instagram"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
 
   <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
   <script src="../../js/jquery/jquery.min.js"></script>
   <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
   <script src="../../js/isotope.min.js"></script>
@@ -209,5 +242,5 @@ footer hr {
   <script src="../../js/counter.js"></script>
   <script src="../../js/custom.js"></script>
 
-  </body>
+</body>
 </html>

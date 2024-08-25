@@ -15,7 +15,7 @@
 
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="../../css/fontawesome.css">
-  <link rel="stylesheet" href="../../css/rd_index.css">
+  <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
   <link rel="stylesheet" href="../../css/owl.css">
   <link rel="stylesheet" href="../../css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />

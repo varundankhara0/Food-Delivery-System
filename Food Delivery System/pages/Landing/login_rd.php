@@ -138,6 +138,7 @@ if (isset($_SESSION["role"])) {
         .form-section {
             text-align: center;
             padding: 40px 20px;
+            margin: 80px 100px 0px 100px;
         }
 
         .form-section form {
@@ -287,15 +288,26 @@ if (isset($_SESSION["role"])) {
     min-height: 150px;
     border-radius: 150px 150px 0px 0px;
     } */
-    footer {
+    /* footer {
     max-height: 30%;
     border-radius: 110px 110px 0px 0px;
-    margin-top: 65px;
+    margin-top: auto;
     background-color: #a120a1;
     padding: 50px 20px;
     text-align: center;
     /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+/* } */
+
+footer {
+    max-height: 30%;
+    border-radius: 110px 110px 0px 0px;
+
+    background-color: #a120a1;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 281px; 
 }
+
 footer hr {
     border: none;
     border-top: 1px solid #DDD;
@@ -306,6 +318,8 @@ footer hr {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer-left {

@@ -78,6 +78,7 @@ setInterval(function() {
         dataType: 'json',
         data: { excludedOrders: Array.from(orderset) },  // Send excluded orders
         success: function(data) {
+          console.log(data);
             if (data.newOrder) {
                 // Show the modal only if the order is not already in the set of rejected orders
                 if (!orderset.has(data.orderid)) {
