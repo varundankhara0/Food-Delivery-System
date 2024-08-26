@@ -253,7 +253,11 @@ ON
     <td><a target="_blank" href="<?php echo convertToWebPath($row["Licenseimage"]); ?>">Click here</a></td>
     <td><?php echo $row["adharcardno"]; ?></td>
     <td><a target="_blank" href="<?php echo convertToWebPath($row["addharcardimage"]); ?>">Click here</a></td>
-    <td><?php echo $row["status"]; ?></td>
+    <td><?php    if($row["status"]==1){
+                             echo 'Action';}
+                             else{
+                              echo 'daction';
+                             } ?> ?></td>
         </tr>
                             <td>
                               <div class="btn-group">

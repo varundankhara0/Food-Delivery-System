@@ -235,7 +235,11 @@ function convertToWebPath($filesystemPath)
                             <td><?php echo $row["cartid"]; ?></td>
                             <td><?php echo $row["amount"]; ?></td>
                             <td><?php echo $row["couponid"]; ?></td>
-                            <td><?php echo $row["status"]; ?></td>
+                            <td><?php    if($row["status"]==1){
+                             echo 'Action';}
+                             else{
+                              echo 'daction';
+                             } ?></td>
                             <td><?php echo $row["date"]; ?></td>
 
                             <td>

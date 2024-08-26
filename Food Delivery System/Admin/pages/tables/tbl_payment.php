@@ -213,7 +213,7 @@ function convertToWebPath($filesystemPath)
                       <tr>
                         <th>Id</th>
                         <th>Order ID</th>
-                        <th>Address</th>
+
                         <th>Transcationid</th>
                         <th>payment_mode</th>
 
@@ -232,8 +232,15 @@ function convertToWebPath($filesystemPath)
                           <tr>
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["orderid"]; ?></td>
-                            <td><?php echo $row["Transcationid"]; ?></td>
-                            <td><?php echo $row["payment_mode"]; ?></td>
+                            <td><?php echo $row["Transcationid"];
+                             ?></td>
+                            <td><?php if( $row["payment_mode"]=="c")
+                            {
+                              echo 'cash';
+                            }else{
+                              echo 'Online';
+                            }
+                             ?></td>
 
                             <td>
                               <div class="btn-group">
@@ -259,7 +266,7 @@ function convertToWebPath($filesystemPath)
             <tr>
                         <th>Id</th>
                         <th>Order ID</th>
-                        <th>Address</th>
+
                         <th>Transcationid</th>
                         <th>payment_mode</th>
 

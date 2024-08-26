@@ -14,7 +14,7 @@ include "checkowner.php";
 
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../../css/fontawesome.css">

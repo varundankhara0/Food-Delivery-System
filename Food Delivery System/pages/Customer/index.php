@@ -16,8 +16,8 @@ include "CheckRole.php";
     <script src="../../js/disable.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+      
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../../css/fontawesome.css">
     <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">

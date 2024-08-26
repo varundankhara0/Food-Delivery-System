@@ -246,9 +246,18 @@ JOIN
                           <td><?php echo $row["id"]; ?></td>
                                                         <td><?php echo $row["doorno"]; ?></td>
                                                         <td><?php echo $row["address"]; ?></td>
-                                                        <td><?php echo $row["area_name"]; ?></td>
-                                                        <td><?php echo $row["type"]; ?></td>
-                                                        <td><?php echo $row["status"]; ?></td>
+                                                        <td><?php echo $row["name"]; ?></td>
+                                                        <td><?php if( $row["type"] =="h")
+                                                        {
+                                                          echo "home";
+                                                        }else{
+                                                          echo'work';
+                                                        } ?></td>
+                                                        <td><?php    if($row["status"]==1){
+                             echo 'Action';}
+                             else{
+                              echo 'daction';
+                             }  ?></td>
                                                         <td><?php echo $row["fullname"]; ?></td>
 
 

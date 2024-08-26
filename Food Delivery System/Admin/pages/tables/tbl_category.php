@@ -230,7 +230,11 @@
                                                         <tr>
                                                             <td><?php echo $row["id"]; ?></td>
                                                             <td><?php echo $row["CategoryName"]; ?></td>
-                                                            <td><?php echo $row["status"]; ?></td>
+                                                            <td><?php    if($row["status"]==1){
+                             echo 'Action';}
+                             else{
+                              echo 'daction';
+                             } ?></td>
 
                                                             <td>
                                                                 <div class="btn-group">

@@ -270,7 +270,12 @@ function convertToWebPath($filesystemPath)
                             <td><?php echo $row["restaurant"]; ?></td>
                             <td><?php echo $row["rating"]; ?></td>
                             <td><?php echo $row["totalratingdone"]; ?></td>
-                            <td><?php echo $row["status"]; ?></td>
+                            <td><?php
+                            if($row["status"]==1){
+                             echo 'Action';}
+                             else{
+                              echo 'daction';
+                             } ?></td>
                             <td><?php echo $row["dateadded"]; ?></td>
 
                             <td>

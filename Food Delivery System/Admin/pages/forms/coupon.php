@@ -874,7 +874,7 @@
               <div class="form-group">
                 <label for="categoryid">Category ID</label>
                 <select name="categoryid" class="form-control" id="categoryid" required>
-                  <option value="" disabled selected>Select Restaurant</option>
+                  <option selected>Select Restaurant</option>
                   <option value="1">Restaurant A</option>
                   <option value="2">Restaurant B</option>
                   <option value="3">Restaurant C</option>
