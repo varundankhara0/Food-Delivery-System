@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 02:51 PM
+-- Generation Time: Aug 28, 2024 at 08:53 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,9 +78,9 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`id`, `userid`, `status`) VALUES
-(1, 1, 0),
-(3, 2, 1),
-(4, 1, 0);
+(1, 2, 0),
+(2, 1, 0),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,8 @@ CREATE TABLE `tbl_customer_address` (
 --
 
 INSERT INTO `tbl_customer_address` (`id`, `userid`, `doorno`, `address`, `areaid`, `type`, `status`) VALUES
-(1, 1, 'B2/701', 'Pratistha Apartments, Pragati Nagar, Piplod Jakatnaka, Pratistha Apartments, Piplod Main Road, Maheshwari Society, Krishnadham Society, Piplod, Surat, Gujarat, 395007, India ', 14, 'h', 1);
+(1, 1, 'B2/701', 'Pratistha Apartments, Pragati Nagar, Piplod Jakatnaka, Pratistha Apartments, Piplod Main Road, Maheshwari Society, Krishnadham Society, Piplod, Surat, Gujarat, 395007, India ', 14, 'h', 1),
+(2, 2, '4', 'avasdfghjklkjhgfd sddsds', 17, 'w', 1);
 
 -- --------------------------------------------------------
 
@@ -203,8 +204,16 @@ CREATE TABLE `tbl_delivery_man` (
   `adharcardno` varchar(15) NOT NULL,
   `addharcardimage` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `userid` int(11) NOT NULL
+  `userid` int(11) NOT NULL,
+  `currentareaid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_delivery_man`
+--
+
+INSERT INTO `tbl_delivery_man` (`id`, `onlinestatus`, `Licenseno`, `Licenseimage`, `adharcardno`, `addharcardimage`, `status`, `userid`, `currentareaid`) VALUES
+(1, 1, 'DL-142011001234', 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/Licenseimage1.jpg', '265385644663', 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/ChickenBriyani.jpg', 1, 3, 14);
 
 -- --------------------------------------------------------
 
@@ -267,8 +276,8 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`id`, `cartid`, `amount`, `couponid`, `addressid`, `status`, `date`) VALUES
-(1, 1, 1240.00, NULL, 1, 'o', '2024-08-20 22:42:44'),
-(2, 4, 185500.00, NULL, 1, 'o', '2024-08-20 23:23:27');
+(1, 1, 58000.00, NULL, 1, 'o', '2024-08-23 20:28:55'),
+(2, 2, 450.00, NULL, 1, 'o', '2024-08-24 23:02:32');
 
 -- --------------------------------------------------------
 
@@ -288,18 +297,11 @@ CREATE TABLE `tbl_order_cart` (
 --
 
 INSERT INTO `tbl_order_cart` (`id`, `fooditemid`, `cartid`, `quantity`) VALUES
-(16, 10, 3, 1),
-(17, 13, 3, 1),
-(27, 1, 3, 1),
-(28, 11, 3, 1),
-(29, 12, 3, 1),
-(31, 1, 1, 1),
-(32, 12, 1, 1),
-(33, 13, 1, 1),
-(34, 9, 4, 1),
-(35, 6, 4, 1),
-(36, 8, 4, 2),
-(37, 10, 4, 1);
+(1, 11, 1, 1),
+(2, 10, 2, 1),
+(3, 8, 1, 1),
+(4, 11, 3, 1),
+(6, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -319,8 +321,8 @@ CREATE TABLE `tbl_payment` (
 --
 
 INSERT INTO `tbl_payment` (`id`, `orderid`, `Transcationid`, `payment_mode`) VALUES
-(1, 1, NULL, 'c'),
-(2, 2, 'pay_OnF5wGe6Qaczcm', 'o');
+(1, 1, 'pay_OoNjyU8sMQDNEx', 'o'),
+(2, 2, NULL, 'c');
 
 -- --------------------------------------------------------
 
@@ -377,8 +379,10 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `fullname`, `Email`, `password`, `Gender`, `PhoneNo`, `status`, `image`, `dob`, `accounthash`, `reset_token`, `reset_token_expires_at`) VALUES
-(1, 'Naishal Doshi', 'naishal036@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', 0, '9326163059', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/top-game-05.jpg', '2003-06-13', NULL, NULL, NULL),
-(2, 'varun dankhara', '22bmiit031@gmail.com', 'e528309e71b2b9a37e0b0db538137abf', 0, '9773472368', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/th.jpg', '2004-08-09', NULL, NULL, NULL);
+(1, 'Naisal Doshi', 'naishal036@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', 0, '9326163059', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/top-game-05.jpg', '2003-06-13', NULL, NULL, NULL),
+(2, 'varun dankhara', '22bmiit031@gmail.com', 'e528309e71b2b9a37e0b0db538137abf', 0, '9773472368', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/th.jpg', '2004-08-09', 'c33b2fb143af1d230279466dd8067cfd4e73278f90bb7a27c8d04732fdbb0cd9', NULL, NULL),
+(3, 'Ahaan Khan', 'cjesus69133@gmail.com', 'ef2bc263dfe4143ca13bee83cddbad25', 0, '9326163059', 1, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/trending-03.jpg', '2003-07-16', NULL, NULL, NULL),
+(4, 'Harsh Gandhi', '22bmiit016@gmail.com', 'd2f2819d736e2bf54108c43d9a231bb0', 0, '9099441752', 0, 'C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/uminor.jpg', '2004-02-05', 'd57b21e16ffdef3655add0ad68a317019ee0c30f9ea0bcbb89aa893f557a3c21', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -438,7 +442,8 @@ ALTER TABLE `tbl_delivery`
 --
 ALTER TABLE `tbl_delivery_man`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `delivery-man__user` (`userid`);
+  ADD KEY `delivery-man__user` (`userid`),
+  ADD KEY `currentareaid` (`currentareaid`);
 
 --
 -- Indexes for table `tbl_fooditem`
@@ -501,7 +506,7 @@ ALTER TABLE `tbl_area`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
@@ -525,7 +530,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT for table `tbl_customer_address`
 --
 ALTER TABLE `tbl_customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_delivery`
@@ -537,7 +542,7 @@ ALTER TABLE `tbl_delivery`
 -- AUTO_INCREMENT for table `tbl_delivery_man`
 --
 ALTER TABLE `tbl_delivery_man`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_fooditem`
@@ -555,7 +560,7 @@ ALTER TABLE `tbl_order`
 -- AUTO_INCREMENT for table `tbl_order_cart`
 --
 ALTER TABLE `tbl_order_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment`
@@ -573,7 +578,7 @@ ALTER TABLE `tbl_restaurant`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -610,7 +615,8 @@ ALTER TABLE `tbl_delivery`
 -- Constraints for table `tbl_delivery_man`
 --
 ALTER TABLE `tbl_delivery_man`
-  ADD CONSTRAINT `delivery-man__user` FOREIGN KEY (`userid`) REFERENCES `tbl_user` (`id`);
+  ADD CONSTRAINT `delivery-man__user` FOREIGN KEY (`userid`) REFERENCES `tbl_user` (`id`),
+  ADD CONSTRAINT `tbl_delivery_man_ibfk_1` FOREIGN KEY (`currentareaid`) REFERENCES `tbl_area` (`id`);
 
 --
 -- Constraints for table `tbl_fooditem`

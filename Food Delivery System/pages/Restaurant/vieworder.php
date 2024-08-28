@@ -60,21 +60,25 @@ $result = mysqli_query($conn, $query);
     <script src="../../js/disable.js"></script>
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/fontawesome.css">
-    <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
+    
     <link rel="stylesheet" href="../../css/owl.css">
     <link rel="stylesheet" href="../../css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/rd_index.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        h3{
+            color: white;
+        }
 
         footer {
             max-height: 30%;
 
-            background-color: #d30d0d;
+            background-color: #a120a1;
             padding: 50px 20px;
             text-align: center;
             /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
@@ -142,6 +146,7 @@ $result = mysqli_query($conn, $query);
             display: block;
             margin-bottom: 5px;
         }
+       
     </style>
 </head>
 
@@ -274,7 +279,7 @@ $result = mysqli_query($conn, $query);
 
         <div class="footer-content">
             <div class="footer-left">
-                <h3>Luminor's delivery</h3>
+                <h3 >Luminor's delivery</h3>
                 <div class="social-icons">
                     <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
                     <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>

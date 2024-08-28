@@ -858,66 +858,92 @@
                 <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
               </div>
               <!-- /.card-header -->
+               <?php
+                 include "../../checkadmin.php" ;
+                 $conn = new mysqli($servername, $username, $password, $dbname);
+
+                 // Check connection
+                 if ($conn->connect_error) {
+                     die("Connection failed: " . $conn->connect_error);
+                 }
+                 
+               
+                 $sql = "SELECT * FROM tbl_user WHERE id = $id";
+                 $result = $conn->query($sql);
+                 
+                 if ($result->num_rows > 0) {
+                     $row = $result->fetch_assoc();
+                 }
+               ?>
               <!-- form start -->
-              <form id="quickForm">
-                <div class="card-body">
-                <div class="form-group">
-                    <label for="Inputfullname">Full Name</label>
-                    <input type="text" name="fullname" class="form-control" id="Inputfullname" placeholder="Enter Full Name">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="gender">Gender</label><br>
-                    <input type="radio" id="male" name="gender" value="male" class="form-control" required>
-                    <label for="male">Male</label><br>
-                    <input type="radio" id="female" name="gender" value="female" class="form-control">
-                    <label for="female">Female</label><br>
-                    <input type="radio" id="other" name="gender" value="other" class="form-control">
-                    <label for="other">Other</label>
-                  </div>
-                  <div class="form-group">
-                    <label for="Phoneno">Phone No</label>
-                    <input type="tel" name="Phoneno" class="form-control" id="Phoneno" placeholder="Enter PhoneNo">
-                  </div>
-                  <div class="form-group">
-                    <label for="status">Status</label>
-                    <input type="text" name="status" class="form-control" id="status" placeholder="Enter Status">
-                  </div>
-                  <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" required>
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
-                                </div>
-                            </div>
+              <form id="quickForm" method="POST" action="your_update_script.php">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="Inputfullname">Full Name</label>
+            <input type="text" name="fullname" class="form-control" id="Inputfullname" 
+                   placeholder="Enter Full Name" value="<?php echo $row['fullname']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" 
+                   placeholder="Enter email" value="<?php echo $row['Email']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" 
+                   placeholder="Password" value="<?php echo $row['password']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label><br>
+            <input type="radio" id="male" name="gender" value="male" class="form-control" 
+                   <?php echo ($row['Gender'] == 'm') ? 'checked' : ''; ?>> 
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female" class="form-control" 
+                   <?php echo ($row['Gender'] == 'f') ? 'checked' : ''; ?>>
+            <label for="female">Female</label><br>
+        </div>
+        <div class="form-group">
+            <label for="Phoneno">Phone No</label>
+            <input type="tel" name="Phoneno" class="form-control" id="Phoneno" 
+                   placeholder="Enter PhoneNo" value="<?php echo $row['PhoneNo']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" name="status" class="form-control" id="status" 
+                   placeholder="Enter Status" value="<?php echo $row['status']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
-                <div class="form-group">
-                    <label for="Inputdob">Date of Birth</label>
-                    <input type="text" name="dob" class="form-control" id="Inputdob" placeholder="Enter Date of Birth" autocomplete="off">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="">Upload</span>
                 </div>
-                  <div class="form-group mb-0">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                      <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
+            </div>
+            <img src="uploads/<?php echo $row['image']; ?>" alt="User Image" width="100">
+        </div>
+        <div class="form-group">
+            <label for="Inputdob">Date of Birth</label>
+            <input type="text" name="dob" class="form-control" id="Inputdob" 
+                   placeholder="Enter Date of Birth" autocomplete="off" value="<?php echo $row['dob']; ?>">
+        </div>
+        <div class="form-group mb-0">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                <label class="custom-control-label" for="exampleCheck1">I agree to the 
+                    <a href="#">terms of service</a>.
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
             </div>
             <!-- /.card -->
             </div>
