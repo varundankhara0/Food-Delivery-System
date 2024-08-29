@@ -136,6 +136,7 @@ footer hr {
                       <li><a href="shop.php">View Food</a></li>
                       <li><a href="cart.php">View Cart</a></li>
                       <li><a href="contact.php">Contact Us</a></li>
+                      <li><a href="complaint.php">Complaint</a></li>
                       <?php
                     if(isset($_SESSION["user"]))
                     {

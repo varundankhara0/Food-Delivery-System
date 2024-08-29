@@ -103,7 +103,10 @@
 
             <div class="form-section">
                 <label for="order-id">Order ID:</label>
-                <input type="number" id="order-id" name="order-id" placeholder="Your order ID" required>
+                <select name="orderid" id="" placeholder="Order ID" >
+                    <option value="">aa</option>
+                    <option value="">bb</option>
+                </select>
                 <div id="order-error" class="error">Invalid order ID.</div>
             </div>
             

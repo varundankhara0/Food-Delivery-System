@@ -1,3 +1,16 @@
+<?php 
+
+function convertToWebPath($filesystemPath)
+{
+  // Replace backslashes with forward slashes
+  $webPath = str_replace('\\', '/', $filesystemPath);
+
+  // Remove the document root part of the path
+  $webPath = str_replace('C:/xampp/htdocs/', '/', $webPath);
+
+  return $webPath;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -859,14 +872,10 @@
               </div>
               <!-- /.card-header -->
                <?php
-                 include "../../checkadmin.php" ;
-                 $conn = new mysqli($servername, $username, $password, $dbname);
-
-                 // Check connection
-                 if ($conn->connect_error) {
-                     die("Connection failed: " . $conn->connect_error);
-                 }
-                 
+            
+                include "../../../connection.php";
+          
+                $id = intval($_GET['id']);
                
                  $sql = "SELECT * FROM tbl_user WHERE id = $id";
                  $result = $conn->query($sql);
@@ -888,20 +897,22 @@
             <input type="email" name="email" class="form-control" id="exampleInputEmail1" 
                    placeholder="Enter email" value="<?php echo $row['Email']; ?>">
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" 
-                   placeholder="Password" value="<?php echo $row['password']; ?>">
-        </div>
-        <div class="form-group">
+   
+                 <label for="gender">Gender:</label>
+<select name="gender" placeholder="Select Gender"  class="form-control">
+    <option value="Male" <?php echo ($row['Gender'] == '0') ? 'selected' : ''; ?>>Male</option>
+    <option value="Female" <?php echo ($row['Gender'] == '1') ? 'selected' : ''; ?>>Female</option>
+</select>
+        <!-- <div class="form-group">
             <label for="gender">Gender</label><br>
-            <input type="radio" id="male" name="gender" value="male" class="form-control" 
-                   <?php echo ($row['Gender'] == 'm') ? 'checked' : ''; ?>> 
+            <input type="radio" id="male" name="exampleInputRadio" value="male" class="form-control">
+                  
             <label for="male">Male</label><br>
             <input type="radio" id="female" name="gender" value="female" class="form-control" 
                    <?php echo ($row['Gender'] == 'f') ? 'checked' : ''; ?>>
             <label for="female">Female</label><br>
-        </div>
+        </div> -->
+      
         <div class="form-group">
             <label for="Phoneno">Phone No</label>
             <input type="tel" name="Phoneno" class="form-control" id="Phoneno" 
@@ -909,35 +920,40 @@
         </div>
         <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" name="status" class="form-control" id="status" 
-                   placeholder="Enter Status" value="<?php echo $row['status']; ?>">
+            <select name="status"  class="form-control">
+    <option value="Male" <?php echo ($row['status'] == '1') ? 'selected' : ''; ?>>active</option>
+    <option value="Female" <?php echo ($row['status'] == '0') ? 'selected' : ''; ?>>Deactive</option>
+</select>
+            <!-- <input type="text" name="status" class="form-control" id="status" 
+                   placeholder="Enter Status" value="<?php  $row['status']; ?>"> -->
+                   
         </div>
         <div class="form-group">
             <label for="exampleInputFile">File input</label>
             <div class="input-group">
                 <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
+                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile" value="<?php echo $row["image"];?>">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
                 <div class="input-group-append">
                     <span class="input-group-text" id="">Upload</span>
                 </div>
             </div>
-            <img src="uploads/<?php echo $row['image']; ?>" alt="User Image" width="100">
+            <!-- <img src="<?php convertToWebPath($row["image"]) ?>" alt="User Image" width="100"> -->
         </div>
         <div class="form-group">
             <label for="Inputdob">Date of Birth</label>
             <input type="text" name="dob" class="form-control" id="Inputdob" 
                    placeholder="Enter Date of Birth" autocomplete="off" value="<?php echo $row['dob']; ?>">
         </div>
-        <div class="form-group mb-0">
+        <!-- <div class="form-group mb-0">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
                 <label class="custom-control-label" for="exampleCheck1">I agree to the 
                     <a href="#">terms of service</a>.
                 </label>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- /.card-body -->
     <div class="card-footer">

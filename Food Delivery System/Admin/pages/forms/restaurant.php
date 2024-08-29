@@ -858,40 +858,56 @@
                 <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
               </div>
               <!-- /.card-header -->
+              <?php
+            
+                include "../../../connection.php";
+      
+                $id = intval($_GET['id']);
+           
+                $sql = "SELECT * FROM tbl_user WHERE id = $id";
+                $result = $conn->query($sql);
+             
+                if ($result->num_rows > 0) {
+                   $row = $result->fetch_assoc();
+                }
+              ?>
               <!-- form start -->
               <form id="quickForm">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="Inputfullname">Name</label>
-                    <input type="text" name="name" class="form-control" id="Inputname" placeholder="Enter Name" required>
+                    <input type="text" name="name" class="form-control" id="Inputname" value="<?php echo $row['fullname']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="status">Status</label>
-                    <input type="text" name="status" class="form-control" id="status" placeholder="Enter Status">
+                    <select name="status"  class="form-control">
+                      <option value="status" <?php echo ($row['status'] == '1') ? 'selected' : ''; ?>>active</option>
+                      <option value="status" <?php echo ($row['status'] == '0') ? 'selected' : ''; ?>>Deactive</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label for="address">Address</label>
-                    <textarea name="address" class="form-control" id="address" placeholder="Enter Address" rows="3"></textarea>
-                  </div>
+                    <textarea name="Address" class="form-control" id="address"  rows="3" value="<?php echo $row['Address']; ?>"></textarea>
+                  </div> 
                   <div class="form-group">
                     <label for="contact">Contact Number</label>
-                    <input type="tel" name="contact" class="form-control" id="contact" placeholder="Enter Contact Number" pattern="[0-9]{10}">
+                    <input type="tel" name="contact" class="form-control" id="contact" placeholder="Enter Contact Number" pattern="[0-9]{10}" value="<?php echo $row['contact']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="gstno">GST Number</label>
-                    <input type="text" name="gstno" class="form-control" id="gstno" placeholder="Enter GST Number">
+                    <input type="text" name="gstno" class="form-control" id="gstno" placeholder="Enter GST Number" value="<?php echo $row['gstno']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="licenceno">License Number</label>
-                    <input type="text" name="licenceno" class="form-control" id="licenceno" placeholder="Enter License Number">
+                    <input type="text" name="licenceno" class="form-control" id="licenceno" placeholder="Enter License Number" value="<?php echo $row['licenceno']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="openingtime">Opening Time</label>
-                    <input type="time" name="openingtime" class="form-control" id="openingtime">
+                    <input type="time" name="openingtime" class="form-control" id="openingtime" value="<?php echo $row['openingtime']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="closingtime">Closing Time</label>
-                    <input type="time" name="closingtime" class="form-control" id="closingtime">
+                    <input type="time" name="closingtime" class="form-control" id="closingtime" value="<?php echo $row['closingtime']; ?>">
                   </div>
                 </div>
                 <div class="card-footer">

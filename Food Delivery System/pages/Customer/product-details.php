@@ -166,6 +166,7 @@ https://templatemo.com/tm-589-lugx-gaming
               <?php
               }
               ?>
+              <li><a href="complaint.php">Complaint</a></li>
             </ul>
             <!-- <a class='menu-trigger'>
                         <span>Menu</span>

@@ -876,9 +876,33 @@
 
                   <div class="card card-light card-outline">
                     <div class="card-header">
-                      <h5 class="card-title">Update Readme</h5>
+
+                      <?php 
+                      $role="";
+                      if($row["role"]=="c")
+                      {
+                        $role="customer";
+                      }
+                      else if(($row["role"]=="d"))
+                      {
+                        $role="delivery man";
+                      }
+                      else if(($row["role"]=="r"))
+                      {
+                        $role="restaurant";
+                      }
+                      else if(($row["role"]=="R"))
+                      {
+                        $role="restaurant";
+                      }
+                      else
+                      {
+                        $role="unknown";
+                      }
+                      ?>
+                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
                       <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-link">#2</a>
+                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
                         <a href="#" class="btn btn-tool">
                           <i class="fas fa-pen"></i>
                         </a>
@@ -886,15 +910,15 @@
                     </div>
                     <div class="card-body">
                       <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                        Aenean commodo ligula eget dolor. Aenean massa.
-                        Cum sociis natoque penatibus et magnis dis parturient montes,
-                        nascetur ridiculus mus.
-                      </p>
-                      <button type="button" class="btn btn-success swalDefaultAccept">
+                        Orderid:<?php echo $row["orderid"];?></p>
+                        <p>
+                          <?php echo $row["description"];?>
+                        </p>
+                      
+                      <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,2)" type="button" class="btn btn-success swalDefaultAccept">
                         Accept complain
                       </button>
-                      <button type="button" class="btn btn-danger swalDefaultReject">
+                      <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,4)" type="button" class="btn btn-danger swalDefaultReject">
                         Reject complain
                       </button>
                     </div>
@@ -951,22 +975,45 @@
             ?>
                 <div class="card card-light card-outline">
                   <div class="card-header">
-                    <h5 class="card-title">Update Readme</h5>
-                    <div class="card-tools">
-                      <a href="#" class="btn btn-tool btn-link">#2</a>
-                      <a href="#" class="btn btn-tool">
-                        <i class="fas fa-pen"></i>
-                      </a>
+                  <?php 
+                      $role="";
+                      if($row["role"]=="c")
+                      {
+                        $role="customer";
+                      }
+                      else if(($row["role"]=="d"))
+                      {
+                        $role="delivery man";
+                      }
+                      else if(($row["role"]=="r"))
+                      {
+                        $role="restaurant";
+                      }
+                      else if(($row["role"]=="R"))
+                      {
+                        $role="restaurant";
+                      }
+                      else
+                      {
+                        $role="unknown";
+                      }
+                      ?>
+                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
+                      <div class="card-tools">
+                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
+                        <a href="#" class="btn btn-tool">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card-body">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                      Aenean commodo ligula eget dolor. Aenean massa.
-                      Cum sociis natoque penatibus et magnis dis parturient montes,
-                      nascetur ridiculus mus.
-                    </p>
-                    <button type="button" class="btn btn-success swalDefaultComplete">
+                    <div class="card-body">
+                      <p>
+                        Orderid:<?php echo $row["orderid"];?></p>
+                        <p>
+                          <?php echo $row["description"];?>
+                        </p>
+                      
+                    <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,3)" type="button" class="btn btn-success swalDefaultComplete">
                       Complete this complain
                     </button>
                   </div>
@@ -1014,7 +1061,7 @@
       </div>
       <div class="card-body">
         <?php
-            $query = "select * from tbl_complaint where completionstatus=2";
+            $query = "select * from tbl_complaint where completionstatus=4";
             // include "../../connection.php";
             $result = mysqli_query($conn, $query);
             if ($result->num_rows > 0) {
@@ -1023,22 +1070,44 @@
         <div class="card card-light card-outline">
 
           <div class="card-header">
-            <h5 class="card-title">Update Readme</h5>
-            <div class="card-tools">
-              <a href="#" class="btn btn-tool btn-link">#2</a>
-              <a href="#" class="btn btn-tool">
-                <i class="fas fa-pen"></i>
-              </a>
-            </div>
-          </div>
-          <div class="card-body">
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-              Aenean commodo ligula eget dolor. Aenean massa.
-              Cum sociis natoque penatibus et magnis dis parturient montes,
-              nascetur ridiculus mus.
-            </p>
-
+          <?php 
+                      $role="";
+                      if($row["role"]=="c")
+                      {
+                        $role="customer";
+                      }
+                      else if(($row["role"]=="d"))
+                      {
+                        $role="delivery man";
+                      }
+                      else if(($row["role"]=="r"))
+                      {
+                        $role="restaurant";
+                      }
+                      else if(($row["role"]=="R"))
+                      {
+                        $role="restaurant";
+                      }
+                      else
+                      {
+                        $role="unknown";
+                      }
+                      ?>
+                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
+                      <div class="card-tools">
+                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
+                        <a href="#" class="btn btn-tool">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <p>
+                        Orderid:<?php echo $row["orderid"];?></p>
+                        <p>
+                          <?php echo $row["description"];?>
+                        </p>
+                     
           </div>
         </div>
         <?php
@@ -1048,7 +1117,7 @@
 
               <div class="card card-light card-outline">
                 <div class="card-header">
-                  <h5 class="card-title">No Complaints are in progress</h5>
+                  <h5 class="card-title">No Complaints are rejected</h5>
                   <div class="card-tools">
                     <a href="#" class="btn btn-tool btn-link"></a>
                     <a href="#" class="btn btn-tool">
@@ -1082,26 +1151,87 @@
         </h3>
       </div>
       <div class="card-body">
+      <?php
+            $query = "select * from tbl_complaint where completionstatus=3";
+            // include "../../connection.php";
+            $result = mysqli_query($conn, $query);
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+            ?>
         <div class="card card-light card-outline">
           <div class="card-header">
-            <h5 class="card-title">Update Readme</h5>
-            <div class="card-tools">
-              <a href="#" class="btn btn-tool btn-link">#2</a>
-              <a href="#" class="btn btn-tool">
-                <i class="fas fa-pen"></i>
-              </a>
-            </div>
-          </div>
-          <div class="card-body">
-            <p>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-              Aenean commodo ligula eget dolor. Aenean massa.
-              Cum sociis natoque penatibus et magnis dis parturient montes,
-              nascetur ridiculus mus.
-            </p>
-
+          <?php 
+                      $role="";
+                      if($row["role"]=="c")
+                      {
+                        $role="customer";
+                      }
+                      else if(($row["role"]=="d"))
+                      {
+                        $role="delivery man";
+                      }
+                      else if(($row["role"]=="r"))
+                      {
+                        $role="restaurant";
+                      }
+                      else if(($row["role"]=="R"))
+                      {
+                        $role="restaurant";
+                      }
+                      else
+                      {
+                        $role="unknown";
+                      }
+                      ?>
+                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
+                      <div class="card-tools">
+                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
+                        <a href="#" class="btn btn-tool">
+                          <i class="fas fa-pen"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <p>
+                        Orderid:<?php echo $row["orderid"];?></p>
+                        <p>
+                          <?php echo $row["description"];?>
+                        </p>
+                     
           </div>
         </div>
+        <?php
+              }
+            } else {
+              ?>
+
+              <div class="card card-light card-outline">
+                <div class="card-header">
+                  <h5 class="card-title">No Complaints are completed</h5>
+                  <div class="card-tools">
+                    <a href="#" class="btn btn-tool btn-link"></a>
+                    <a href="#" class="btn btn-tool">
+                      <i class="fas fa-pen"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <p>
+
+                  </p>
+                  <!-- <button type="button" class="btn btn-success swalDefaultAccept">
+                    Accept complain
+                  </button>
+                  <button type="button" class="btn btn-danger swalDefaultReject">
+                    Reject complain
+                  </button> -->
+                </div>
+              </div>
+          
+        <?php
+            }
+          
+        ?>
       </div>
     </div>
   </div>
@@ -1135,6 +1265,29 @@
   <!-- overlayScrollbars -->
   <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
+   <script>
+    function changecomplaintstatus(id,status)
+    {
+        $.ajax({
+          url:'../../pages/Ajax_files/changecomplaintstatus.php',
+          method:'POST',
+          data:{
+            id:id,
+            status:status
+          },
+          success:function(response)
+          {
+            if(response==true)
+          {
+            setInterval(function()
+          {
+            window.location="kanban.php";
+          },2000);
+          }
+          }
+        })
+    }
+   </script>
   <script src="../dist/js/adminlte.min.js"></script>
   <!-- Filterizr-->
   <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>

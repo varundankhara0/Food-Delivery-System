@@ -231,8 +231,8 @@ function convertToWebPath($filesystemPath)
                     <tbody>
                       <?php include "../../../connection.php";
                       $query = "SELECT
-                                 i.id,
-                                 i.name ,
+                                  i.id,
+                                  i.name ,
                                   i.Description,
                                   i.price,
                                   i.image,
