@@ -865,7 +865,7 @@
       
                 $id = intval($_GET['id']);
            
-                $sql = "SELECT rt.id, rt.Name, rt.status, rt.address, rt.Contact, rt.gstno, rt.Licesnseno, rt.OpeningTime, rt.ClosingTime,area.name as areaname,area.id as areaid, rt.Licesnseimage, rt.userid FROM tbl_restaurant as rt Join tbl_area as area on area.id=rt.areaid WHERE rt.id=".$id;
+                $sql = "SELECT rt.id, rt.onlinestatus, rt.Licenseno, rt.Licenseimage, rt.adharcardno, rt.adharcardimage, rt.status, area.id as currentareaid, rt.userid FROM tbl_delivery_man as rt Join tbl_area as area on area.id=rt.currentareaid WHERE rt.id=".$id;
                 $result = $conn->query($sql);
              
                 if ($result->num_rows > 0) {
@@ -877,9 +877,31 @@
                 <div class="card-body">
                   <div class="form-group">
                     <input type="number" name="id" id="id" value=<?php echo $row["id"];?> hidden>
-                    <label for="Inputfullname">Name</label>
-                    <input type="text" name="Name" class="form-control" id="Inputname" value="<?php echo $row['Name']; ?>">
+
+                    <label for="onlinestatus">Online Status</label>
+                    <input type="text" name="onlinestatus" class="form-control" id="onlinestatus" value="<?php echo $row['onlinestatus']; ?>">
                   </div>
+
+                  <div class="form-group">
+                    <label for="Licenseno">License Number</label>
+                    <input type="text" name="Licenseno" class="form-control" id="Licenseno" value="<?php echo $row['Licenseno']; ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="Licenseimage">License Image</label>
+                    <input type="file" name="Licenseimage" class="form-control" id="Licenseimage" value="<?php echo $row['Licenseimage']; ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="adharcardno">Adharcard Number</label>
+                    <input type="text" name="adharcardno" class="form-control" id="adharcardno" value="<?php echo $row['adharcardno']; ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="adharcardimage">Adharcard Image</label>
+                    <input type="file" name="adharcardimage" class="form-control" id="adharcardimage" value="<?php echo $row['adharcardimage']; ?>">
+                  </div> 
+
                   <div class="form-group">
                     <label for="status">Status</label>
                     <select name="status"  class="form-control">
@@ -887,11 +909,7 @@
                       <option value="status" <?php echo ($row['status'] == '0') ? 'selected' : ''; ?>>Deactive</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label for="address">Address</label>
-                    
-                    <textarea name="address" class="form-control" id="address"  rows="3"><?php echo $row['address']; ?></textarea>
-                  </div> 
+              
                   <div class="form-group">
                     <label for="status">Status</label>
                     <select name="areaid"  class="form-control">
@@ -907,28 +925,16 @@
                       }
                       ?>
                     </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="contact">Contact Number</label>
-                    <input type="tel" name="Contact" class="form-control" id="contact" placeholder="Enter Contact Number" pattern="[0-9]{10}" value="<?php echo $row['Contact']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="gstno">GST Number</label>
-                    <input type="text" name="gstno" class="form-control" id="gstno" placeholder="Enter GST Number" value="<?php echo $row['gstno']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="licenceno">License Number</label>
-                    <input type="text" name="Licesnseno" class="form-control" id="licenceno" placeholder="Enter License Number" value="<?php echo $row['Licesnseno']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="openingtime">Opening Time</label>
-                    <input type="time" name="OpeningTime" class="form-control" id="openingtime" value="<?php echo $row['OpeningTime']; ?>">
-                  </div>
-                  <div class="form-group">
-                    <label for="closingtime">Closing Time</label>
-                    <input type="time" name="ClosingTime" class="form-control" id="closingtime" value="<?php echo $row['ClosingTime']; ?>">
-                  </div>
+                    <div class="form-group">
+                    <label for="userid">userid</label>
+                    <input type="text" name="userid" class="form-control" id="userid" value="<?php echo $row['userid']; ?>">
                 </div>
+
+                  <div class="form-group">
+                    <label for="currentareaid">currentareaid</label>
+                    <input type="text" name="currentareaid" class="form-control" id="currentareaid" value="<?php echo $row['currentareaid']; ?>">
+                  </div>
+   
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -1028,7 +1034,7 @@ $(document).ready(function(){
     event.preventDefault();
     const form=new FormData(this);
     $.ajax({
-    url:'../../../pages/Ajax_files/updaterestaurant.php',
+    url:'../../../pages/Ajax_files/dpupdate.php',
     method:"POST",
     data:form,
     processData:false,
@@ -1037,7 +1043,7 @@ $(document).ready(function(){
       if(response==true)
       {
           alert("update was successfull");
-          window.location='../tables/tbl_restaurant.php';
+          window.location='../tables/tbl_delivery_man.php';
       }
       else
       {

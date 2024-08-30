@@ -257,7 +257,7 @@ function convertToWebPath($filesystemPath)
                                   <a class="dropdown-item" href="#">Deactivated</a>
 
                                   <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href=".">Edit</a>
+                                  <a class="dropdown-item" href="../forms/restaurant.php?id=<?php echo $row["id"];?>">Edit</a>
                                 </div>
                               </div>
                 </td>
