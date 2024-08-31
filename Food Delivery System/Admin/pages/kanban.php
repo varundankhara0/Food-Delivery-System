@@ -856,402 +856,246 @@
       </section>
 
       <section class="content pb-3">
-        <div class="container-fluid h-100">
-
-          <div class="card card-row card-primary">
-            <div class="card-header">
-              <h3 class="card-title">
-                Complains to be handelled
-              </h3>
-            </div>
-            <div class="card-body">
-              <?php
-              $query = "select * from tbl_complaint where completionstatus=1";
-              include "../../connection.php";
-              $result = mysqli_query($conn, $query);
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-              ?>
-
-
-                  <div class="card card-light card-outline">
-                    <div class="card-header">
-
-                      <?php 
-                      $role="";
-                      if($row["role"]=="c")
-                      {
-                        $role="customer";
-                      }
-                      else if(($row["role"]=="d"))
-                      {
-                        $role="delivery man";
-                      }
-                      else if(($row["role"]=="r"))
-                      {
-                        $role="restaurant";
-                      }
-                      else if(($row["role"]=="R"))
-                      {
-                        $role="restaurant";
-                      }
-                      else
-                      {
-                        $role="unknown";
-                      }
-                      ?>
-                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
-                      <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
-                        <a href="#" class="btn btn-tool">
-                          <i class="fas fa-pen"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p>
-                        Orderid:<?php echo $row["orderid"];?></p>
-                        <p>
-                          <?php echo $row["description"];?>
-                        </p>
-                      
-                      <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,2)" type="button" class="btn btn-success swalDefaultAccept">
-                        Accept complain
-                      </button>
-                      <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,4)" type="button" class="btn btn-danger swalDefaultReject">
-                        Reject complain
-                      </button>
-                    </div>
-                  </div>
-            </div>
-
-          <?php
+  <div class="container-fluid h-100">
+    <div class="card card-row card-primary">
+      <div class="card-header">
+        <h3 class="card-title">
+          Complaints to be handled
+        </h3>
+      </div>
+      <div class="card-body">
+        <?php
+        $query = "select * from tbl_complaint where completionstatus=1";
+        include "../../connection.php";
+        $result = mysqli_query($conn, $query);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+        ?>
+            <div class="card card-light card-outline">
+              <div class="card-header">
+                <?php
+                $role = "";
+                if ($row["role"] == "c") {
+                  $role = "customer";
+                } else if ($row["role"] == "d") {
+                  $role = "delivery man";
+                } else if ($row["role"] == "r" || $row["role"] == "R") {
+                  $role = "restaurant";
+                } else {
+                  $role = "unknown";
                 }
-              } else {
-          ?>
-
+                ?>
+                <h5 class="card-title"><?php echo "Complaint by " . $role; ?></h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"]; ?></a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <p>Order ID: <?php echo $row["orderid"]; ?></p>
+                <p><?php echo $row["description"]; ?></p>
+                <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 2)" type="button" class="btn btn-success swalDefaultAccept">Accept complaint</button>
+                <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 4)" type="button" class="btn btn-danger swalDefaultReject">Reject complaint</button>
+              </div>
+            </div>
+        <?php
+          }
+        } else {
+        ?>
           <div class="card card-light card-outline">
             <div class="card-header">
-              <h5 class="card-title">No Complaint to be handled</h5>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool btn-link"></a>
-                <a href="#" class="btn btn-tool">
-                  <i class="fas fa-pen"></i>
-                </a>
-              </div>
-            </div>
-            <div class="card-body">
-              <p>
-
-              </p>
-              <!-- <button type="button" class="btn btn-success swalDefaultAccept">
-                    Accept complain
-                  </button>
-                  <button type="button" class="btn btn-danger swalDefaultReject">
-                    Reject complain
-                  </button> -->
+              <h5 class="card-title">No Complaints to be handled</h5>
             </div>
           </div>
-          </div>
         <?php
-              }
+        }
         ?>
-        </div>
+      </div>
+    </div>
 
-
-        <div class="card card-row card-default">
-          <div class="card-header bg-info">
-            <h3 class="card-title">
-              In-Progress
-            </h3>
-          </div>
-          <div class="card-body">
-            <?php
-            $query = "select * from tbl_complaint where completionstatus=2";
-            // include "../../connection.php";
-            $result = mysqli_query($conn, $query);
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-            ?>
-                <div class="card card-light card-outline">
-                  <div class="card-header">
-                  <?php 
-                      $role="";
-                      if($row["role"]=="c")
-                      {
-                        $role="customer";
-                      }
-                      else if(($row["role"]=="d"))
-                      {
-                        $role="delivery man";
-                      }
-                      else if(($row["role"]=="r"))
-                      {
-                        $role="restaurant";
-                      }
-                      else if(($row["role"]=="R"))
-                      {
-                        $role="restaurant";
-                      }
-                      else
-                      {
-                        $role="unknown";
-                      }
-                      ?>
-                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
-                      <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
-                        <a href="#" class="btn btn-tool">
-                          <i class="fas fa-pen"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p>
-                        Orderid:<?php echo $row["orderid"];?></p>
-                        <p>
-                          <?php echo $row["description"];?>
-                        </p>
-                      
-                    <button onclick="changecomplaintstatus(<?php echo $row['id'];?>,3)" type="button" class="btn btn-success swalDefaultComplete">
-                      Complete this complain
-                    </button>
-                  </div>
-                </div>
-              <?php
-              }
-            } else {
-              ?>
-
-              <div class="card card-light card-outline">
-                <div class="card-header">
-                  <h5 class="card-title">No Complaints are in progress</h5>
-                  <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link"></a>
-                    <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <p>
-
-                  </p>
-                  <!-- <button type="button" class="btn btn-success swalDefaultAccept">
-                    Accept complain
-                  </button>
-                  <button type="button" class="btn btn-danger swalDefaultReject">
-                    Reject complain
-                  </button> -->
+    <div class="card card-row card-default">
+      <div class="card-header bg-info">
+        <h3 class="card-title">
+          In-Progress
+        </h3>
+      </div>
+      <div class="card-body">
+        <?php
+        $query = "select * from tbl_complaint where completionstatus=2";
+        $result = mysqli_query($conn, $query);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+        ?>
+          <?php
+                $role = "";
+                if ($row["role"] == "c") {
+                  $role = "customer";
+                } else if ($row["role"] == "d") {
+                  $role = "delivery man";
+                } else if ($row["role"] == "r" || $row["role"] == "R") {
+                  $role = "restaurant";
+                } else {
+                  $role = "unknown";
+                }
+                ?>
+            <div class="card card-light card-outline">
+              <div class="card-header">
+                <h5 class="card-title"><?php echo "Complaint by " . $role; ?></h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"]; ?></a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
                 </div>
               </div>
-          
+              <div class="card-body">
+                <p>Order ID: <?php echo $row["orderid"]; ?></p>
+                <p><?php echo $row["description"]; ?></p>
+                <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 3)" type="button" class="btn btn-success swalDefaultComplete">Complete this complaint</button>
+              </div>
+            </div>
         <?php
-            }
-          
+          }
+        } else {
         ?>
-        </div>
+          <div class="card card-light card-outline">
+            <div class="card-header">
+              <h5 class="card-title">No Complaints are in progress</h5>
+            </div>
+          </div>
+        <?php
+        }
+        ?>
+      </div>
     </div>
 
     <div class="card card-row card-danger">
       <div class="card-header">
         <h3 class="card-title">
-          Rejected Complains
+          Rejected Complaints
         </h3>
       </div>
       <div class="card-body">
         <?php
-            $query = "select * from tbl_complaint where completionstatus=4";
-            // include "../../connection.php";
-            $result = mysqli_query($conn, $query);
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-            ?>
-        <div class="card card-light card-outline">
-
-          <div class="card-header">
-          <?php 
-                      $role="";
-                      if($row["role"]=="c")
-                      {
-                        $role="customer";
-                      }
-                      else if(($row["role"]=="d"))
-                      {
-                        $role="delivery man";
-                      }
-                      else if(($row["role"]=="r"))
-                      {
-                        $role="restaurant";
-                      }
-                      else if(($row["role"]=="R"))
-                      {
-                        $role="restaurant";
-                      }
-                      else
-                      {
-                        $role="unknown";
-                      }
-                      ?>
-                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
-                      <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
-                        <a href="#" class="btn btn-tool">
-                          <i class="fas fa-pen"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p>
-                        Orderid:<?php echo $row["orderid"];?></p>
-                        <p>
-                          <?php echo $row["description"];?>
-                        </p>
-                     
-          </div>
-        </div>
-        <?php
-              }
-            } else {
-              ?>
-
-              <div class="card card-light card-outline">
-                <div class="card-header">
-                  <h5 class="card-title">No Complaints are rejected</h5>
-                  <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link"></a>
-                    <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <p>
-
-                  </p>
-                  <!-- <button type="button" class="btn btn-success swalDefaultAccept">
-                    Accept complain
-                  </button>
-                  <button type="button" class="btn btn-danger swalDefaultReject">
-                    Reject complain
-                  </button> -->
+        $query = "select * from tbl_complaint where completionstatus=4";
+        $result = mysqli_query($conn, $query);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+        ?>
+          <?php
+                $role = "";
+                if ($row["role"] == "c") {
+                  $role = "customer";
+                } else if ($row["role"] == "d") {
+                  $role = "delivery man";
+                } else if ($row["role"] == "r" || $row["role"] == "R") {
+                  $role = "restaurant";
+                } else {
+                  $role = "unknown";
+                }
+                ?>
+            <div class="card card-light card-outline">
+              <div class="card-header">
+                <h5 class="card-title"><?php echo "Complaint by " . $role; ?></h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"]; ?></a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
                 </div>
               </div>
-          
+              <div class="card-body">
+                <p>Order ID: <?php echo $row["orderid"]; ?></p>
+                <p><?php echo $row["description"]; ?></p>
+              </div>
+            </div>
         <?php
-            }
-          
+          }
+        } else {
+        ?>
+          <div class="card card-light card-outline">
+            <div class="card-header">
+              <h5 class="card-title">No Complaints are rejected</h5>
+            </div>
+          </div>
+        <?php
+        }
         ?>
       </div>
     </div>
+
     <div class="card card-row card-success">
       <div class="card-header">
         <h3 class="card-title">
-          Completed Complains
+          Completed Complaints
         </h3>
       </div>
       <div class="card-body">
-      <?php
-            $query = "select * from tbl_complaint where completionstatus=3";
-            // include "../../connection.php";
-            $result = mysqli_query($conn, $query);
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-            ?>
-        <div class="card card-light card-outline">
-          <div class="card-header">
-          <?php 
-                      $role="";
-                      if($row["role"]=="c")
-                      {
-                        $role="customer";
-                      }
-                      else if(($row["role"]=="d"))
-                      {
-                        $role="delivery man";
-                      }
-                      else if(($row["role"]=="r"))
-                      {
-                        $role="restaurant";
-                      }
-                      else if(($row["role"]=="R"))
-                      {
-                        $role="restaurant";
-                      }
-                      else
-                      {
-                        $role="unknown";
-                      }
-                      ?>
-                      <h5 class="card-title"><?php echo "complaint by ".$role;?></h5>
-                      <div class="card-tools">
-                        <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"];?></a>
-                        <a href="#" class="btn btn-tool">
-                          <i class="fas fa-pen"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="card-body">
-                      <p>
-                        Orderid:<?php echo $row["orderid"];?></p>
-                        <p>
-                          <?php echo $row["description"];?>
-                        </p>
-                     
-          </div>
-        </div>
         <?php
-              }
-            } else {
-              ?>
-
-              <div class="card card-light card-outline">
-                <div class="card-header">
-                  <h5 class="card-title">No Complaints are completed</h5>
-                  <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-link"></a>
-                    <a href="#" class="btn btn-tool">
-                      <i class="fas fa-pen"></i>
-                    </a>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <p>
-
-                  </p>
-                  <!-- <button type="button" class="btn btn-success swalDefaultAccept">
-                    Accept complain
-                  </button>
-                  <button type="button" class="btn btn-danger swalDefaultReject">
-                    Reject complain
-                  </button> -->
+        $query = "select * from tbl_complaint where completionstatus=3";
+        $result = mysqli_query($conn, $query);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+        ?>
+          <?php
+                $role = "";
+                if ($row["role"] == "c") {
+                  $role = "customer";
+                } else if ($row["role"] == "d") {
+                  $role = "delivery man";
+                } else if ($row["role"] == "r" || $row["role"] == "R") {
+                  $role = "restaurant";
+                } else {
+                  $role = "unknown";
+                }
+                ?>
+            <div class="card card-light card-outline">
+              <div class="card-header">
+                <h5 class="card-title"><?php echo "Complaint by " . $role; ?></h5>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-link">#<?php echo $row["id"]; ?></a>
+                  <a href="#" class="btn btn-tool">
+                    <i class="fas fa-pen"></i>
+                  </a>
                 </div>
               </div>
-          
+              <div class="card-body">
+                <p>Order ID: <?php echo $row["orderid"]; ?></p>
+                <p><?php echo $row["description"]; ?></p>
+              </div>
+            </div>
         <?php
-            }
-          
+          }
+        } else {
+        ?>
+          <div class="card card-light card-outline">
+            <div class="card-header">
+              <h5 class="card-title">No Complaints are completed</h5>
+            </div>
+          </div>
+        <?php
+        }
         ?>
       </div>
     </div>
   </div>
-  </section>
-  </div>
+</section>
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+<footer class="main-footer">
+  <div class="float-right d-none d-sm-block">
+    <b>Version</b> 3.2.0
   </div>
-  <!-- ./wrapper -->
+  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+</footer>
+
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
 
   <!-- jQuery -->
@@ -1265,29 +1109,25 @@
   <!-- overlayScrollbars -->
   <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
-   <script>
-    function changecomplaintstatus(id,status)
-    {
-        $.ajax({
-          url:'../../pages/Ajax_files/changecomplaintstatus.php',
-          method:'POST',
-          data:{
-            id:id,
-            status:status
-          },
-          success:function(response)
-          {
-            if(response==true)
-          {
-            setInterval(function()
-          {
-            window.location="kanban.php";
-          },2000);
+  <script>
+    function changecomplaintstatus(id, status) {
+      $.ajax({
+        url: '../../pages/Ajax_files/changecomplaintstatus.php',
+        method: 'POST',
+        data: {
+          id: id,
+          status: status
+        },
+        success: function(response) {
+          if (response == true) {
+            setInterval(function() {
+              window.location = "kanban.php";
+            }, 2000);
           }
-          }
-        })
+        }
+      })
     }
-   </script>
+  </script>
   <script src="../dist/js/adminlte.min.js"></script>
   <!-- Filterizr-->
   <script src="../plugins/filterizr/jquery.filterizr.min.js"></script>

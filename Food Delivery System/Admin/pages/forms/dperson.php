@@ -865,7 +865,7 @@
       
                 $id = intval($_GET['id']);
            
-                $sql = "SELECT rt.id, rt.onlinestatus, rt.Licenseno, rt.Licenseimage, rt.adharcardno, rt.adharcardimage, rt.status, area.id as currentareaid, rt.userid FROM tbl_delivery_man as rt Join tbl_area as area on area.id=rt.currentareaid WHERE rt.id=".$id;
+                $sql = "SELECT rt.id, rt.onlinestatus, rt.Licenseno, rt.Licenseimage, rt.adharcardno, rt.addharcardimage, rt.status, area.id as currentareaid, rt.userid FROM tbl_delivery_man as rt Join tbl_area as area on area.id=rt.currentareaid WHERE rt.id=".$id;
                 $result = $conn->query($sql);
              
                 if ($result->num_rows > 0) {
@@ -898,8 +898,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="adharcardimage">Adharcard Image</label>
-                    <input type="file" name="adharcardimage" class="form-control" id="adharcardimage" value="<?php echo $row['adharcardimage']; ?>">
+                    <label for="addharcardimage">Adharcard Image</label>
+                    <input type="file" name="adhdarcardimage" class="form-control" id="addharcardimage" value="<?php echo $row['addharcardimage']; ?>">
                   </div> 
 
                   <div class="form-group">
@@ -911,29 +911,23 @@
                   </div>
               
                   <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="areaid"  class="form-control">
+                    <label for="status">Current working area </label>
+                    <select name="currentareaid"  class="form-control">
                       <?php 
                       $query1="select * from tbl_area";
                       $result1=mysqli_query($conn,$query1);
                       while($row1=$result1->fetch_assoc())
                       {
                         ?>
-                        <option value=<?php echo $row1["id"];?> <?php if($row1["id"]==$row["areaid"]){ echo "selected";}?>><?php echo $row1["name"]?></option>
+                        <option value=<?php echo $row1["id"];?> <?php if($row1["id"]==$row["currentareaid"]){ echo "selected";}?>><?php echo $row1["name"]?></option>
                         
                         <?php
                       }
                       ?>
                     </select>
-                    <div class="form-group">
-                    <label for="userid">userid</label>
-                    <input type="text" name="userid" class="form-control" id="userid" value="<?php echo $row['userid']; ?>">
-                </div>
+                   
 
-                  <div class="form-group">
-                    <label for="currentareaid">currentareaid</label>
-                    <input type="text" name="currentareaid" class="form-control" id="currentareaid" value="<?php echo $row['currentareaid']; ?>">
-                  </div>
+  
    
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>

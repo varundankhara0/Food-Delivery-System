@@ -230,7 +230,7 @@ function convertToWebPath($filesystemPath)
                     </thead>
                     <tbody>
                       <?php include "../../../connection.php";
-                      $query = "select rs.id,rs.name,rs.address,rs.contact,rs.gstno,rs.Licesnseno,rs.Licesnseimage,rs.OpeningTime,rs.ClosingTime,area.name as AreaName,user.fullname as OwnerName from tbl_restaurant as rs Join tbl_area as area on area.id=rs.areaid Join tbl_user as user on user.id=rs.userid";
+                      $query = "select rs.id,rs.name,rs.address,rs.contact,rs.gstno,rs.Licesnseno,rs.Licesnseimage,rs.OpeningTime,rs.ClosingTime,area.name as AreaName,user.fullname as OwnerName,rs.status from tbl_restaurant as rs Join tbl_area as area on area.id=rs.areaid Join tbl_user as user on user.id=rs.userid";
                       $result = mysqli_query($conn, $query);
                       if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -254,7 +254,21 @@ function convertToWebPath($filesystemPath)
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="#">Deactivated</a>
+                                  <?php 
+                                  if($row["status"]==0)
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,1)">Activate</a>
+                                    <?php
+                                  }
+                                  else
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,0)">Deactivate</a>
+                                    <?php
+                                  }
+                                  ?>
+                                  
 
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="../forms/restaurant.php?id=<?php echo $row["id"];?>">Edit</a>
@@ -336,6 +350,31 @@ function convertToWebPath($filesystemPath)
   <script src="../../dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
+  <script>
+    function changestatus(id,status)
+    {
+        $.ajax({
+          url:'../../../pages/Ajax_files/changerestaurantstatusadmin.php',
+          method:'POST',
+          data:{
+            id:id,
+            status:status
+          },
+          success:function(response){
+            if(response==true)
+          {
+            alert("change status successfully");
+            window.location='tbl_restaurant.php';
+          }
+          else
+          {
+            alert("problem occured");
+            alert(response);
+          }
+          }
+        })
+    }
+  </script>
   <!-- Page specific script -->
   <script>
     $(function() {

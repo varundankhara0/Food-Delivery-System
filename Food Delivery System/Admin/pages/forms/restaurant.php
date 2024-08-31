@@ -877,8 +877,8 @@
                 <div class="card-body">
                   <div class="form-group">
                     <input type="number" name="id" id="id" value=<?php echo $row["id"];?> hidden>
-                    <label for="Inputfullname">Name</label>
-                    <input type="text" name="Name" class="form-control" id="Inputname" value="<?php echo $row['Name']; ?>">
+                    <label for="Name">Name</label>
+                    <input type="text" name="Name" class="form-control" id="Name" value="<?php echo $row['Name']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="status">Status</label>
@@ -909,8 +909,8 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="contact">Contact Number</label>
-                    <input type="tel" name="Contact" class="form-control" id="contact" placeholder="Enter Contact Number" pattern="[0-9]{10}" value="<?php echo $row['Contact']; ?>">
+                    <label for="Contact">Contact Number</label>
+                    <input type="tel" name="Contact" class="form-control" id="Contact" placeholder="Enter Contact Number" pattern="[0-9]{10}" value="<?php echo $row['Contact']; ?>">
                   </div>
                   <div class="form-group">
                     <label for="gstno">GST Number</label>

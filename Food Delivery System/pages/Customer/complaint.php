@@ -1,3 +1,7 @@
+<?php 
+include "../../chcekcustomer.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,22 +107,35 @@
 
             <div class="form-section">
                 <label for="order-id">Order ID:</label>
-                <select name="orderid" id="" placeholder="Order ID" >
-                    <option value="">aa</option>
-                    <option value="">bb</option>
+                <select name="orderid" id="order-id" placeholder="Order ID" >
+                    <?php 
+                
+                    include "../../connection.php";
+                        $query="select orders.id as orderid from tbl_order as orders JOIN tbl_cart as cart on cart.id=orders.cartid JOIN tbl_user as user on user.id=cart.userid  where user.id=".$_SESSION["userid"];
+                        $result=mysqli_query($conn,$query);
+                        while($row=$result->fetch_assoc())
+                        {
+                            ?>
+                            
+                            <option value=<?php echo $row["orderid"];?>><?php echo $row["orderid"];?></option>
+                            <?php 
+                        }
+                    ?>
                 </select>
                 <div id="order-error" class="error">Invalid order ID.</div>
             </div>
-            
+           
             <div class="form-section">
                 <label for="complaint">Complaint:</label>
-                <input type="text" id="complaint" name="complaint" placeholder="Describe your complaint" required>
+                <input type="text" id="complaint" name="description" placeholder="Describe your complaint" required>
                 <div id="complaint-error" class="error">Invalid complaint.</div>
+                <input type="text" name="role" id="role" value="c" hidden>
             </div>
 
             <div class="form-section">
-                <label for="file-upload">Upload Image:</label>
-                <input type="file" id="file" name="file" required>
+                
+                <label for="file-upload">(Optional) Upload Image:</label>
+                <input type="file" id="file" name="file">
             </div>
 
             <div class="form-section">
@@ -163,8 +180,9 @@
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            if(response === true) {
+                            if(response == true) {
                                 alert("Complaint submitted successfully");
+                                window.location="index.php"
                             } else {
                                 alert("Submission failed: " + response);
                             }
