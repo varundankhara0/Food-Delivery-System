@@ -268,8 +268,8 @@ JOIN
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="#">Deactivated</a>
-
+                                <a class="dropdown-item" href="#">Deactivated</a>
+            
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">Edit</a>
                                 </div>

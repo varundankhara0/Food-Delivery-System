@@ -1,3 +1,20 @@
+<?php 
+ include "../checkadmin.php" ;
+ if ($admin !=true) {
+
+ echo "<script>console.log('GG');window.location='../../pages/Landing/login.php'</script>" ;
+ }
+ function convertToWebPath($filesystemPath)
+ {
+ // Replace backslashes with forward slashes
+ $webPath=str_replace('\\', '/' , $filesystemPath);
+
+ // Remove the document root part of the path
+ $webPath=str_replace('C:/xampp/htdocs/', '/' , $webPath);
+
+ return $webPath;
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -896,6 +913,15 @@
               <div class="card-body">
                 <p>Order ID: <?php echo $row["orderid"]; ?></p>
                 <p><?php echo $row["description"]; ?></p>
+                <?php if($row["image"]!=null)
+                {
+                  ?>
+                    <p><a target="_blank" href="<?php echo convertToWebPath($row["image"])?>">Click Now</a> </p>
+
+                  <?php
+                }
+                  ?>
+                 
                 <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 2)" type="button" class="btn btn-success swalDefaultAccept">Accept complaint</button>
                 <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 4)" type="button" class="btn btn-danger swalDefaultReject">Reject complaint</button>
               </div>
@@ -953,6 +979,15 @@
               <div class="card-body">
                 <p>Order ID: <?php echo $row["orderid"]; ?></p>
                 <p><?php echo $row["description"]; ?></p>
+                <?php if($row["image"]!=null)
+                {
+                  ?>
+                    <p><a target="_blank" href="<?php echo convertToWebPath($row["image"])?>">Click Now</a> </p>
+
+                  <?php
+                }
+                  ?>
+                 
                 <button onclick="changecomplaintstatus(<?php echo $row['id']; ?>, 3)" type="button" class="btn btn-success swalDefaultComplete">Complete this complaint</button>
               </div>
             </div>
@@ -1009,6 +1044,15 @@
               <div class="card-body">
                 <p>Order ID: <?php echo $row["orderid"]; ?></p>
                 <p><?php echo $row["description"]; ?></p>
+                <?php if($row["image"]!=null)
+                {
+                  ?>
+                    <p><a target="_blank" href="<?php echo convertToWebPath($row["image"])?>">Click Now</a> </p>
+
+                  <?php
+                }
+                  ?>
+                 
               </div>
             </div>
         <?php
@@ -1064,6 +1108,15 @@
               <div class="card-body">
                 <p>Order ID: <?php echo $row["orderid"]; ?></p>
                 <p><?php echo $row["description"]; ?></p>
+                <?php if($row["image"]!=null)
+                {
+                  ?>
+                    <p><a target="_blank" href="<?php echo convertToWebPath($row["image"])?>">Click Now</a> </p>
+
+                  <?php
+                }
+                  ?>
+                 
               </div>
             </div>
         <?php
@@ -1110,7 +1163,10 @@
   <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script>
-    function changecomplaintstatus(id, status) {
+    function changecomplaintstatus(id, status,username=null) {
+      
+      
+      
       $.ajax({
         url: '../../pages/Ajax_files/changecomplaintstatus.php',
         method: 'POST',

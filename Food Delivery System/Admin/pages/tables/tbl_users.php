@@ -253,8 +253,7 @@
                                                                         <span class="sr-only">Toggle Dropdown</span>
                                                                     </button>
                                                                     <div class="dropdown-menu" role="menu">
-                                                                        <a class="dropdown-item" href="#">Deactivated</a>
-
+                                                                        <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,0)">Deactivated</a>
                                                                         <div class="dropdown-divider"></div>
                                                                         <a class="dropdown-item" href="../forms/user.php?id=<?php echo $row["id"];?>">Edit</a>
 
@@ -333,6 +332,29 @@
         <!-- AdminLTE for demo purposes -->
         <script src="../../dist/js/demo.js"></script>
         <!-- Page specific script -->
+        <script>
+            function changestatus(id, status){
+                $.ajax({
+                        url: '../../../pages/Ajax_files/changeuserstatus.php',
+                        method: 'POST',
+                        data: {
+                            id: id,
+                            status: status,
+                        },
+                        success: function(response){
+                        if(response==true){
+                            alert("Status updated Successfully!");
+                            location.reload();
+                        }
+                        else{
+                            alert("Problem Occured!");
+                            alert(response);
+                        }
+                        }
+                    })
+                }
+        </script>
+
         <script>
             $(function() {
                 $("#example1").DataTable({

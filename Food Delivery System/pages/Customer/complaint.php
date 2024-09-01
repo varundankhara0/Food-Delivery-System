@@ -111,12 +111,11 @@ include "../../chcekcustomer.php";
                     <?php 
                 
                     include "../../connection.php";
-                        $query="select orders.id as orderid from tbl_order as orders JOIN tbl_cart as cart on cart.id=orders.cartid JOIN tbl_user as user on user.id=cart.userid  where user.id=".$_SESSION["userid"];
+                        $query="select orders.id as orderid,user.id as userid,user.fullname as username, user.Email as email from tbl_order as orders JOIN tbl_cart as cart on cart.id=orders.cartid JOIN tbl_user as user on user.id=cart.userid  where user.id=".$_SESSION["userid"];
                         $result=mysqli_query($conn,$query);
                         while($row=$result->fetch_assoc())
                         {
                             ?>
-                            
                             <option value=<?php echo $row["orderid"];?>><?php echo $row["orderid"];?></option>
                             <?php 
                         }
@@ -181,8 +180,26 @@ include "../../chcekcustomer.php";
                         processData: false,
                         success: function(response) {
                             if(response == true) {
-                                alert("Complaint submitted successfully");
-                                window.location="index.php"
+                                
+                                $.ajax({
+                                    url:'../../Authentication/complaint_email_customer.php',
+                                    method:'POST',
+                                    data:{
+                                        orderid:$("#order-id").val(),
+                                        
+                                    },
+                                    success:function(response)
+                                    {
+                                        if(response==true)
+                                        {
+                                            alert("Complaint submitted successfully");
+                                        }
+                                        else
+                                        {
+                                            alert(response);
+                                        }
+                                    }
+                                })
                             } else {
                                 alert("Submission failed: " + response);
                             }

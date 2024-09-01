@@ -1,4 +1,6 @@
+<script>window.location="../kanban.php";</script>
 <?php
+
 include "../../checkadmin.php";
 if ($admin != true) {
 
