@@ -1,16 +1,23 @@
 
     <?php
     include '../../connection.php';
-    if (isset($_POST['submit'])) {
    
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $city = $_POST['city'];
-        $address = $_POST['address'];
+   
+        if ($_FILES["image"]["name"]!="") {
+
+            $targetDir = "C:/xampp/htdocs/Food-Delivery-System/Food Delivery System/images/";
+            $fileName = basename($_FILES["image"]["name"]);
+            $targetFilePath = $targetDir . $fileName;
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         
         // $sql = "update tbl_fooditem SET name='$name', email='$email', city='$city', address='$address' WHERE id=$id";
-        $sql="UPDATE `tbl_fooditem` SET `id`='[value-1]',`name`='[value-2]',`Description`='[value-3]',`price`='[value-4]',`image`='[value-5]',`type`='[value-6]',`categoryid`='[value-7]',`restaurantID`='[value-8]',`rating`='[value-9]',`totalratingdone`='[value-10]',`status`='[value-11]',`dateadded`='[value-12]' WHERE 1";
-        $Result = mysqli_query($conn, $sql);
-        header('Location: update_delete.php');
-    }
+        $sql="UPDATE `tbl_fooditem` SET `name`='".$_POST["name"]."',`Description`='".$_POST["description"]."',`price`='".$_POST["price"]."',`image`='".$targetFilePath."',`type`='".$_POST["type"]."',`categoryid`='".$_POST["categoryid"]."' WHERE id=".$_POST["id"];
+        echo mysqli_query($conn, $sql);
+        }
+        else
+        {
+            $sql="UPDATE `tbl_fooditem` SET `name`='".$_POST["name"]."',`Description`='".$_POST["description"]."',`price`='".$_POST["price"]."',`type`='".$_POST["type"]."',`categoryid`='".$_POST["categoryid"]."' WHERE id=".$_POST["id"];
+            echo mysqli_query($conn, $sql);
+        }
+    
     ?>
