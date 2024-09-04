@@ -18,6 +18,7 @@ if(isset($_SESSION["role"]))
   <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
   <title>Luminor Delivery</title>
   <script src="../../js/disable.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Bootstrap core CSS -->
   <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,6 +28,7 @@ if(isset($_SESSION["role"]))
   <link rel="stylesheet" href="../../css/rd_index.css">
   <link rel="stylesheet" href="../../css/owl.css">
   <link rel="stylesheet" href="../../css/animate.css">
+ 
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
   <style>
@@ -208,11 +210,11 @@ if(isset($_SESSION["role"]))
 
 
         <div class="modal-body" id="orderDetails">
-          Are sure You want to place this order?
+          Are sure You want to accept this order?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="canclemodal">Cancel</button>
-          <button type="button" id="confirmorder" class="btn btn-danger">Place Order</button>
+          <button type="button" id="confirmorder" class="btn btn-danger">Accept delivery</button>
         </div>
       </div>
     </div>
@@ -264,6 +266,7 @@ if(isset($_SESSION["role"]))
   <script src="../../js/custom.js"></script>
   <script>
 const orderset = new Set();
+var datas;
 setInterval(function() {
     $.ajax({
         url: '../Ajax_files/check_order_status.php',
@@ -271,8 +274,9 @@ setInterval(function() {
         dataType: 'json',
         data: { excludedOrders: Array.from(orderset) },  // Send excluded orders
         success: function(data) {
-          console.log(data);
+          datas=data;
             if (data.newOrder) {
+
                 // Show the modal only if the order is not already in the set of rejected orders
                 if (!orderset.has(data.orderid)) {
                     $('#deliveryModal').modal('show');
@@ -303,7 +307,40 @@ setInterval(function() {
             }
         }
     });
-}, 1000);  // Poll every second
+}, 1000);
+
+  $("#confirmorder").click(function(){
+    $('#deliveryModal').modal('hide');
+      $.ajax({
+        url:"../Ajax_files/assigndeliveryman.php",
+        method:'POST',
+        data:
+        {
+          orderid:datas.orderid
+        },
+        dataType: "json",
+        success:function(response)
+        {
+          
+          if(response.status==true)
+          { 
+            $('#deliveryModal').modal('hide');
+            alert("order has been accepted");
+            
+            
+          }
+          else
+          {
+            $('#deliveryModal').modal('hide');
+            alert(response.message);
+           
+          }
+      
+        }
+      });
+  });
+
+  // Poll every second
   // Poll every second
 
 
