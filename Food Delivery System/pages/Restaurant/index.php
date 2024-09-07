@@ -383,7 +383,7 @@ LIMIT 6";
           </div>
         </div>
       </div>  
-        
+        <!-- new -->
         <?php 
       }
     }
