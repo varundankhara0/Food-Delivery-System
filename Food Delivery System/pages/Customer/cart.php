@@ -70,6 +70,7 @@ $result = mysqli_query($conn, $query);
     .productphoto {
       width: 304px;
       height: 204.35px;
+      object-fit: cover;
     }
 
     footer hr {
@@ -230,7 +231,7 @@ $result = mysqli_query($conn, $query);
                     <tr>
                       <td><?php echo $index++; ?></td>
                       <td><?php echo $row['Name']; ?></td>
-                      <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="100px" height="100px"></td>
+                      <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="330px" height="180px" style="object-fit:cover;"></td>
                       <td><?php echo $row['CategoryName']; ?></td>
                       <td><?php echo $row['Price']; ?></td>
                       <td>
