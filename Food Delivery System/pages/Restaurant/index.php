@@ -2,7 +2,7 @@
 include "checkowner.php";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+< lang="en">
 
   <head>
 
@@ -22,13 +22,7 @@ include "checkowner.php";
     <link rel="stylesheet" href="../../css/owl.css">
     <link rel="stylesheet" href="../../css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
 
-TemplateMo 589 lugx gaming
-
-https://templatemo.com/tm-589-lugx-gaming
-
--->
 <style>
    *{
     margin: 0;
@@ -157,7 +151,7 @@ footer hr {
 </style>
   </head>
 
-<body>
+<>
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -284,76 +278,50 @@ footer hr {
       </div>
     </div>
   </div>
+  <div><?php 
 
-  <div class="section trending">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="section-heading">
-            <h6>Popular</h6>
-            <h2>Trending Food</h2>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="main-button">
-            <a href="shop.html">View All</a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
-              <span class="price"><em>₹280</em>₹200</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Order</span>
-              <h4>South Indian</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
-              <span class="price">₹440</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Order</span>
-              <h4>Punjabi</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
-              <span class="price"><em>₹240</em>₹200</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Order</span>
-              <h4>Mughlai</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <div class="item">
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/download.jpeg" alt=""></a>
-              <span class="price">₹320</span>
-            </div>
-            <div class="down-content">
-              <span class="category">Order</span>
-              <h4>Chinese</h4>
-              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+function encrypt($plaintext, $key, $iv) {
+    return openssl_encrypt($plaintext, 'AES-128-CBC', $key, 0, $iv);
+}
+$key = 'mysecretkey12345';
+$iv = '1234567890123456';
+$query="SELECT od.id AS orderid, area.name AS address, SUM(oc.quantity) AS total_quantity FROM tbl_order AS od JOIN tbl_cart AS cart ON cart.id = od.cartid JOIN tbl_order_cart AS oc ON oc.cartid = od.cartid JOIN tbl_fooditem AS fd ON fd.id = oc.fooditemid JOIN tbl_restaurant AS rt ON rt.id = fd.restaurantID JOIN tbl_user AS user ON user.id = cart.userid JOIN tbl_customer_address AS ca ON ca.id = od.addressid JOIN tbl_area as area on area.id=ca.areaid WHERE od.status = 'o' AND rt.id = ".$_SESSION["restaurantid"]." AND rt.status = 1 GROUP BY od.id, ca.address;";
+
+?>
+
+
+    <table>
+        <tr>
+            <th>order id</th>
+            <th>total quantity</th>
+            <th>address of delivery</th>
+            <th>action</th>
+        </tr>
+        
+            <?php 
+            include "../../connection.php";
+            $result=mysqli_query($conn,$query);
+            while($row=$result->fetch_assoc())
+            {
+                $encryptedOrderId = urlencode(encrypt($row['orderid'], $key, $iv));
+                ?>
+                <tr>
+                <td><?php echo $row["orderid"]; ?></td>
+                <td><?php echo $row["total_quantity"]; ?></td>
+                <td><?php echo $row["address"]; ?></td>
+                <td><button onclick="view('<?php echo $encryptedOrderId ?>')">View Order details</button></td>
+                </tr>
+                <?php
+            }
+            ?>
+        
+    </table>
+    <script>
+        function view(id){
+            window.location='vieworder.php?oi='+id;
+        }
+    </script>
+</div>
 
   <div class="section most-played">
     <div class="container">
@@ -438,58 +406,6 @@ footer hr {
                 <span class="category">Order</span>
                 <h4>Thai</h4>
                 <a href="product-details.html">ADD</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section categories">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <div class="section-heading">
-            <h2>Restaurant Special Food</h2>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Paneer Tikka</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Manchurian</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Hyderabadi Biryani</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Pav Bhaji</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg col-sm-6 col-xs-12">
-          <div class="item">
-            <h4>Sandwich</h4>
-            <div class="thumb">
-              <a href="product-details.html"><img src="../../images/Pizza.jpeg" alt=""></a>
             </div>
           </div>
         </div>

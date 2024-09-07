@@ -424,6 +424,11 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+
+            <li>
+                <button type="button" class="btn btn-block bg-gradient-info btn-lg" onclick="relocate()">logout</button>     
+            </li>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../tables/simple.html" class="nav-link">
@@ -944,6 +949,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
+
+<script>
+  function relocate()
+  {
+    window.location="../../../pages/Landing/logout.php";
+  }
+</script>
+
 <script>
 $(function () {
   $.validator.setDefaults({

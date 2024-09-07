@@ -503,7 +503,13 @@
                     <p>Area</p>
                   </a>
                 </li>
+                
               </ul>
+              <li>
+                <button type="button" class="btn btn-block bg-gradient-info btn-lg" onclick="relocate()">logout</button>
+                    
+                  
+                </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -1137,7 +1143,12 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script>
+  function relocate()
+  {
+    window.location="../pages/Landing/logout.php";
+  }
+</script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

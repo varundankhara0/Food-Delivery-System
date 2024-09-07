@@ -1,25 +1,4 @@
-<?php 
-require 'smtp.php';
-
-// Settings
-$mail->IsSMTP();
-$mail->CharSet = 'UTF-8';
-
-$mail->Host       = "smtp.gmail.com";    // SMTP server example
-$mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
-$mail->SMTPAuth   = true;                  // enable SMTP authentication
-$mail->Port       = 587;                    // set the SMTP port for the GMAIL server
-$mail->Username   = "luminordelivery11@gmail.com";            // SMTP account username example
-$mail->Password   = "nrkcvbkinarbdmrp";            // SMTP account password example
-
-// Content
-$mail->setFrom('luminorno-reply@gmail.com');   
-$mail->addAddress($_POST['email']);
-$mail->isHTML(true);                       // Set email format to HTML
-$mail->Subject = 'Reset password';
-// $mail->Body    = '<html><head><title></title></head><body><h1 style="color:red;">Click <a href="http://localhost/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/resetpassword.php?token='.$_POST["token"].'">here</a> to reset your password</h1></body></html>';
-$mail->AltBody = 'The login otp is for clients registering on system';
-$mail->Body='<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -48,7 +27,7 @@ $mail->Body='<!DOCTYPE html>
         }
 
         .h1-font {
-            font-family: "Lobster", cursive;
+            font-family: 'Lobster', cursive;
             text-align: center;
             background: linear-gradient(to left,rgb(255, 97, 210),rgb(254, 144, 144));
             -webkit-background-clip: text;
@@ -59,7 +38,7 @@ $mail->Body='<!DOCTYPE html>
         }
 
         .contact-font {
-            font-family: "Indie Flower", cursive;
+            font-family: 'Indie Flower', cursive;
             font-style: italic;
             text-align: center;
             color: rgb(111, 111, 111);
@@ -197,16 +176,12 @@ $mail->Body='<!DOCTYPE html>
     </div>
 
 </body>
-</html>';
-if($mail->send())
-{
-    echo true;
-}
-else
-{
-    false;
-}
+</html>
 
 
-
-?>
+<!-- <h1 class="h1-font">Reset Password<h1>
+                <p class="p-font">Hey!!!!!!!, Click the Below link to Reset Your Password</b>.  
+                Simply click the below link to verify your email address.</p>
+                <div class="wrapper">
+                   <a href="http://localhost/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/resetpassword.php?token='.$_POST["token"].'">Reset Password</a>
+                </div> -->

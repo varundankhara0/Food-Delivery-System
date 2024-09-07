@@ -27,7 +27,7 @@ $mail->Password   = "nrkcvbkinarbdmrp";            // SMTP account password exam
 $mail->setFrom('luminorno-reply@gmail.com');    
 $mail->addAddress($email);
 $mail->isHTML(true);                       // Set email format to HTML
-$mail->Subject = 'OTP for Login';
+$mail->Subject = 'Complain Recieved';
 $mail->AltBody = 'The login otp is for clients registering on system';
 
 $mail->Body='<html lang="en">
@@ -53,7 +53,7 @@ $mail->Body='<html lang="en">
     .h1-font {
         font-family: Lobster;
         text-align: center;
-        background: linear-gradient(to right, rgb(245, 84, 84), rgb(255, 200, 200));
+        background: linear-gradient(to left,rgb(255, 97, 210),rgb(254, 144, 144));
         -webkit-background-clip: text;
         color: transparent;
         background-clip: text;
@@ -289,7 +289,7 @@ $mail->Body='<html lang="en">
     <body style="background-color: rgb(136,189,191)">
         <div class="form">
             <div>
-                <img class="" alt="logo" src="https://i.imgur.com/VCdfPKq.jpg" width="10%">           
+                <img class="" alt="logo" src="https://i.imgur.com/vzLpauk.png" width="10%">           
             </div>
         
             <div class="form-small" style="padding: 0px">

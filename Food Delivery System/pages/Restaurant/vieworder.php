@@ -25,7 +25,7 @@ $query = "SELECT
             fi.Price, 
             c.CategoryName, 
             oc.quantity,
-            od.id
+            od.id,od.status 
             FROM 
                 tbl_order od
             JOIN
@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $query);
     <script src="../../js/disable.js"></script>
     <link href="../../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/fontawesome.css">
-    
+
     <link rel="stylesheet" href="../../css/owl.css">
     <link rel="stylesheet" href="../../css/animate.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
@@ -71,7 +71,8 @@ $result = mysqli_query($conn, $query);
             padding: 0;
             box-sizing: border-box;
         }
-        h3{
+
+        h3 {
             color: white;
         }
 
@@ -146,7 +147,6 @@ $result = mysqli_query($conn, $query);
             display: block;
             margin-bottom: 5px;
         }
-       
     </style>
 </head>
 
@@ -184,6 +184,7 @@ $result = mysqli_query($conn, $query);
                             <li><a href="cart.php">View Cart</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
                             <?php
+                            $status="";
                             if (isset($_SESSION["user"])) {
                             ?>
                                 <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
@@ -246,10 +247,27 @@ $result = mysqli_query($conn, $query);
                                     <td><img src="<?php echo convertToWebPath($row['Image']); ?>" alt="Food Image" width="100px" height="100px"></td>
                                     <td><?php echo $row['CategoryName']; ?></td>
                                     <td><?php echo $row['Price']; ?></td>
-                                    <td><?php echo $row['quantity']; ?></td>
-
+                                    <td><?php echo $row['quantity']; 
+                                    $status=$row["status"];
+                                    ?></td>
+                                    
                                 </tr>
+                                
                             <?php }
+                            if($status=="o")
+                            {
+                                ?>
+                                     <tr>
+                            <td colspan="7" class="text-center"><button id="acceptorder">Accept Order</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="text-center"><button id="cancelorder">Cancel Order</button></td>
+                        </tr>
+                                <?php
+                            }
+                            ?>
+                                
+                            <?php 
                         } else { ?>
                             <tr>
                                 <td colspan="7" class="text-center">No items found in your order.</td>
@@ -257,12 +275,7 @@ $result = mysqli_query($conn, $query);
 
 
                         <?php } ?>
-                        <tr>
-                            <td colspan="7" class="text-center"><button id="acceptorder">Accept Order</button></td>
-                        </tr>
-                        <tr>
-                            <td colspan="7" class="text-center"><button id="cancelorder">Cancel Order</button></td>
-                        </tr>
+                   
                     </tbody>
                 </table>
             </div>
@@ -279,7 +292,7 @@ $result = mysqli_query($conn, $query);
 
         <div class="footer-content">
             <div class="footer-left">
-                <h3 >Luminor's delivery</h3>
+                <h3>Luminor's delivery</h3>
                 <div class="social-icons">
                     <a href="#"><img src="../../images/facebook-icon.png" alt="Facebook"></a>
                     <a href="#"><img src="../../images/twitter-icon.png" alt="Twitter"></a>
@@ -305,9 +318,9 @@ $result = mysqli_query($conn, $query);
                             alert("order status has been changed successfully");
                             window.location = 'index.php';
                         } else {
-                             
-                                alert(response);
-                            
+
+                            alert(response);
+
                         }
                     }
                 });
@@ -323,12 +336,28 @@ $result = mysqli_query($conn, $query);
                     },
                     success: function(response) {
                         if (response == true) {
-                            alert("order status has been changed successfully");
-                            window.location = 'index.php';
-                        } else {
-                             
-                                alert(response);
+                            $.ajax({
+                                url:'../../Authentication/restaurantcancle.php',
+                                method:'POST',
+                                data:{
+                                    'orderid': <?php echo $orderid; ?>
+                                },
+                                success:function(response)
+                                {
+                                    if(response==true)
+                                    {
+                                        alert("order was cancelled successfully");
+                                        window.location = 'index.php';
+                                    }
+                                    else
+                                    {
+                                        alert(response);
+                                    }   
+                                }
+                            })
                             
+                        } else {
+                            alert(response);
                         }
                     }
                 });

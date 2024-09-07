@@ -1,3 +1,7 @@
+<?php 
+include "checkowner.php"
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +115,9 @@
                                    ON i.categoryid = c.id
                                JOIN
                                    tbl_restaurant r
-                                   ON i.restaurantID = r.ID";
+                                   ON i.restaurantID = r.ID
+                                WHERE
+                                r.ID=".$_SESSION["restaurantid"];
             $result = mysqli_query($conn, $query);
 
             if ($result->num_rows > 0) {
