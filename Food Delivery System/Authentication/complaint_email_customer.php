@@ -288,14 +288,17 @@ $mail->Body='<html lang="en">
 
     <body style="background-color: rgb(136,189,191)">
         <div class="form">
+            <!-- Logo -->
+        <div class="logo">
+            <img src="https://i.imgur.com/vzLpauk.png" title="source: imgur.com" />
+        </div>
+
+        <!-- Main Content -->
+        <div class="form-small">
             <div>
-                <img class="" alt="logo" src="https://i.imgur.com/vzLpauk.png" width="10%">           
+                <img src="https://i.ibb.co/cLY0vQR/food-plate.jpg" alt="food-plate" width="100%" style="border-radius: 10px;">
             </div>
-        
-            <div class="form-small" style="padding: 0px">
-                <div>
-                   <a href="https://ibb.co/C2PgtQ4"><img src="https://i.ibb.co/cLY0vQR/food-plate.jpg" alt="food-plate" border="0"></a><br /><br />
-                </div>
+
                 <h1 class="h1-font">Complain Received<h1>
                 <p class="p-font">Hey '.$name.', We have received you\'re complain  on order id '.$orderid.' and we asure that our team is working on it.<br>if any help is required during the investigation our team will contact you.</b>.  
                 Thank you for showing patience and believe in us.</p>

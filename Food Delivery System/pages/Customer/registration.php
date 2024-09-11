@@ -286,7 +286,7 @@ footer hr {
             </div>
             <div class="form-group">
                 <label for="dob">Date of Birth
-                <input type="date" id="dob" name="dob" required></label>
+                <input type="date" id="dob" name="dob"  max='<?php echo date("Y-m-d")?>' required></label>
                 <div id="dob-error" class="error">Invalid date of birth.</div>
             </div>
             <div class="form-group">

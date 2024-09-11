@@ -163,7 +163,7 @@ $mail->Body='<!DOCTYPE html>
     <div class="form">
         <!-- Logo -->
         <div class="logo">
-            <img src="https://i.imgur.com/vzLpauk.png" alt="Logo">
+            <img src="https://i.imgur.com/vzLpauk.png" title="source: imgur.com" />
         </div>
 
         <!-- Main Content -->

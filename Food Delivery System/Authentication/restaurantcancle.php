@@ -467,16 +467,17 @@ $mail->Body='<!DOCTYPE html>
 <body>
 
     <div class="form">
-        <!-- Logo -->
+       <!-- Logo -->
         <div class="logo">
-            <img src="https://i.imgur.com/VCdfPKq.jpg" alt="Logo">
+            <img src="https://i.imgur.com/vzLpauk.png" title="source: imgur.com" />
         </div>
 
         <!-- Main Content -->
         <div class="form-small">
             <div>
-                <img src="https://i.imgur.com/vzLpauk.png" alt="food-plate" width="100%" style="border-radius: 10px;">
+                <img src="https://i.ibb.co/cLY0vQR/food-plate.jpg" alt="food-plate" width="100%" style="border-radius: 10px;">
             </div>
+
 
             <h1 class="h1-font">Order Cancelled</h1>
             <p class="p-font">

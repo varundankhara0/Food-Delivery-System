@@ -164,7 +164,7 @@ $mail->Body='<!DOCTYPE html>
     <div class="form">
         <!-- Logo -->
         <div class="logo">
-            <img src="https://i.imgur.com/vzLpauk.png" alt="Logo">
+            <img src="https://i.imgur.com/vzLpauk.png" title="source: imgur.com" />
         </div>
 
         <!-- Main Content -->
@@ -172,6 +172,7 @@ $mail->Body='<!DOCTYPE html>
             <div>
                 <img src="https://i.ibb.co/cLY0vQR/food-plate.jpg" alt="food-plate" width="100%" style="border-radius: 10px;">
             </div>
+
 
             <h1 class="h1-font">Account Confirmation</h1>
             <p class="p-font">
