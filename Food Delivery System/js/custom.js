@@ -10,8 +10,14 @@
 		});
 	});
 	
-
-
+	function unload()
+	{
+		$('#js-preloader').removeClass('loaded');
+	}
+	function load()
+	{
+		$('#js-preloader').addClass('loaded');
+	}
 	$(window).scroll(function() {
 	  var scroll = $(window).scrollTop();
 	  var box = $('.header-text').height();

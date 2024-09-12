@@ -26,7 +26,7 @@ include "checkowner.php";
           }
           footer {
               max-height: 30%;
-              background-color: #d30d0d;
+              background-color: #a120a1;
               padding: 50px 20px;
               text-align: center;
           }
@@ -73,9 +73,9 @@ include "checkowner.php";
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-                <li><a href="index.php" class="active">Home</a></li>
-                <li><a href="shop.php">View Food</a></li>
-                <li><a href="cart.php">View Cart</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="addFoodItem.php">Add Food</a></li>
+                <li><a href="vieworderhistory.php" class="active">Order History</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
                 <li><a href="complaint.php">Complaint</a></li>
                 <?php

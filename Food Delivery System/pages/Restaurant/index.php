@@ -200,7 +200,7 @@ function convertToWebPath($filesystemPath)
           <ul class="nav">
             <li><a href="index.php" class="active">Home</a></li>
             <li><a href="addFoodItem.php">Add Product</a></li>
-            <li><a href="product-details.html">Order History</a></li>
+            <li><a href="vieworderhistory.php">Order History</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li style="color: #fff;">online status
               <label class="switch">

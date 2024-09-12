@@ -14,7 +14,7 @@ if (in_array($fileType, $allowTypes)) {
   // Upload file to server
   if (move_uploaded_file($_FILES["License"]["tmp_name"], $targetFilePath)) {
     $name=$_POST["name"];
-    $status=1;
+    $status=0;
     $address=$_POST["address"];
     $contact=$_POST["phoneno"];
     $gstno=$_POST["gstno"];

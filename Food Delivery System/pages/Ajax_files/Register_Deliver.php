@@ -23,7 +23,7 @@ if (in_array($licenseFileType, $allowTypes) && in_array($aadharFileType, $allowT
     $onlinestatus = 0;
     $Licenseno = $_POST["license"];
     $adharcardno = $_POST["aadhar"];
-    $status = 1;
+    $status = 0;
     $userid = (int)$_SESSION["userid"];
 
 

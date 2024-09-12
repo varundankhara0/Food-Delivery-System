@@ -339,6 +339,7 @@ document.onkeydown = (e) => {
        
     
     $('#user-form').on('submit', function(e){
+        $('#js-preloader').removeClass('loaded');
         e.preventDefault();
         let valid = true;
 
@@ -405,6 +406,7 @@ document.onkeydown = (e) => {
                 success: function(response) {
                     if(response==true)
                     {
+                        $('#js-preloader').removeClass('loaded');
                         alert("User Registeration successfull");
                         window.location='../Landing/otp.php';
                     }

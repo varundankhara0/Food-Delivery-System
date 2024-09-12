@@ -154,7 +154,7 @@ $result = mysqli_query($conn, $query);
 
 
     <!-- ***** Preloader Start ***** -->
-    <!-- <div id="js-preloader" class="js-preloader">
+    <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
             <div class="dots">
@@ -163,7 +163,7 @@ $result = mysqli_query($conn, $query);
                 <span></span>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- ***** Preloader End ***** -->
 
     <!-- ***** Header Area Start ***** -->
@@ -326,8 +326,9 @@ $result = mysqli_query($conn, $query);
                 });
             });
             $("#cancelorder").click(function() {
+                $('#js-preloader').removeClass('loaded');
                 $.ajax({
-
+                    async:true,
                     url: '../Ajax_files/updateorderstatus.php',
                     method: 'POST',
                     data: {
@@ -337,6 +338,7 @@ $result = mysqli_query($conn, $query);
                     success: function(response) {
                         if (response == true) {
                             $.ajax({
+                                async:true,
                                 url:'../../Authentication/restaurantcancle.php',
                                 method:'POST',
                                 data:{
@@ -346,6 +348,7 @@ $result = mysqli_query($conn, $query);
                                 {
                                     if(response==true)
                                     {
+                                        $('#js-preloader').addClass('loaded');
                                         alert("order was cancelled successfully");
                                         window.location = 'index.php';
                                     }

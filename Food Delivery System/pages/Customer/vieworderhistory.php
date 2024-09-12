@@ -20,6 +20,7 @@ include "../../chcekcustomer.php";
   <link rel="stylesheet" href="../../css/fontawesome.css">
   <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
   <link rel="stylesheet" href="../../css/owl.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="../../css/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <style>
@@ -179,52 +180,20 @@ include "../../chcekcustomer.php";
   <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
       <div class="col-md-12">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Order id</th>
-                <th>Date of order</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-            include "../../connection.php";
-            $query="select o.id,o.date,o.status,o.amount from tbl_order as o JOIN tbl_cart as cart on cart.id=o.cartid JOIN tbl_user as user on user.id=cart.userid where user.id=".$_SESSION["userid"];
-            $result=mysqli_query($conn,$query);
-            if($result->num_rows>0)
-            {
-                while($row=$result->fetch_assoc())
-                {
-                    ?>
-                          
-            <tr>
-                <td><?php echo $row["id"];?></td>
-                <td><?php echo $row["date"];?></td>
-                <td><?php echo $row["amount"];?></td>
-                
-                <td>
-                    <?php 
-                    if($row["status"]=="o"){echo "Ordered";}
-                    else if($row["status"]=="a"){echo "Preparing";}
-                    else if($row["status"]=="da"){echo "Almost Done";}
-                    else if($row["status"]=="dn"){echo "Cancelled";}
-                    else if($row["status"]=="rc"){echo "Cancelled";}
-                    else if($row["status"]=="cc"){echo "Cancelled";}
-                    else if($row["status"]=="dc"){echo "Cancelled";}
-                    else if($row["status"]=="dw"){echo "Out for Delivery";}
-                    else if($row["status"]=="od"){echo "Delivered";}
-                    ?>
-
-                </td>
-            </tr>
-            <?php
-                }
-            }
-            ?>
-        </tbody>
-    </table>
+      <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date of Order</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orderTable">
+               
+            </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -242,7 +211,7 @@ include "../../chcekcustomer.php";
 
             </div>
         </footer>
-
+        
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="../../js/jquery/jquery.min.js"></script>
@@ -251,5 +220,70 @@ include "../../chcekcustomer.php";
   <script src="../../js/owl-carousel.js"></script>
   <script src="../../js/counter.js"></script>
   <script src="../../js/custom.js"></script>
+  <script>
+    $(document).ready(function(){
+      
+      setInterval(fetchOrders, 300);
+      function fetchOrders() {
+        $.ajax({
+          async:true,
+          url: '../Ajax_files/fetch_customer_orders.php',
+          method: 'GET',
+          success: function(response) {
+            $('#orderTable').html(response);
+            
+          },
+          error: function(xhr, status, error) {
+            console.error("Error fetching orders:", error);
+          }
+        });
+      }
+      
+      
+    });
+    function cancelorder(id,status)
+      {
+        $('#js-preloader').removeClass('loaded');
+        
+        $.ajax({
+          async:true,
+          url:"../Ajax_files/cancelordercustomer.php",
+          method:"POST",
+          data:{
+            orderid:id
+          },
+          success:function(response)
+          {
+              if(status!="a")
+              {
+                $('#js-preloader').addClass('loaded');
+                  alert("order cancelled successfully");
+                  window.location="index.php";
+              }
+          }
+        });
+        if(status=="a")
+        {
+          $.ajax({
+          async:true,
+          url:"../../Authentication/customercancel.php",
+          method:"POST",
+          data:{
+            orderid:id
+          },
+          success:function(response)
+          {
+              if(response==true)
+              {
+
+                $('#js-preloader').addClass('loaded');
+                alert("order cancelled successfully");
+                window.location="index.php";
+              }
+          }
+        });
+        }
+      }
+  </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
-
+  <?php include "../connection.php"?>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -854,7 +854,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="ion ion-clipboard mr-1"></i>
-                  To Do List
+                  To Be Approved
                 </h3>
 
                 <div class="card-tools">
@@ -870,7 +870,15 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <ul class="todo-list" data-widget="todo-list">
-                  <li>
+
+                  <?php 
+                  
+                    $query="select * from tbl_restaurant where status=0";
+                    $result=mysqli_query($conn,$query);
+                    while($row=$result->fetch_array())
+                    {
+                        ?>
+                        <li>
                     <!-- drag handle -->
                     <span class="handle">
                       <i class="fas fa-ellipsis-v"></i>
@@ -882,48 +890,49 @@
                       <label for="todoCheck1"></label>
                     </div>
                     <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
+                    <span class="text"><?php echo $row["Name"];?></span>
                     <!-- Emphasis label -->
-                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                    <small class="badge badge-danger"><i class="far fa-clock"></i> Restaurant Owner</small>
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
                   </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                      <label for="todoCheck2"></label>
-                    </div>
-                    <span class="text">Make the theme responsive</span>
-                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
+                        
+                        <?php
+                    }
+                  ?>
+                  
+                  <?php
+                 $query="select dm.id,user.fullname from tbl_delivery_man as dm join tbl_user as user on user.id=dm.userid where dm.status=0";
+                 $result=mysqli_query($conn,$query);
+                while($row=$result->fetch_array())
+                 {
+                 ?>
+               <li>
+               <span class="handle">
+                 <i class="fas fa-ellipsis-v"></i>
+                 <i class="fas fa-ellipsis-v"></i>
+               </span>
+               <div  class="icheck-primary d-inline ml-2">
+                 <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                 <label for="todoCheck3"></label>
+               </div>
+               <span class="text"><?php echo $row["fullname"];?></span>
+               <small class="badge badge-warning"><i class="far fa-clock"></i> Delivery person</small>
+               <div class="tools">
+                 <i class="fas fa-edit"></i>
+                 <i class="fas fa-trash-o"></i>
+               </div>
+             </li>
+             <?php
+                 }
+             ?>
+
+                
+   
+                  <!-- <li>
                     <span class="handle">
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
@@ -938,8 +947,8 @@
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
-                  </li>
-                  <li>
+                  </li> -->
+                  <!-- <li>
                     <span class="handle">
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
@@ -954,8 +963,8 @@
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
-                  </li>
-                  <li>
+                  </li> -->
+                  <!-- <li>
                     <span class="handle">
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
@@ -970,7 +979,7 @@
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
                     </div>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
               <!-- /.card-body -->
