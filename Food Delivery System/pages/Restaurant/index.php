@@ -307,31 +307,42 @@ function convertToWebPath($filesystemPath)
       ?>
 
 
-  <table>
-    <tr>
-      <th>order id</th>
-      <th>total quantity</th>
-      <th>address of delivery</th>
-      <th>action</th>
-    </tr>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-12">
+      <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Total Quantity</th>
+                    <th>Address of Delivery</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orderTable">
+               
+            </tbody>
 
-    <?php
-    include "../../connection.php";
-    $result = mysqli_query($conn, $query);
-    while ($row = $result->fetch_assoc()) {
-      $encryptedOrderId = urlencode(encrypt($row['orderid'], $key, $iv));
-    ?>
-      <tr>
-        <td><?php echo $row["orderid"]; ?></td>
-        <td><?php echo $row["total_quantity"]; ?></td>
-        <td><?php echo $row["address"]; ?></td>
-        <td><button onclick="view('<?php echo $encryptedOrderId ?>')">View Order details</button></td>
-      </tr>
-    <?php
-    }
-    ?>
+            <?php
+            include "../../connection.php";
+            $result = mysqli_query($conn, $query);
+            while ($row = $result->fetch_assoc()) {
+              $encryptedOrderId = urlencode(encrypt($row['orderid'], $key, $iv));
+            ?>
+              <tr>
+                <td><?php echo $row["orderid"]; ?></td>
+                <td><?php echo $row["total_quantity"]; ?></td>
+                <td><?php echo $row["address"]; ?></td>
+                <td><button onclick="view('<?php echo $encryptedOrderId ?>')">View Order details</button></td>
+              </tr>
+            <?php
+            }
+            ?>
 
-  </table>
+      </table>
+      </div>
+    </div>
+  </div>
   <script>
     function view(id) {
       window.location = 'vieworder.php?oi=' + id;
