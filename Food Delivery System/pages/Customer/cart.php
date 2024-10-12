@@ -64,6 +64,7 @@ $result = mysqli_query($conn, $query);
       background-color: #d30d0d;
       padding: 50px 20px;
       text-align: center;
+      margin-top: 225px;
       /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
     }
 

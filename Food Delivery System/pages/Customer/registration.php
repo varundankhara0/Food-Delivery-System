@@ -240,7 +240,7 @@ footer hr {
                     else
                     {
                         ?> 
-                        <li><a href="login.php" class="login-btn">Sign In</a></li>        
+                        <li><a href="../Landing/login.php" class="login-btn">Sign In</a></li>        
                         <?php
                     } 
                 ?>

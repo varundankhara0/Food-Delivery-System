@@ -186,7 +186,7 @@ function convertToWebPath($filesystemPath)
         pagination.empty();
         var totalPages = Math.ceil(totalItems / itemsPerPage);
         for (var i = 1; i <= totalPages; i++) {
-          var pageItem = `<li>
+          var pageItem = `<li><br>
     <a href="javascript:void(0);" 
        class="page-link ${i == currentPage ? 'is_active' : ''}" 
        data-page="${i}" 
@@ -240,10 +240,11 @@ function convertToWebPath($filesystemPath)
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="../Landing/index.php" class="active">Home</a></li>
-              <li><a href="shop.php">View Food</a></li>
+              <li><a href="../Landing/index.php" >Home</a></li>
+              <li><a href="shop.php" class="active">View Food</a></li>
               <li><a href="cart.php">View Cart</a></li>
               <li><a href="contact.php">Contact Us</a></li>
+              <li><a href="complaint.php">Complaint</a></li>
               <?php
               if (isset($_SESSION["user"])) {
               ?>

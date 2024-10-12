@@ -268,8 +268,22 @@ JOIN
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item" href="#">Deactivated</a>
-            
+                                  <?php 
+                                  if($row["status"]==0)
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,1)">Activate</a>
+                                    <?php
+                                  }
+                                  else
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,0)">Deactivate</a>
+                                    <?php
+                                  }
+                                  ?>
+                                  
+
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">Edit</a>
                                 </div>
@@ -340,6 +354,33 @@ JOIN
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
+
+  <script>
+    function changestatus(id,status)
+    {
+        $.ajax({
+          url:'../../../pages/Ajax_files/changestatususeraddress.php',
+          method:'POST',
+          data:{
+            id:id,
+            status:status
+          },
+          success:function(response){
+            if(response==true)
+          {
+            alert("change status successfully");
+            window.location='tbl_users_add.php';
+          }
+          else
+          {
+            alert("problem occured");
+            alert(response);
+          }
+          }
+        })
+    }
+  </script>
+
   <script>
     $(function() {
       $("#example1").DataTable({

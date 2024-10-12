@@ -254,10 +254,10 @@ ON
     <td><?php echo $row["adharcardno"]; ?></td>
     <td><a target="_blank" href="<?php echo convertToWebPath($row["addharcardimage"]); ?>">Click here</a></td>
     <td><?php    if($row["status"]==1){
-                             echo 'Action';}
+                             echo 'Activate';}
                              else{
-                              echo 'daction';
-                             } ?> ?></td>
+                              echo 'deactive';
+                             } ?></td>
         </tr>
                             <td>
                               <div class="btn-group">
@@ -266,7 +266,21 @@ ON
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="#">Deactivated</a>
+                                  <?php 
+                                  if($row["status"]==0)
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,1)">Activate</a>
+                                    <?php
+                                  }
+                                  else
+                                  {
+                                    ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id']?>,0)">Deactivate</a>
+                                    <?php
+                                  }
+                                  ?>
+                                  
 
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">Edit</a>
@@ -339,6 +353,32 @@ ON
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
+  <script>
+    function changestatus(id,status)
+    {
+        $.ajax({
+          url:'../../../pages/Ajax_files/changestatusdeliveryman.php',
+          method:'POST',
+          data:{
+            id:id,
+            status:status
+          },
+          success:function(response){
+            if(response==true)
+          {
+            alert("change status successfully");
+            window.location='tbl_delivery_man.php';
+          }
+          else
+          {
+            alert("problem occured");
+            alert(response);
+          }
+          }
+        })
+    }
+  </script>
+
   <script>
     $(function() {
       $("#example1").DataTable({

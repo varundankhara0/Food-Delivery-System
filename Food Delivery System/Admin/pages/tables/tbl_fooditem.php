@@ -271,11 +271,11 @@ function convertToWebPath($filesystemPath)
                             <td><?php echo $row["rating"]; ?></td>
                             <td><?php echo $row["totalratingdone"]; ?></td>
                             <td><?php
-                            if($row["status"]==1){
-                             echo 'Action';}
-                             else{
-                              echo 'daction';
-                             } ?></td>
+                                if ($row["status"] == 1) {
+                                  echo 'Action';
+                                } else {
+                                  echo 'daction';
+                                } ?></td>
                             <td><?php echo $row["dateadded"]; ?></td>
 
                             <td>
@@ -285,7 +285,17 @@ function convertToWebPath($filesystemPath)
                                   <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="#">Deactivated</a>
+                                  <?php
+                                  if ($row["status"] == 0) {
+                                  ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id'] ?>,1)">Activate</a>
+                                  <?php
+                                  } else {
+                                  ?>
+                                    <a class="dropdown-item" onclick="changestatus(<?php echo $row['id'] ?>,0)">Deactivate</a>
+                                  <?php
+                                  }
+                                  ?>
 
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">Edit</a>
@@ -297,9 +307,9 @@ function convertToWebPath($filesystemPath)
                         }
                       }
                       ?>
-                      </tbody>
-            <tfoot>
-            <tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
                         <th>Id</th>
                         <th>name</th>
                         <th>Description</th>
@@ -316,8 +326,8 @@ function convertToWebPath($filesystemPath)
 
                         <th>Action</th>
                       </tr>
-            </tfoot>
-            </table>
+                    </tfoot>
+                  </table>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -364,6 +374,32 @@ function convertToWebPath($filesystemPath)
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
   <!-- Page specific script -->
+  <script>
+    function changestatus(id,status)
+    {
+        $.ajax({
+          url:'../../../pages/Ajax_files/changestatusfooditem.php',
+          method:'POST',
+          data:{
+            id:id,
+            status:status
+          },
+          success:function(response){
+            if(response==true)
+          {
+            alert("change status successfully");
+            window.location='tbl_fooditem.php';
+          }
+          else
+          {
+            alert("problem occured");
+            alert(response);
+          }
+          }
+        })
+    }
+  </script>
+
   <script>
     $(function() {
       $("#example1").DataTable({

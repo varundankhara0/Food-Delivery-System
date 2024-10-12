@@ -134,10 +134,11 @@ footer hr {
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="index.php" class="active">Home</a></li>
+              <li><a href="index.php" >Home</a></li>
               <li><a href="#">View Food</a></li>
-              <li><a href="product-details.php">View Cart</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
+              <li><a href="cart.php">View Cart</a></li>
+              <li><a href="contact.php" class="active">Contact Us</a></li>
+              <li><a href="complaint.php">Complaint</a></li>
               <?php
               if (isset($_SESSION["user"])) {
               ?>
@@ -150,7 +151,7 @@ footer hr {
               <?php
               }
               ?>
-              <li><a href="complaint.php">Complaint</a></li>
+              
             </ul>
 
           </nav>

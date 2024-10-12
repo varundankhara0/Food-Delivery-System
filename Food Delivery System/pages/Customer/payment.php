@@ -34,7 +34,7 @@ use Razorpay\Api\Api;
 $api = new Api('rzp_test_qxeuAYL6jOqDSW', 'IxoRKz8mHWNvDpWmN5n74wpI');
 $orderData = [
     'receipt'         => 'order_rcptid_'.rand(10000,99999).'',
-    'amount'          => $totalPrice*100, // amount in the smallest currency unit (e.g., 50000 paise = ₹500)
+    'amount'          => ($totalPrice+40)*100, // amount in the smallest currency unit (e.g., 50000 paise = ₹500)
     'currency'        => 'INR',
     'payment_capture' => 1 // auto-capture payment after authorization
 ];
@@ -48,7 +48,7 @@ $razorpayOrderId = $razorpayOrder['id'];
     <script
         src="https://checkout.razorpay.com/v1/checkout.js"
         data-key="rzp_test_qxeuAYL6jOqDSW"
-        data-amount="<?php echo ($totalPrice*100)?>" // amount in the smallest currency unit
+        data-amount="<?php echo (($totalPrice+40))?>" // amount in the smallest currency unit
         data-currency="INR"
         data-order_id="<?php echo $razorpayOrderId; ?>"
         data-buttontext="Pay with Razorpay"

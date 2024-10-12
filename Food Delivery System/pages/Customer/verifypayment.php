@@ -49,7 +49,7 @@ url: '../Ajax_files/placeorder.php',
 method: 'POST',
 data: {
   'mode': 'online',
-  'amount':'<?php echo $paymentDetails["amount"] ?>',
+  'amount':'<?php echo $paymentDetails["amount"]/100; ?>',
   'transcationid':'<?php echo $_POST['razorpay_payment_id'];?>'
 },
 success: function(response) {

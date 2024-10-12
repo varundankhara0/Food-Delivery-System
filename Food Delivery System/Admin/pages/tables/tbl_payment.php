@@ -219,7 +219,7 @@ function convertToWebPath($filesystemPath)
 
                         <!-- <th>Action</th> -->
 
-                        <th>Action</th>
+                        <th  hidden></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -242,20 +242,8 @@ function convertToWebPath($filesystemPath)
                             }
                              ?></td>
 
-                            <td>
-                              <div class="btn-group">
-                                <button type="button" class="btn btn-warning">Action</button>
-                                <button type="button" class="btn btn-warning dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
-                                  <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <div class="dropdown-menu" role="menu">
-                                  <a class="dropdown-item" href="#">Deactivated</a>
-
-                                  <div class="dropdown-divider"></div>
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                </div>
-                              </div>
-                </td>
+                            <td hidden>
+      
                 </tr>
             <?php
                         }
@@ -272,7 +260,7 @@ function convertToWebPath($filesystemPath)
 
                         <!-- <th>Action</th> -->
 
-                        <th>Action</th>
+                        <th hidden></th>
                       </tr>
             </tfoot>
                     </table>
