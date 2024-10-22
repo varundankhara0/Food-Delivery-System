@@ -373,7 +373,12 @@ footer hr {
               if (response == true) {
                 alert("order has been placed successfully");
                 window.location = 'index.php';
-              } else {
+              } else if(response=="Please register an address")
+              {
+                alert("address not registered\n please register an address");
+                window.location="./add_address.php";
+              } 
+              else {
                 if (response == "nocart") {
                   alert("there was an error while retriving you\'re cart details")
                   window.location = "index.php";

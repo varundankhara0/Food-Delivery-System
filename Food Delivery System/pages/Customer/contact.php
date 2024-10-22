@@ -31,6 +31,7 @@ https://templatemo.com/tm-589-lugx-gaming
     ul {
       display: flex;
       padding-left: 50px;
+      padding-right: 80px;
     }
 
     nav {

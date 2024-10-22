@@ -1,6 +1,12 @@
 <?php
 include "../../connection.php";
 session_start();
+if(!isset($_SESSION["address"]))
+{
+    echo "Please register an address";
+    exit(0);
+}
+
 $query="select * from tbl_cart where userid=".$_SESSION["userid"]." and status=1";
 $result=mysqli_query($conn,$query);
 $amount=$_POST["amount"];
@@ -19,7 +25,7 @@ else
 }
 if($_POST["mode"]=="cash")
 {
-    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o',".$_SESSION["address"].");";
+    $query="insert into tbl_order(cartid,amount,couponid,status,addressid) values(".$cartid.",'".$amount."',NULL,'o','".$_SESSION["address"]."');";
     $result1=mysqli_query($conn,$query);
     $orderid=mysqli_insert_id($conn);
     $query="update tbl_cart set status=0 where id=".$cartid;

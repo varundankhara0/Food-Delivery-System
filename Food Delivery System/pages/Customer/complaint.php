@@ -193,6 +193,7 @@ include "../../chcekcustomer.php";
                                         if(response==true)
                                         {
                                             alert("Complaint submitted successfully");
+                                            window.location="index.php";
                                         }
                                         else
                                         {
