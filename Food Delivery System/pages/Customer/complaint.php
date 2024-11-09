@@ -11,7 +11,7 @@ include "../../chcekcustomer.php";
     <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        <style>
+       
 
      
     
@@ -206,7 +206,7 @@ footer hr {
             </div>
 
             <div class="form-section">
-                <button type="submit" name="submit"><a href="index.php">Back</a></button>
+                <button onclick="window.location='index.php'">Back</button>
                 <button type="submit" name="submit">Submit</button>
 
             </div>
