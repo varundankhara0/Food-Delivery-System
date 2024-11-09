@@ -76,7 +76,7 @@ include "checkowner.php";
                 <li><a href="index.php">Home</a></li>
                 <li><a href="addFoodItem.php">Add Food</a></li>
                 <li><a href="vieworderhistory.php" class="active">Order History</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
+                <!-- <li><a href="contact.php">Contact Us</a></li> -->
                 <li><a href="complaint.php">Complaint</a></li>
                 <?php
                 if(isset($_SESSION["restaurantid"])) {

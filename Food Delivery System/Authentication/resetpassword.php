@@ -180,7 +180,7 @@ $mail->Body='<!DOCTYPE html>
             </p>
 
             <div class="wrapper">
-                <a href="http://localhost/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/resetpassword.php?token='.$_POST["token"].'" class="button">Reset password</a>
+                <a href="http://luminor-del.shop/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/resetpassword.php?token='.$_POST["token"].'" class="button">Reset password</a>
             </div>
         </div>
 

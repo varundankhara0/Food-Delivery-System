@@ -1,5 +1,5 @@
 <?php
-include "../../chcekcustomer.php";
+include "checkowner.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,40 +22,40 @@ include "../../chcekcustomer.php";
   <link rel="stylesheet" href="../../css/templatemo-lugx-gaming.css">
   <link rel="stylesheet" href="../../css/owl.css">
   <link rel="stylesheet" href="../../css/animate.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" >
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
   <style>
     body {
-      background-color: #d30d0d;
+      background: rgb(99, 39, 120)
     }
 
     .form-control:focus {
       box-shadow: none;
-      border-color: #d30d0d;
+      border-color: #BA68C8
     }
 
     .profile-button {
-      background-color: #d30d0d;
+      background: rgb(99, 39, 120);
       box-shadow: none;
       border: none
     }
 
     .profile-button:hover {
-      background: #d30d0d;
+      background: #682773
     }
 
     .profile-button:focus {
-      background: #d30d0d;
+      background: #682773;
       box-shadow: none
     }
 
     .profile-button:active {
-      background: #d30d0d;
+      background: #682773;
       box-shadow: none
     }
 
     .back:hover {
-      color: #d30d0d;
+      color: #682773;
       cursor: pointer
     }
 
@@ -70,10 +70,10 @@ include "../../chcekcustomer.php";
     }
 
     .add-experience:hover {
-      background: #d30d0d;
-      color: #d30d0d;
+      background: #BA68C8;
+      color: #fff;
       cursor: pointer;
-      border: solid 1px #d30d0d
+      border: solid 1px #BA68C8
     }
     </style>
     
@@ -126,10 +126,10 @@ include "../../chcekcustomer.php";
             </div>
             <div class="row mt-3">
               <div class="col-md-12"><input type="file" class="form-control" id="pic" hidden></div>
-              <input type="email" name="beforeemail" value="<?php echo $row["Email"]; ?>" hidden>
-              <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" name="phoneno" class="form-control" placeholder="enter phone number" value="<?php echo $row["PhoneNo"] ?>" readonly></div>
-              <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" name="email" placeholder="enter email id" value="<?php echo $row["Email"]; ?>" readonly></div>
-              <div class="col-md-12"><label class="labels">BirthDate</label><input type="date" class="form-control" name="dob" placeholder="enter birthdate" value="<?php echo $row["dob"] ?>" readonly></div>
+              <input type="text" name="id" value="<?php echo $row["id"]; ?>" hidden>
+              <div class="col-md-12"><label class="labels">Name</label><input type="text" name="name" class="form-control" placeholder="enter phone number" value="<?php echo $row["Name"] ?>" readonly></div>
+              <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" name="address" placeholder="enter email id" value="<?php echo $row["address"]; ?>" readonly></div>
+              <div class="col-md-12"><label class="labels">Contact</label><input type="text" class="form-control" name="dob" placeholder="enter birthdate" value="<?php echo $row["dob"] ?>" readonly></div>
               <div class="col-md-12"><label class="labels">Gender</label><select name="gender" class="form-control" id="gender" disabled>
                 <?php 
                 if($row["Gender"]==false)

@@ -119,14 +119,14 @@ $row = $result->fetch_assoc();
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label class="labels">Address</label>
-                            <input type="text" name="beforeemail" class="form-control" value="<?php echo htmlspecialchars($row["address"]); ?>">
+                            <input type="text" name="address" class="form-control" value="<?php echo htmlspecialchars($row["address"]); ?>">
                         </div>
                         <div class="col-md-12">
                             <label class="labels">Mobile Number</label>
                             <input type="text" name="phoneno" class="form-control" placeholder="enter phone number" value="<?php echo htmlspecialchars($row["Contact"]); ?>" readonly>
                         </div>
                         <div class="col-md-12">
-                            <label class="labels">Email ID</label>
+                            <label class="labels">License No</label>
                             <input type="text" class="form-control" name="email" placeholder="enter email id" value="<?php echo htmlspecialchars($row["gstno"]); ?>" readonly>
                         </div>
                         <div class="col-md-12">
@@ -192,9 +192,9 @@ $row = $result->fetch_assoc();
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            if (response === "true") {
+                            if (response == true) {
                                 alert("Details were updated successfully");
-                                window.location = '../Customer/profil.php';
+                                window.location = 'profil.php';
                             } else if (response === "newemail") {
                                 alert("Email change detected. Please verify your new email; your login is disabled until then.");
                                 window.location = "../Landing/otp.php";

@@ -228,7 +228,7 @@ footer hr {
             <li><a href="#">Home</a></li>
             <li><a href="#">Our Shop</a></li>
             <li><a href="#">Product Details</a></li>
-            <li><a href="#">Contact US</a></li>
+            
             <?php
                     if(isset($_SESSION["user"]))
                     {
@@ -251,7 +251,7 @@ footer hr {
 
 
     <div class="form-section">
-        <h1>Customer Registeration</h1>
+        <h1>Customer Registration</h1>
         <form method="post" action="#" enctype="multipart/form-data" id="user-form" novalidate>
            
             <div class="inline-inputs">

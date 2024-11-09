@@ -201,7 +201,7 @@ function convertToWebPath($filesystemPath)
             <li><a href="index.php" class="active">Home</a></li>
             <li><a href="addFoodItem.php">Add Product</a></li>
             <li><a href="vieworderhistory.php">Order History</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <!-- <li><a href="contact.html">Contact Us</a></li> -->
             <li style="color: #fff;">online status
               <label class="switch">
                 <input type="checkbox" checked>
@@ -211,7 +211,7 @@ function convertToWebPath($filesystemPath)
             <?php
             if (isset($_SESSION["restaurantid"])) {
             ?>
-              <li><a href="../Landing/logout.php" class="login-btn"><?php echo $_SESSION["restaurantname"]; ?></a></li>
+              <li><a href="profil.php" class="login-btn"><?php echo $_SESSION["restaurantname"]; ?></a></li>
 
             <?php
             } else {

@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
 $totalQuantity = $row['total_quantity'];
-$totalPrice = $row['total_price'];
+$totalPrice = intval($row['total_price']);
 ?>
 
 <?php 

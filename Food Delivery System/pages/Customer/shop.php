@@ -126,7 +126,7 @@ function convertToWebPath($filesystemPath)
 
     $(document).ready(function() {
      
-
+      $encryptedid="";
       loadFoodItems();
 
       $('.filter').on('change', function() {
@@ -146,40 +146,45 @@ function convertToWebPath($filesystemPath)
             type: type,
             category: category,
             priceRange: priceRange,
-            page: page
+            page: page,
+            
           },
           success: function(response) {
+           
             var data = JSON.parse(response);
-            displayFoodItems(data.foodItems);
-            setupPagination(data.totalItems, data.itemsPerPage, data.currentPage);
+            displayFoodItems(data.foodItems,data.Encryptedid);
+            setupPagination(data.totalItems, data.itemsPerPage, data.currentPage,);
           }
         });
       }
 
-      function displayFoodItems(foodItems) {
-        var container = $('.trending-box');
-        container.empty();
-        $.each(foodItems, function(index, item) {
-          var foodHtml = `
+      function displayFoodItems(foodItems,Encryptedid) {
+    var container = $('.trending-box');
+    container.empty();
+    $.each(foodItems, function(index, item) {
+        var foodHtml = `
             <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
-              <div class="item">
-                <div class="thumb">
-                  <a href="product-details.html"><img class="productphoto" src="${convertToWebPath(item.image)}" alt=""></a>
-                  <span class="price">₹${item.price}</span>
+                <div class="item">
+                    <div class="thumb">
+                        <a href="product-details1.php?foodItemsid=${Encryptedid}">
+                            <img class="productphoto" src="${convertToWebPath(item.image)}" alt="">
+                        </a>
+                        <span class="price">₹${item.price}</span>
+                    </div>
+                    <div class="down-content">
+                        <span class="category">${item.CategoryName}</span>
+                        <h4>${item.name}</h4>
+                        <span class="category">From ${item.RestaurantName}</span>
+                        <a id="add" onclick='addtocart(${item.id})'>
+                            <img src="../../images/add-to-basket.png" class="addtocart">
+                        </a>
+                    </div>
                 </div>
-                <div class="down-content">
-                <span class="category">${item.CategoryName}</span>
-              
-                   
-                  <h4>${item.name}</h4>
-                  <span class="category"> From ${item.RestaurantName}</span>
-                  <a id="add" onclick='addtocart(${item.id})'><img src="../../images/add-to-basket.png" class="addtocart"></a>
-                </div>
-              </div>
             </div>`;
-          container.append(foodHtml);
-        });
-      }
+        container.append(foodHtml);
+    });
+}
+
 
       function setupPagination(totalItems, itemsPerPage, currentPage) {
         var pagination = $('.pagination');
@@ -215,7 +220,7 @@ function convertToWebPath($filesystemPath)
 <body>
 
   <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
+  <!-- <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -224,7 +229,7 @@ function convertToWebPath($filesystemPath)
         <span></span>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
@@ -243,7 +248,7 @@ function convertToWebPath($filesystemPath)
               <li><a href="../Landing/index.php" >Home</a></li>
               <li><a href="shop.php" class="active">View Food</a></li>
               <li><a href="cart.php">View Cart</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
+              
               <li><a href="complaint.php">Complaint</a></li>
               <?php
               if (isset($_SESSION["user"])) {

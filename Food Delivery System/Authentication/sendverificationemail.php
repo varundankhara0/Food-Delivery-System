@@ -183,7 +183,7 @@ $mail->Body='<!DOCTYPE html>
             </p>
 
             <div class="wrapper">
-                <a href="http://localhost/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/Activateuser.php?token='.$_SESSION["acchash"].'" class="button">Verify Account</a>
+                <a href="https://luminor-del.shop/Food-Delivery-System/Food%20Delivery%20System/pages/Landing/Activateuser.php?token='.$_SESSION["acchash"].'" class="button">Verify Account</a>
             </div>
         </div>
 

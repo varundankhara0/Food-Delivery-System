@@ -256,10 +256,10 @@ footer hr {
     <div><img src="../../images/logo.png"  ></div>
     <div>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Our Shop</a></li>
-            <li><a href="#">Product Details</a></li>
-            <li><a href="#">Contact US</a></li>
+        <li><a href="index.php" class="active">Home</a></li>
+                      <li><a href="shop.php">View Food</a></li>
+                      <li><a href="cart.php">View Cart</a></li>
+                      <li><a href="complaint.php">Complaint</a></li>
             <?php
                     if(isset($_SESSION["user"]))
                     {
@@ -275,7 +275,7 @@ footer hr {
                         <?php
                     } 
                 ?>
-                <li><a href="complaint.php">Complaint</a></li>
+                
         </ul>
     </div>
    </nav>
@@ -284,24 +284,26 @@ footer hr {
   <div class="container" >
     <h2>Payment Summary</h2>
     <p>Total Quantity: <?php echo $totalQuantity; ?></p>
-    <p>Total Price: ₹<?php echo $totalPrice; ?></p>
+    <p>Total Price: ₹<?php $totalPrice=$totalPrice+40;
+     echo $totalPrice; ?></p>
     <p>Payment Mode <select name="paymentmode" id="pm">
         <option value="online">Online Mode</option>
         <option value="cashpayment">Cash Payment</option>
       </select></p>
+    <script>alert("Please Hover on address in drop down to see the address");</script>
     <h3>Select Delivery Address</h3>
 
 
-
     <select name="address" id="address-select">
-
+    
       <?php
       $query = "select * from tbl_customer_address where userid=" . $_SESSION["userid"] . " and status = 1";
       $result1 = mysqli_query($conn, $query);
       if ($result1->num_rows > 0) {
+        $count=1;
         while ($row1 = $result1->fetch_assoc()) {
       ?>
-          <option value=<?php echo $row1["id"]; ?> title=""><?php echo $row1["doorno"]; ?><?php echo $row1["address"]; ?></option>
+          <option value=<?php echo $row1["id"]; ?> title="<?php echo $row1["doorno"]; ?><?php echo $row1["address"]; ?>">Address <?php echo $count++;?></option>
       <?php
         }
       }
@@ -373,12 +375,14 @@ footer hr {
               if (response == true) {
                 alert("order has been placed successfully");
                 window.location = 'index.php';
-              } else if(response=="Please register an address")
+              } else 
+              if(response=="Please register an address")
               {
                 alert("address not registered\n please register an address");
                 window.location="./add_address.php";
               } 
               else {
+                alert(response);
                 if (response == "nocart") {
                   alert("there was an error while retriving you\'re cart details")
                   window.location = "index.php";
@@ -389,7 +393,16 @@ footer hr {
             }
           });
         } else {
-          window.location = "payment.php";
+          if($("#address-select").val()==null)
+        {
+          alert("Address is not there please fill the address first");
+          window.location="./add_address.php";
+        }
+        else
+        {
+             window.location = "payment.php";
+        }
+          
         }
       });
     });

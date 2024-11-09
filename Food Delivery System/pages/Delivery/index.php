@@ -1,4 +1,4 @@
-<?php 
+  <?php 
 session_start();
 if(isset($_SESSION["role"]))
 {
@@ -7,7 +7,7 @@ if(isset($_SESSION["role"]))
     // Role-specific actions can be added here
   }
 }
-?>
+?>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -174,23 +174,24 @@ if(isset($_SESSION["role"]))
               <img src="../../images/logo.png" alt="Logo" style="width: 100px;">
             </a>
             <ul class="nav">
-              <li><a href="index.html" class="active">Home</a></li>
-              <li><a href="shop.html">Check Delivery</a></li>
-              <li><a href="product-details.html">View Past Delivery</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="index.php" class="active">Home</a></li>
+              <li><a href="#">Check Delivery</a></li>
+              <li><a href="#">View Past Delivery</a></li>
+             
               <li style="color: #fff;">online status
     <label class="switch">
       <input type="checkbox" checked>
       <span class="slider round"></span>
     </label>
   </li>
-              <?php 
+  <?php 
               if(isset($_SESSION["deliverymanid"])) {
                 echo '<li><a href="../Landing/logout.php" class="login-btn">' . $_SESSION["deliverymanname"] . '</a></li>';
               } else {
                 echo '<li><a href="login.php" class="login-btn">Sign In</a></li>';
               }
               ?>
+              
             </ul>
           </nav>
         </div>

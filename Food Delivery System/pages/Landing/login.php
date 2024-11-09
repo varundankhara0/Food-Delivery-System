@@ -256,7 +256,7 @@ if(isset($_SESSION["role"]))
                       <li><a href="index.php" class="active">Home</a></li>
                       <li><a href="../Customer/shop.php">View Food</a></li>
                       <li><a href="../Customer/cart.php">View Cart</a></li>
-                      <li><a href="../Customer/contact.php">Contact Us</a></li>
+                      
                       <?php
                     if(isset($_SESSION["user"]))
                     {

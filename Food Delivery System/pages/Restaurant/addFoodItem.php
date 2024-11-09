@@ -17,11 +17,122 @@ include "checkowner.php";
             display: none;
             margin-top: 5px;
         }
+        /* Reset some default styling for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body and form container styling */
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Labels and input elements */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+input[type="text"],
+textarea,
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Error messages */
+.error {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color:#842fc8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Optional: style the file input */
+input[type="file"] {
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+select {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    form {
+        padding: 20px;
+    }
+}
+
     </style>
 </head>
 <body>
-    <h1>Add Food</h1>
+    
     <form id="user-form" novalidate>
+    <h1>Add Food</h1>
         <label for="name">Food Item Name</label>
         <input type="text" name="name" id="name" required>
         <div id="name-error" class="error">Invalid name. Please use alphabetic characters and spaces only.</div>
@@ -59,6 +170,7 @@ include "checkowner.php";
         <div id="category-error" class="error">Please select a category.</div>
         
         <input type="submit" name="submit" value="Submit">
+        <button type="submit" name="submit"><a href="index.php">Back</a></button>
     </form>
     <script>
         $(document).ready(function() {

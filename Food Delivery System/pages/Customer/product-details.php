@@ -119,6 +119,17 @@ https://templatemo.com/tm-589-lugx-gaming
       display: block;
       margin-bottom: 5px;
     }
+    footer {
+
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .social-icons img {
+    width: 30px;
+    margin: 0 10px;
+}
   </style>
 </head>
 
@@ -153,7 +164,7 @@ https://templatemo.com/tm-589-lugx-gaming
               <li><a href="../Landing/index.php" class="active">Home</a></li>
               <li><a href="#">View Food</a></li>
               <li><a href="#">View Cart</a></li>
-              <li><a href="contact.php">Contact Us</a></li>
+              
               <?php
               if (isset($_SESSION["user"])) {
               ?>

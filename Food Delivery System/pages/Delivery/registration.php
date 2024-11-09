@@ -228,11 +228,7 @@ footer hr {
         <div><img src="../../images/logo.png"></div>
         <div>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Our Shop</a></li>
-                <li><a href="#">Product Details</a></li>
-                <li><a href="#">Contact US</a></li>
-                <li><a href="#">SIGN IN</a></li>
+            <li><a href="index.php" class="active">Home</a></li>
             </ul>
         </div>
     </nav>

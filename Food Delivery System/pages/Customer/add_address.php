@@ -242,7 +242,7 @@ include "../../chcekcustomer.php";
                 <li><a href="../Landing/index.php">Home</a></li>
                 <li><a href="#">Our Shop</a></li>
                 <li><a href="#">Product Details</a></li>
-                <li><a href="#">Contact US</a></li>
+                
                 <li><a href="#">SIGN IN</a></li>
                 <li><a href="complaint.php">Complaint</a></li>
             </ul>

@@ -6,9 +6,14 @@ $category = isset($_POST['category']) ? $_POST['category'] : '';
 $priceRange = isset($_POST['priceRange']) ? $_POST['priceRange'] : '';
 $page = isset($_POST['page']) ? $_POST['page'] : 1;
 $itemsPerPage = 12; // Number of items per page
-
+$encryptedOrderId="";
 $offset = ($page - 1) * $itemsPerPage;
-
+function encrypt($plaintext, $key, $iv)
+      {
+        return openssl_encrypt($plaintext, 'AES-128-CBC', $key, 0, $iv);
+      }
+      $key = 'mysecretkey12345';
+      $iv = '1234567890123456';
 $query = "SELECT fd.id, fd.name, fd.image, fd.price, fd.description, fd.categoryid, ca.CategoryName, rs.Name as RestaurantName,rs.id as RestaurantID
           FROM tbl_fooditem AS fd 
           JOIN tbl_category AS ca ON ca.id=fd.categoryid 
@@ -35,6 +40,7 @@ $result = mysqli_query($conn, $query);
 $foodItems = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $foodItems[] = $row;
+    $encryptedOrderId = urlencode(encrypt($row['id'], $key, $iv));
 }
 
 $totalItemsQuery = "SELECT COUNT(*) as count 
@@ -59,11 +65,13 @@ $totalItemsResult = mysqli_query($conn, $totalItemsQuery);
 $totalItemsRow = mysqli_fetch_assoc($totalItemsResult);
 $totalItems = $totalItemsRow['count'];
 
+
 $response = [
     'foodItems' => $foodItems,
     'totalItems' => $totalItems,
     'itemsPerPage' => $itemsPerPage,
-    'currentPage' => $page
+    'currentPage' => $page,
+    'Encryptedid'=>$encryptedOrderId,
 ];
 
 echo json_encode($response);

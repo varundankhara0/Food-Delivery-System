@@ -135,12 +135,13 @@ footer hr {
                       <li><a href="index.php" class="active">Home</a></li>
                       <li><a href="shop.php">View Food</a></li>
                       <li><a href="cart.php">View Cart</a></li>
-                      <li><a href="contact.php">Contact Us</a></li>
+                     
                       <li><a href="complaint.php">Complaint</a></li>
                       <?php
                     if(isset($_SESSION["user"]))
                     {
                         ?>
+                            <li><a href="order-history.php">Order History</a></li>
                             <li><a href="./profil.php" class="login-btn"><?php echo $_SESSION["user"]; ?></a></li>
                         
                         <?php

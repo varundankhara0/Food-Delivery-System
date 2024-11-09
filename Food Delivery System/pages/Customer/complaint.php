@@ -11,6 +11,69 @@ include "../../chcekcustomer.php";
     <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        <style>
+
+     
+    
+footer {
+    max-height: 30%;
+    
+    background-color: #d30d0d;
+    padding: 50px 20px;
+    text-align: center;
+    /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
+}
+footer hr {
+    border: none;
+    border-top: 1px solid #DDD;
+    margin: 20px 0;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    flex: 1;
+}
+
+.footer-left h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.footer-right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links h4 {
+    font-size: 18px;
+    color: #DDD;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f2f5;
@@ -79,7 +142,7 @@ include "../../chcekcustomer.php";
         }
         
         button {
-            background-color: #007bff;
+            background-color: #ed2727;
             color: white;
             border: none;
             padding: 12px 25px;
@@ -97,9 +160,14 @@ include "../../chcekcustomer.php";
         button:hover {
             background-color: #0056b3;
         }
+        a{
+            text-decoration: none !important;
+            color:white;
+        }
     </style>
 </head>
 <body>
+    
     <div class="complaint-form-container">
         <h1>Food Complaint Form</h1>
         
@@ -138,7 +206,9 @@ include "../../chcekcustomer.php";
             </div>
 
             <div class="form-section">
+                <button type="submit" name="submit"><a href="index.php">Back</a></button>
                 <button type="submit" name="submit">Submit</button>
+
             </div>
         </form>
     </div>
